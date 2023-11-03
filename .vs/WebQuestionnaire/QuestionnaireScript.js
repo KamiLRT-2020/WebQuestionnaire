@@ -1,44 +1,10 @@
 // JavaScript source code
-//if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-//    xmlhttp = new XMLHttpRequest();
-//}
-//else {// code for IE6, IE5
-//    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-//}
-//xmlhttp.open("GET", "https://drive.google.com/file/d/1HBrJjY7P6lUaxGi3Lmq0B3zRPQP5DM5o/view?usp=drive_link", false);
-//xmlhttp.send();
-//xmlDoc = xmlhttp.responseXML;
 
 const titleElement = document.getElementById("head_title");
 titleElement.innerText = "xxxxxx";
 const introductionElement = document.getElementById("introduction");
 
-const sliderContainerElement = document.createElement("div");
-const sliderContainerAtt = document.createAttribute("class");
-sliderContainerAtt.value = "slidecontainer";
-sliderContainerElement.setAttributeNode(sliderContainerAtt);
-
-const sliderElement = document.createElement("input");
-const sliderTypeAtt = document.createAttribute("type");
-const sliderMinAtt = document.createAttribute("min");
-const sliderMaxAtt = document.createAttribute("max");
-const sliderClassAtt = document.createAttribute("class");
-const sliderId = document.createAttribute("id");
-const sliderValue = document.createAttribute("value");
-sliderTypeAtt.value = "range";
-sliderMinAtt.value = "0";
-sliderMaxAtt.value = "100";
-sliderClassAtt.value = "slider";
-sliderId.value = "mySlider";
-sliderValue.value = "0";
-sliderElement.setAttributeNode(sliderTypeAtt);
-sliderElement.setAttributeNode(sliderMinAtt);
-sliderElement.setAttributeNode(sliderMaxAtt);
-sliderElement.setAttributeNode(sliderClassAtt);
-sliderElement.setAttributeNode(sliderId);
-sliderElement.setAttributeNode(sliderValue);
-
-document.body.appendChild(sliderElement);
+document.body.appendChild(CreateSlider());
 
 document.getElementById("submitButton").onclick = function () {
     let csvContent = "data:text/csv;charset=utf-8,";
@@ -51,6 +17,50 @@ document.getElementById("submitButton").onclick = function () {
     link.click();
 }
 
+function CreateSlider()
+{
+    const sliderContainerElement = document.createElement("div");
+    const sliderContainerAtt = document.createAttribute("class");
+    sliderContainerAtt.value = "slidecontainer";
+    sliderContainerElement.setAttributeNode(sliderContainerAtt);
+
+    const sliderElement = document.createElement("input");
+    const sliderTypeAtt = document.createAttribute("type");
+    const sliderMinAtt = document.createAttribute("min");
+    const sliderMaxAtt = document.createAttribute("max");
+    const sliderClassAtt = document.createAttribute("class");
+    const sliderId = document.createAttribute("id");
+    const sliderValue = document.createAttribute("value");
+    sliderTypeAtt.value = "range";
+    sliderMinAtt.value = "0";
+    sliderMaxAtt.value = "100";
+    sliderClassAtt.value = "slider";
+    sliderId.value = "mySlider";
+    sliderValue.value = "0";
+    sliderElement.setAttributeNode(sliderTypeAtt);
+    sliderElement.setAttributeNode(sliderMinAtt);
+    sliderElement.setAttributeNode(sliderMaxAtt);
+    sliderElement.setAttributeNode(sliderClassAtt);
+    sliderElement.setAttributeNode(sliderId);
+    sliderElement.setAttributeNode(sliderValue);
+
+    sliderContainerElement.appendChild(CreateDivideLine());
+    //sliderContainerElement.appendChild(CreateLeftBorderLine());
+    sliderContainerElement.appendChild(sliderElement);
+    //sliderContainerElement.appendChild(CreateRightBorderLine());
+
+
+    return sliderContainerElement;
+}
+
+function CreateDivideLine()
+{
+    const line = document.createElement("div");
+    const classAtt = document.createAttribute("class");
+    classAtt.value = "divideLine";
+    line.setAttributeNode(classAtt);
+    return line;
+}
 
 function CreateVideoBlock()
 {
@@ -77,6 +87,6 @@ function CreateVideoBlock()
     node.setAttributeNode(allowAtt);
     node.setAttributeNode(allowFullScreenAtt);
 
-    document.body.appendChild(node);
+    return node;
 
 }
