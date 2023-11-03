@@ -31,26 +31,44 @@ function CreateSlider()
     const sliderClassAtt = document.createAttribute("class");
     const sliderId = document.createAttribute("id");
     const sliderValue = document.createAttribute("value");
+    const sliderDataListAtt = document.createAttribute("list");
     sliderTypeAtt.value = "range";
     sliderMinAtt.value = "0";
     sliderMaxAtt.value = "100";
     sliderClassAtt.value = "slider";
     sliderId.value = "mySlider";
     sliderValue.value = "0";
+    sliderDataListAtt.value = "sliderDataList";
     sliderElement.setAttributeNode(sliderTypeAtt);
     sliderElement.setAttributeNode(sliderMinAtt);
     sliderElement.setAttributeNode(sliderMaxAtt);
     sliderElement.setAttributeNode(sliderClassAtt);
     sliderElement.setAttributeNode(sliderId);
     sliderElement.setAttributeNode(sliderValue);
+    sliderElement.setAttributeNode(sliderDataListAtt);
 
-    sliderContainerElement.appendChild(CreateDivideLine());
-    //sliderContainerElement.appendChild(CreateLeftBorderLine());
-    sliderContainerElement.appendChild(sliderElement);
-    //sliderContainerElement.appendChild(CreateRightBorderLine());
+    const inputContainerElement = document.createElement("div");
+    const inputContainerAtt = document.createAttribute("class");
+    inputContainerAtt.value = "inputContainer";
+    inputContainerElement.setAttributeNode(inputContainerAtt);
 
+    inputContainerElement.appendChild(CreateDivideLine());
+    inputContainerElement.appendChild(sliderElement);
+
+    sliderContainerElement.appendChild(CreateLegend("Unnatural"));
+    sliderContainerElement.appendChild(inputContainerElement);
+    sliderContainerElement.appendChild(CreateLegend("Natural"));
 
     return sliderContainerElement;
+}
+
+function CreateLegend(text) {
+    const Legend = document.createElement("legend");
+    const LegendClassAtt = document.createAttribute("class");
+    LegendClassAtt.value = "sliderLegend";
+    Legend.setAttributeNode(LegendClassAtt);
+    Legend.innerText = text;
+    return Legend;
 }
 
 function CreateDivideLine()
