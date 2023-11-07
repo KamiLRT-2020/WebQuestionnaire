@@ -1,9 +1,28 @@
 ﻿body {
+    padding: 8%;
+    background-image: url("logo.png");
+    background-repeat: no-repeat;
+    background-size:40%;
+    background-position: 10% 20px;
+}
 
+fieldset {
+    margin-bottom:5%;
+}
+
+h1 {
+    text-align:center;
+}
+
+iframe {
+    margin: auto;
+    display: block;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .inputContainer {
-    width: 50%; /* Width of the outside container */
+    width: 70%; /* Width of the outside container */
     height: 30px;
     display: block;
     justify-content: center;
@@ -12,6 +31,7 @@
 }
 
 .slidecontainer {
+    margin-bottom:5%;
     width: 100%; /* Width of the outside container */
     height: 30px;
     display:flex;
@@ -78,4 +98,15 @@
 .sliderLegend {
     width: fit-content;
     height: fit-content;
+}
+
+.submitButton {
+    margin:auto;
+    display:block;
+    width:auto;
+    height:auto;
+    padding:10px;
+    text-align:center;
+    font-size:large;
+    border-radius:10%;
 }
