@@ -4,14 +4,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="title">Title</title>
-    <link rel="stylesheet" type="text/css" href="QuestionnaireStyle.css"/>
+    <title id="title">Questionnaire</title>
+    <link rel="stylesheet" type="text/css" href="QuestionnaireStyle.css" /> <!--Import the layout script-->
 </head>
 
 <body>
-    <h1 id="head_title">head title 1</h1>
+    <h1 id="head_title">head title 1</h1> <!--large title on the top-->
 
-    <h2 id="introduction">Consent:</h2>
+    <h2 id="introduction">Consent:</h2> <!--Consent of the questionnaire-->
     <fieldset>
         <p>I have been adequately informed about the goals and methods of the research titled "Character research that realizes natural interaction and attractive expression" by the researchers. I feel confident that I understand the following aspects of this research:</p>
 
@@ -39,7 +39,7 @@
         <p>Details in <a target="_blank" href="https://docs.google.com/document/d/1i5Kgq6Ehp3vt_KgQEcOOJOy5Pb7v5abR/edit?usp=share_link&ouid=118109089828611572867&rtpof=true&sd=true">Explanation in Details</a></p>
     </fieldset>
 
-    <h2 id="introduction">Introduction</h2>
+    <h2 id="introduction">Introduction</h2> <!--Introduction of the questionnaire-->
     <p>
         This questionnaire aims to evaluate the natrualness of the generated gaze movement from two methods (previous & proposed).
         Since the standard of naturalness is not clear, first, you will watch a video which represents the gaze movement from <b>eye-tracking data</b>.
@@ -52,15 +52,15 @@
     <fieldset>
         <legend>Please input your Name/NickName:</legend>
 
-        <input type="text" id="name" name="name" required minlength="2" size="20"/>
+        <input type="text" id="name" name="name" required minlength="2" size="20" /> <!--Input participant's name-->
     </fieldset>
 
-    <h2 id="ReferenceTitle">Reference Gaze Movement</h2>
+    <h2 id="ReferenceTitle">Reference Gaze Movement</h2> <!--Title for section, add element in .js file-->
 
-    <h2 id="GeneratedTitle">Generated Gaze Movement</h2>
+    <h2 id="GeneratedTitle">Evaluate Generated Gaze Movement</h2> <!--Title for section, add element in .js file-->
 
-    <input id="submitButton" class="submitButton" type="button" value="Submit" />
+    <input id="submitButton" class="submitButton" type="button" value="Submit" /> <!--Submit button for questionnaire-->
 
-    <script src="QuestionnaireScript.js"></script>
+    <script src="QuestionnaireScript.js"></script> <!--Import the .js script-->
 </body>
 </html>
