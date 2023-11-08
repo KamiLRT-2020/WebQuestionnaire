@@ -1,11 +1,19 @@
 // JavaScript source code
 
 // URL of the videos 
+//const ReferenceVideoURL = "https://www.youtube.com/embed/sux3DhTSoaQ?si=EYcsHTMGBZGml8VT";
+//const PreviousNoDelayVideoURL = "https://www.youtube.com/embed/60nw7AAnWDE?si=_XJ8ZVplIkljynLO";
+//const PreviousWithDelayVideoURL = "https://www.youtube.com/embed/c62E2B_CPAs?si=wf9YSqiqNxUPOTXR";
+//const ProposedNoDelayVideoURL = "https://www.youtube.com/embed/0bbvHAcjCjs?si=b0vGV8CRm1QD1SZ0";
+//const ProposedWithDelayVideoURL = "https://www.youtube.com/embed/U2lSyd48fdw?si=sJcWbPMJcPHZKLYu";
+
+
+//slow 
 const ReferenceVideoURL = "https://www.youtube.com/embed/sux3DhTSoaQ?si=EYcsHTMGBZGml8VT";
-const PreviousNoDelayVideoURL = "https://www.youtube.com/embed/60nw7AAnWDE?si=_XJ8ZVplIkljynLO";
-const PreviousWithDelayVideoURL = "https://www.youtube.com/embed/c62E2B_CPAs?si=wf9YSqiqNxUPOTXR";
-const ProposedNoDelayVideoURL = "https://www.youtube.com/embed/0bbvHAcjCjs?si=b0vGV8CRm1QD1SZ0";
-const ProposedWithDelayVideoURL = "https://www.youtube.com/embed/U2lSyd48fdw?si=sJcWbPMJcPHZKLYu";
+const PreviousNoDelayVideoURL = "https://www.youtube.com/embed/ISBFX9NkEzs?si=BDfCvltX61CIZPLp";
+const PreviousWithDelayVideoURL = "https://www.youtube.com/embed/IpCQbY5G3lQ?si=46I74I4W4Z1yuL4N";
+const ProposedNoDelayVideoURL = "https://www.youtube.com/embed/Apk9AQqRIic?si=ahUDc8nPc2VpmNRk";
+const ProposedWithDelayVideoURL = "https://www.youtube.com/embed/f_0wSiiJDrE?si=Mg0-UzeaZoHbsZCA";
 
 // id array for each VAS slider, for later getting value
 const sliderIdArray = new Array("previousNoDelay", "proposedNoDelay", "previousWithDelay", "proposedWithDelay");
@@ -24,10 +32,15 @@ const SubmitButton = document.getElementById("submitButton");
 document.body.insertBefore(CreateReferenceVideoBlock(), document.getElementById("GeneratedTitle"));
 
 // add elements for evaluation section
-document.body.insertBefore(CreateQuestionBlock("1.Previous Method Without Delay:", PreviousNoDelayVideoURL, sliderIdArray[0]), SubmitButton);
-document.body.insertBefore(CreateQuestionBlock("2.Proposed Method Without Delay:", ProposedNoDelayVideoURL, sliderIdArray[1]), SubmitButton);
-document.body.insertBefore(CreateQuestionBlock("3.Previous Method With Delay:", PreviousWithDelayVideoURL, sliderIdArray[2]), SubmitButton);
-document.body.insertBefore(CreateQuestionBlock("4.Proposed Method With Delay:", ProposedWithDelayVideoURL, sliderIdArray[3]), SubmitButton);
+document.body.insertBefore(CreateQuestionBlock("1.Isotropy 1:", PreviousNoDelayVideoURL, sliderIdArray[0]), SubmitButton);
+document.body.insertBefore(CreateQuestionBlock("2.Anisotropy 1:", ProposedNoDelayVideoURL, sliderIdArray[1]), SubmitButton);
+document.body.insertBefore(CreateQuestionBlock("3.Isotropy 2:", PreviousWithDelayVideoURL, sliderIdArray[2]), SubmitButton);
+document.body.insertBefore(CreateQuestionBlock("4.Anisotropy 2:", ProposedWithDelayVideoURL, sliderIdArray[3]), SubmitButton);
+
+//for (var i = 1; i <= 10; i++) {
+//    document.body.insertBefore(CreateQuestionBlock((2 * i - 1) + ".Isotropy " + i + ":", "Isotropy/IsotropyCut" + i, "slider" + (2*i-1)), SubmitButton);
+//    document.body.insertBefore(CreateQuestionBlock((2 * i) + ".Anisotropy " + i + ":", "Anisotropy/AnisotropyCut" + i, "slider" + (2*i)), SubmitButton);
+//}
 
 // set up the behavior when click submit button
 SetSubmitButton();
@@ -97,6 +110,11 @@ function SetSubmitButton() {
                 const slider = document.getElementById(sliderIdArray[i]);
                 csvContent += slider.value + "\r\n";
             }
+
+            //for (var i = 1; i <= 20; i++) {
+            //    const slider = document.getElementById("slider"+ i);
+            //    csvContent += slider.value + "\r\n";
+            //}
 
             // create a element to download the file
             var encodedUri = encodeURI(csvContent);
@@ -202,8 +220,8 @@ function CreateVideoBlock(videoURL)
     const frameborderAtt = document.createAttribute("frameborder");
     const allowAtt = document.createAttribute("allow");
     const allowFullScreenAtt = document.createAttribute("allowfullscreen");
-    widthAtt.value = "560";
-    heightAtt.value = "315";
+    widthAtt.value = "1120"; // "560";
+    heightAtt.value = "630";//"315";
     srcAtt.value = videoURL;
     titleAtt.value = "YouTube video player";
     frameborderAtt.value = "0";
