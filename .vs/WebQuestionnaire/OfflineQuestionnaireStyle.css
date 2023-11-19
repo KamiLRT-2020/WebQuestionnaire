@@ -1,0 +1,113 @@
+﻿body {
+    padding: 8%;
+    background-image: url("logo.png"); /* background logo of the questionnaire */
+    background-repeat: no-repeat; /* background only shows once */
+    background-size: 40%; /* size of the logo */
+    background-position: 10% 20px; /* position of the logo */
+}
+
+fieldset {
+    margin-bottom:5%; /* set some margin between each field set */
+}
+
+h1 {
+    text-align:center; /* h1 title in center */
+}
+
+iframe {
+    margin: auto; /* make video frame be in center */
+    display: block; /* make sure nothing be inlined with the video frame */
+    margin-top: 5%; /* margin for video frame */
+    margin-bottom: 5%; /* margin for video frame */
+}
+
+.inputContainer {
+    width: 70%; /* Width of the outside container of silder */
+    height: 30px; /* Height of the bar of silder */
+    display: block; /* make sure no other inline elements */
+    justify-content: center; /* place in center */
+    margin-left: 1%; /* margin for the label */
+    margin-right: 1%; /* margin for the label */
+}
+
+.slidecontainer {
+    margin-bottom: 5%; /* margin between next element */
+    width: 100%; /* Width of the outside container */
+    height: 30px; /* Height of the bar of silder */
+    display: flex; /* inline with labels */
+    justify-content: center; /* place the slider in center */
+    align-items: center; /* place the slider in center */
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none; /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 30px; /* Specified height */
+    background: transparent; /* no background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    z-index: 1; /* the top layer */
+    position: relative;
+    border-left-style: solid; /* the starting bar of VAS */
+    border-right-style: solid; /* the end bar of VAS */
+    border-width: 2.0px; /* the width of bar on both sides */
+    margin: 0px; 
+}
+
+    /* Mouse-over effects */
+    .slider:hover {
+        opacity: 1; /* Fully shown on mouse-over */
+    }
+
+    /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Override default look */
+        appearance: none;
+        width: 2px; /* Set the width of the slider bar */
+        height: 30px; /* Slider bar height */
+        background: #ff0000; /* Red background */
+        cursor: pointer; /* Cursor on hover */
+    }
+
+    .slider::-moz-range-thumb {
+        width: 2px; /* Set the width of handle bar */
+        height: 30px; /* Slider handle height */
+        background: #ff0000; /* Red background */
+        cursor: pointer; /* Cursor on hover */
+    }
+
+ /* add a horizontal divide line for the VAS */
+.divideLine {
+    width: 100%; /* the divide line cover all the VAS */
+    height: 2px; /* the thickness of the divide line, should be the same as the bar on both sides*/
+    padding: 0px; /* the divide line cover all the VAS */
+    overflow: visible; /* make sure it is visible even being covered*/
+    background: #000000; /* Black color */
+    top: 17px; /* position of the divide line, should be thickness+0.5*(height of the bar) */
+    position: relative;
+    padding: 0px;
+    z-index: -1; /* bottom layer */
+    border-left-style: solid; /* make sure to have the same border of VAS */
+    border-right-style: solid;
+    border-width: 2px;
+}
+
+.sliderLegend {
+    width: fit-content; /* label of VAS */
+    height: fit-content;
+}
+
+.submitButton {
+    margin:auto;
+    display:block;
+    width:auto;
+    height:auto;
+    padding:10px;
+    text-align:center;
+    font-size:large;
+    border-radius:10%; /* radius corner of button */
+}
