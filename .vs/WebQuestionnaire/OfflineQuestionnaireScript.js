@@ -14,9 +14,11 @@ titleElement.innerText = "Gaze Movement Evaluation";
 // get submit button
 const SubmitButton = document.getElementById("submitButton");
 
+const CommentBlock = document.getElementById("commentBlock");
+
 // add elements for evaluation section
-document.body.insertBefore(CreateQuestionBlock("When objects are fixed (not moving):", sliderIdArray[0], sliderIdArray[1], YesNoSwitchIdArray[0]), SubmitButton);
-document.body.insertBefore(CreateQuestionBlock("When objects are moving:", sliderIdArray[2], sliderIdArray[3], YesNoSwitchIdArray[1]), SubmitButton);
+document.body.insertBefore(CreateQuestionBlock("When objects are fixed (not moving):", sliderIdArray[0], sliderIdArray[1], YesNoSwitchIdArray[0]), CommentBlock);
+document.body.insertBefore(CreateQuestionBlock("When objects are moving:", sliderIdArray[2], sliderIdArray[3], YesNoSwitchIdArray[1]), CommentBlock);
 
 // set up the behavior when click submit button
 SetSubmitButton();
@@ -81,6 +83,8 @@ function SetSubmitButton() {
                 const YesOrNotSwitch = document.getElementById(YesNoSwitchIdArray[i]);
                 csvContent += YesOrNotSwitch.value + "\r\n";
             }
+
+            csvContent += document.getElementById("comment").value + "\r\n";
 
             // create a element to download the file
             var encodedUri = encodeURI(csvContent);
