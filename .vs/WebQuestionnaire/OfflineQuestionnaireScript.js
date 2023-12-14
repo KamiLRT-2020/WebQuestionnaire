@@ -17,8 +17,8 @@ const SubmitButton = document.getElementById("submitButton");
 const CommentBlock = document.getElementById("commentBlock");
 
 // add elements for evaluation section
-document.body.insertBefore(CreateQuestionBlock("When objects are fixed (not moving):", sliderIdArray[0], sliderIdArray[1], YesNoSwitchIdArray[0]), CommentBlock);
-document.body.insertBefore(CreateQuestionBlock("When objects are moving:", sliderIdArray[2], sliderIdArray[3], YesNoSwitchIdArray[1]), CommentBlock);
+document.body.insertBefore(CreateQuestionBlock("Male Characters:", sliderIdArray[0], sliderIdArray[1], YesNoSwitchIdArray[0]), CommentBlock);
+document.body.insertBefore(CreateQuestionBlock("Female Characters:", sliderIdArray[2], sliderIdArray[3], YesNoSwitchIdArray[1]), CommentBlock);
 
 // set up the behavior when click submit button
 SetSubmitButton();
@@ -35,7 +35,7 @@ function CreateQuestionBlock(legendText, sliderId1, sliderId2, switchId) {
 
     // add explaination before the slider
     const intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-    intro1.innerHTML = "Please evaluate the <b>naturalness</b> of the gaze movement from <b>Isotropy Method</b> (left)";
+    intro1.innerHTML = "Please evaluate whether the gaze movement from <b>A</b> is <b>human-like</b> or not:";
     container.appendChild(intro1);
 
     // add VAS slider
@@ -43,11 +43,16 @@ function CreateQuestionBlock(legendText, sliderId1, sliderId2, switchId) {
 
     // add explaination before the slider
     const intro2 = document.createElement("li"); // use "li" to add a black dot before the text
-    intro2.innerHTML = "Please evaluate the <b>naturalness</b> of the gaze movement from <b>Anisotropy Method</b> (right)";
+    intro2.innerHTML = "Please evaluate whether the gaze movement from <b>B</b> is <b>human-like</b> or not:";
     container.appendChild(intro2);
 
     // add VAS slider
     container.appendChild(CreateSlider(sliderId2));
+
+    // add explaination before the slider
+    const intro3 = document.createElement("li"); // use "li" to add a black dot before the text
+    intro3.innerHTML = "Can you tell these two gaze movements (A & B) are <b>different</b>?";
+    container.appendChild(intro3);
 
     // add ask difference switch
     container.appendChild(CreateYesNoSwitch(switchId));
@@ -151,9 +156,9 @@ function CreateSlider(sliderIdText)
     inputContainerElement.appendChild(sliderElement);
 
     // add label before and behind VAS slider
-    sliderContainerElement.appendChild(CreateLabel("Unnatural"));
+    sliderContainerElement.appendChild(CreateLabel("Not human-like"));
     sliderContainerElement.appendChild(inputContainerElement);
-    sliderContainerElement.appendChild(CreateLabel("Natural"));
+    sliderContainerElement.appendChild(CreateLabel("Human-like"));
 
     return sliderContainerElement;
 }
@@ -180,6 +185,7 @@ function CreateDivideLine()
 
 function CreateYesNoSwitch(sliderIdText)
 {
+
     // create outsider container, for slider and label
     const sliderContainerElement = document.createElement("div");
     const sliderContainerAtt = document.createAttribute("class");

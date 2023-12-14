@@ -11,54 +11,70 @@
 <body>
     <h1 id="head_title">head title 1</h1> <!--large title on the top-->
 
-    <h2 id="introduction">Consent:</h2> <!--Consent of the questionnaire-->
+    <h2 id="introduction">Consent: 同意書:</h2> <!--Consent of the questionnaire-->
     <fieldset>
-        <p>I have been adequately informed about the goals and methods of the research titled "Character research that realizes natural interaction and attractive expression" by the researchers. I feel confident that I understand the following aspects of this research:</p>
+        <p>I have been adequately informed about the goals and methods of the research titled "Character research that realizes natural interaction and attractive expression" by the researchers. I feel confident that I understand the following aspects of this research:
+        <br>私は、｢自然なインタラクションと魅力的な表現を実現するキャラクタの研究｣について、目的・方法・予測される問題等について研究者等より説明文書を用いて十分な説明を受け、以下の項目を理解しました。</p>
 
         <div>
             <input type="checkbox" class="info" id="info1" />
-            <label for="info1">The goals, methods and potentially dangerous aspects or consequences of this research, and how these will be managed,</label>
+            <label for="info1">The goals, methods and potentially dangerous aspects or consequences of this research, and how these will be managed, 
+            <br>研究の目的、方法そして予測される危険性とそれに対する対応について。</label>
         </div>
 
         <div>
             <input type="checkbox" class="info" id="info2" />
-            <label for="info2">The fact that I may withdraw from this study at any time at will,</label>
+            <label for="info2">
+                The fact that I may withdraw from this study at any time at will,
+                <br>私は自らの自由意思でいつでも実験・調査を中止することができること。
+            </label>
         </div>
         <div>
             <input type="checkbox" class="info" id="info3" />
-            <label for="info3">The fact that even if I choose not to participate at any point, I will not be penalized in any way,</label>
+            <label for="info3">
+                The fact that even if I choose not to participate at any point, I will not be penalized in any way,
+                <br>私はいかなる時点において実験・調査への参加の拒否をしても何ら不利益を被らないこと。
+            </label>
         </div>
         <div>
             <input type="checkbox" class="info" id="info4" />
-            <label for="info4">The fact that my personal information will be strictly controlled to prevent leaks and will not be used for any purpose other than re-testing or contacting in case of unexpected accidents, and</label>
+            <label for="info4">
+                The fact that my personal information will be strictly controlled to prevent leaks and will not be used for any purpose other than re-testing or contacting in case of unexpected accidents, and
+                <br>記録された個人情報は外部に漏洩しないよう厳密に管理され、再実験・再調査または事故が生じたときの連絡等以外の目的には使用されないこと。
+            </label>
         </div>
         <div>
             <input type="checkbox" class="info" id="info5" />
-            <label for="info5">The fact that I may claim compensation from the Tokyo Institute of Technology if I am harmed in the course of this research.</label>
+            <label for="info5">
+                The fact that I may claim compensation from the Tokyo Institute of Technology if I am harmed in the course of this research.
+                <br>私は、万一不利益を被った場合に東京工業大学に対して申し立てを行うことができること。
+            </label>
         </div>
-        <p>Details in <a target="_blank" href="https://docs.google.com/document/d/1i5Kgq6Ehp3vt_KgQEcOOJOy5Pb7v5abR/edit?usp=share_link&ouid=118109089828611572867&rtpof=true&sd=true">Explanation in Details</a></p>
+        <p>Details in <a target="_blank" href="https://docs.google.com/document/d/1i5Kgq6Ehp3vt_KgQEcOOJOy5Pb7v5abR/edit?usp=share_link&ouid=118109089828611572867&rtpof=true&sd=true">Explanation in Details</a>
+           <br>詳しい情報はここ: <a target="_blank" href="https://docs.google.com/document/d/1i5Kgq6Ehp3vt_KgQEcOOJOy5Pb7v5abR/edit?usp=share_link&ouid=118109089828611572867&rtpof=true&sd=true">Explanation in Details</a>
+        </p>
     </fieldset>
 
-    <h2 id="introduction">Introduction</h2> <!--Introduction of the questionnaire-->
+    <h2 id="introduction">Introduction 説明</h2> <!--Introduction of the questionnaire-->
     <p>
-        This questionnaire aims to evaluate the natrualness of the generated gaze movement from two methods (previous & proposed).
-        Since the standard of naturalness is not clear, first, you will watch a video which represents the gaze movement from <b>eye-tracking data</b>.
-        Please take this movement as a <b>reference</b> and evaluate the <b>generated</b> gaze movement below. There will be <b>4 videos</b> of generated gaze movement in total.
-        After you answering all the questions, click the <b>submit button</b>. <b>A file will be downloaded. Please send this file to the owner of questionnaire.</b>
+        This questionnaire aims to evaluate the human-likeness of the generated gaze movement from two methods (A & B).
+        During the evaluation, you will wear a HMD (head-mounted display) and observe generated gaze movement in virtual environment. Please answer the following questions, after observation. You can observe the generated movement as many times as you want. You can also revise your answer at any time.
         Thank you for participating!
+        <br>このアンケートは、2 つの方法 (A と B) から生成された視線動作の人間らしさを評価することを目的としています。実験中に参加者はHMD（ヘッドマウントディスプレイ）を使って、仮想環境内で生成される視線の動きを観察します。その後、いくつの問題を答えてください。生成された動きは何度でも観察できます。回答はいつでも変更できます。
+        ご参加いただきありがとうございます！
 
     </p>
 
     <fieldset>
-        <legend>Please input participant's ID:</legend>
+        <legend>Please input participant's ID:<br>参加者のIDを入力してください:</legend>
 
         <input type="text" id="name" name="name" required minlength="1" size="20" /> <!--Input participant's Id-->
     </fieldset>
 
     <fieldset id="commentBlock">
-        <legend>If you have any comments:</legend>
+        <legend>If you have any comments: <br>コメントがあれば:</legend>
 
-        <textarea type="text" id="comment" name="comment" required minlength="0" size="100" rows="5" placeholder="e.g. What is difference? Or any suggestions." style="width: 100%; height:100px"></textarea> <!--Input participant's Id-->
+        <textarea type="text" id="comment" name="comment" required minlength="0" size="100" rows="5" placeholder="e.g. What is difference? What makes you feel strange? 何が違いますか? どこが変ですか？" style="width: 100%; height:100px"></textarea> <!--Input participant's Id-->
     </fieldset>
 
     <input id="submitButton" class="submitButton" type="button" value="Submit" /> <!--Submit button for questionnaire-->
