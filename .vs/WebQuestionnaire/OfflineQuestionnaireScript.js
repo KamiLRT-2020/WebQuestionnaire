@@ -17,14 +17,14 @@ const SubmitButton = document.getElementById("submitButton");
 const CommentBlock = document.getElementById("commentBlock");
 
 // add elements for evaluation section
-document.body.insertBefore(CreateQuestionBlock("Male Characters:", sliderIdArray[0], sliderIdArray[1], YesNoSwitchIdArray[0]), CommentBlock);
-document.body.insertBefore(CreateQuestionBlock("Female Characters:", sliderIdArray[2], sliderIdArray[3], YesNoSwitchIdArray[1]), CommentBlock);
+document.body.insertBefore(CreateQuestionBlock("Male Characters:", sliderIdArray[0], sliderIdArray[1], YesNoSwitchIdArray[0], "A", "B"), CommentBlock);
+document.body.insertBefore(CreateQuestionBlock("Female Characters:", sliderIdArray[2], sliderIdArray[3], YesNoSwitchIdArray[1], "C", "D"), CommentBlock);
 
 // set up the behavior when click submit button
 SetSubmitButton();
 
 // function to create a VAS block
-function CreateQuestionBlock(legendText, sliderId1, sliderId2, switchId) {
+function CreateQuestionBlock(legendText, sliderId1, sliderId2, switchId, methodString1, methodString2) {
 
     // create outside container
     const container = document.createElement("fieldset");
@@ -35,7 +35,7 @@ function CreateQuestionBlock(legendText, sliderId1, sliderId2, switchId) {
 
     // add explaination before the slider
     const intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-    intro1.innerHTML = "Please evaluate whether the gaze movement from <b>A</b> is <b>human-like</b> or not:";
+    intro1.innerHTML = "Please evaluate whether the gaze movement from <b>" + methodString1 + "</b> is <b>human-like</b> or not:";
     container.appendChild(intro1);
 
     // add VAS slider
@@ -43,7 +43,7 @@ function CreateQuestionBlock(legendText, sliderId1, sliderId2, switchId) {
 
     // add explaination before the slider
     const intro2 = document.createElement("li"); // use "li" to add a black dot before the text
-    intro2.innerHTML = "Please evaluate whether the gaze movement from <b>B</b> is <b>human-like</b> or not:";
+    intro2.innerHTML = "Please evaluate whether the gaze movement from <b>" + methodString2 + "</b> is <b>human-like</b> or not:";
     container.appendChild(intro2);
 
     // add VAS slider
@@ -51,7 +51,7 @@ function CreateQuestionBlock(legendText, sliderId1, sliderId2, switchId) {
 
     // add explaination before the slider
     const intro3 = document.createElement("li"); // use "li" to add a black dot before the text
-    intro3.innerHTML = "Can you tell these two gaze movements (A & B) are <b>different</b>?";
+    intro3.innerHTML = "Can you tell these two gaze movements (" + methodString1 + " & " + methodString2 + ") are <b>different</b>?";
     container.appendChild(intro3);
 
     // add ask difference switch
