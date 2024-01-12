@@ -16,15 +16,18 @@ const SubmitButton = document.getElementById("submitButton");
 
 const CommentBlock = document.getElementById("commentBlock");
 
+const MaleCharacterVideoURL = "https://www.youtube.com/embed/t20v0VghKns?si=7-uMp2VYQKwkvF9k";
+const FemaleCharacterVideoURL = "https://www.youtube.com/embed/UiAiAvyY4po?si=ViAyLAL0mQevhRwI";
+
 // add elements for evaluation section
-document.body.insertBefore(CreateQuestionBlock("Male Characters:", sliderIdArray[0], sliderIdArray[1], YesNoSwitchIdArray[0], "A", "B"), CommentBlock);
-document.body.insertBefore(CreateQuestionBlock("Female Characters:", sliderIdArray[2], sliderIdArray[3], YesNoSwitchIdArray[1], "C", "D"), CommentBlock);
+document.body.insertBefore(CreateQuestionBlock("Male Characters:", MaleCharacterVideoURL, sliderIdArray[0], sliderIdArray[1], YesNoSwitchIdArray[0], "A", "B"), CommentBlock);
+document.body.insertBefore(CreateQuestionBlock("Female Characters:", FemaleCharacterVideoURL, sliderIdArray[2], sliderIdArray[3], YesNoSwitchIdArray[1], "C", "D"), CommentBlock);
 
 // set up the behavior when click submit button
 SetSubmitButton();
 
 // function to create a VAS block
-function CreateQuestionBlock(legendText, sliderId1, sliderId2, switchId, methodString1, methodString2) {
+function CreateQuestionBlock(legendText, videoURL, sliderId1, sliderId2, switchId, methodString1, methodString2) {
 
     // create outside container
     const container = document.createElement("fieldset");
@@ -32,6 +35,7 @@ function CreateQuestionBlock(legendText, sliderId1, sliderId2, switchId, methodS
     const legend = document.createElement("legend");
     legend.innerText = legendText;
     container.appendChild(legend);
+    container.appendChild(CreateVideoBlock(videoURL));
 
     // add explaination before the slider
     const intro1 = document.createElement("li"); // use "li" to add a black dot before the text
@@ -216,4 +220,33 @@ function CreateYesNoSwitch(sliderIdText)
     sliderContainerElement.appendChild(CreateLabel("Yes"));
 
     return sliderContainerElement;
+}
+
+function CreateVideoBlock(videoURL) {
+    // setting is from the share link of Youtube
+    const node = document.createElement("iframe");
+    const widthAtt = document.createAttribute("width");
+    const heightAtt = document.createAttribute("height");
+    const srcAtt = document.createAttribute("src");
+    const titleAtt = document.createAttribute("title");
+    const frameborderAtt = document.createAttribute("frameborder");
+    const allowAtt = document.createAttribute("allow");
+    const allowFullScreenAtt = document.createAttribute("allowfullscreen");
+    widthAtt.value = "1120"; // "560";
+    heightAtt.value = "630";//"315";
+    srcAtt.value = videoURL;
+    titleAtt.value = "YouTube video player";
+    frameborderAtt.value = "0";
+    allowAtt.value = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+    node.setAttributeNode(widthAtt);
+    node.setAttributeNode(heightAtt);
+    node.setAttributeNode(srcAtt);
+    node.setAttributeNode(titleAtt);
+    node.setAttributeNode(frameborderAtt);
+    node.setAttributeNode(allowAtt);
+    node.setAttributeNode(allowFullScreenAtt);
+
+    return node;
+
 }
