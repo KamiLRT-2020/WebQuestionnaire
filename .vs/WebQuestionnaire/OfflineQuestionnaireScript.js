@@ -17,8 +17,10 @@ const SubmitButton = document.getElementById("submitButton");
 
 const CommentBlock = document.getElementById("commentBlock");
 
-const MaleCharacterVideoURL = "https://www.youtube.com/embed/t20v0VghKns?si=7-uMp2VYQKwkvF9k";
-const FemaleCharacterVideoURL = "https://www.youtube.com/embed/UiAiAvyY4po?si=ViAyLAL0mQevhRwI";
+//const MaleCharacterVideoURL = "https://www.youtube.com/embed/t20v0VghKns?si=7-uMp2VYQKwkvF9k";
+//const FemaleCharacterVideoURL = "https://www.youtube.com/embed/UiAiAvyY4po?si=ViAyLAL0mQevhRwI";
+const MaleCharacterVideoURL = "https://drive.google.com/file/d/1JFZ33nD0ha3OFxRRb401HQQEeLHH0Fdl/preview";
+const FemaleCharacterVideoURL = "https://drive.google.com/file/d/1HpRtRfeWWosU7ffafWlJf2PrVdaKFSma/preview";
 
 // add elements for evaluation section
 document.body.insertBefore(CreateQuestionBlock("Male Characters:", MaleCharacterVideoURL, MaleSliderIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock);
