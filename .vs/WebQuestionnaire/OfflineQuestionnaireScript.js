@@ -1,9 +1,12 @@
 // JavaScript source code
 
 // id array for each VAS slider, for later getting value
-const MaleSliderIdArray = new Array("MaleHumanlikePrevious", "MaleHumanlikeProposed", "MaleNaturalPrevious", "MaleNaturalProposed", "MaleStablePrevious", "MaleStableProposed", "MaleSmoothPrevious", "MaleSmoothProposed");
-const FeMaleSliderIdArray = new Array("FemaleHumanlikeProposed", "FemaleHumanlikePrevious",  "FemaleNaturalProposed", "FemaleNaturalPrevious",  "FemaleStableProposed", "FemaleStablePrevious", "FemaleSmoothProposed", "FemaleSmoothPrevious");
+const MaleSliderIdArray = new Array("MaleHumanlikePrevious", "MaleHumanlikeProposed", "MaleNaturalPrevious", "MaleNaturalProposed");
+const FeMaleSliderIdArray = new Array("FemaleHumanlikeProposed", "FemaleHumanlikePrevious",  "FemaleNaturalProposed", "FemaleNaturalPrevious");
 const YesNoSwitchIdArray = new Array("switchFix", "switchMove");
+const MaleCommentIdArray = new Array("MaleCommentPrevious", "MaleCommentProposed");
+const FemaleCommentIdArray = new Array("FemaleCommentProposed", "FemaleCommentPrevious");
+
 
 // id array for consent information, to check whether they are checked later
 const consentIdArray = new Array("info1", "info2", "info3", "info4", "info5");
@@ -23,14 +26,14 @@ const MaleCharacterVideoURL = "https://drive.google.com/file/d/1JFZ33nD0ha3OFxRR
 const FemaleCharacterVideoURL = "https://drive.google.com/file/d/1HpRtRfeWWosU7ffafWlJf2PrVdaKFSma/preview";
 
 // add elements for evaluation section
-document.body.insertBefore(CreateQuestionBlock("Male Characters:", MaleCharacterVideoURL, MaleSliderIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock);
-document.body.insertBefore(CreateQuestionBlock("Female Characters:", FemaleCharacterVideoURL, FeMaleSliderIdArray, YesNoSwitchIdArray[1], "C", "D"), CommentBlock);
+document.body.insertBefore(CreateQuestionBlock("Male Characters:", MaleCharacterVideoURL, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock);
+document.body.insertBefore(CreateQuestionBlock("Female Characters:", FemaleCharacterVideoURL, FeMaleSliderIdArray, FemaleCommentIdArray, YesNoSwitchIdArray[1], "C", "D"), CommentBlock);
 
 // set up the behavior when click submit button
 SetSubmitButton();
 
 // function to create a VAS block
-function CreateQuestionBlock(legendText, videoURL, sliderIdArray, switchId, methodString1, methodString2) {
+function CreateQuestionBlock(legendText, videoURL, sliderIdArray, commentIdArray, switchId, methodString1, methodString2) {
 
     // create outside container
     const container = document.createElement("fieldset");
@@ -47,6 +50,7 @@ function CreateQuestionBlock(legendText, videoURL, sliderIdArray, switchId, meth
     container.appendChild(CreateVideoBlock(videoURL));
 
     var sliderIdIndex = 0;
+    var commentIdIndex = 0;
 
     // add explaination before the slider
     const intro3 = document.createElement("li"); // use "li" to add a black dot before the text
@@ -74,23 +78,13 @@ function CreateQuestionBlock(legendText, videoURL, sliderIdArray, switchId, meth
     container.appendChild(CreateSlider(sliderIdArray[sliderIdIndex], "Unnatural", "Natural"));
     sliderIdIndex++;
 
-    // add explaination before the slider
-    intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-    intro1.innerHTML = "Is the gaze movement from <b>" + methodString1 + "</b> stable?";
+    // add explaination before the comment block
+    var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
+    intro1.innerHTML = "How do feel about the characteristics or the mental situation of the character " + methodString1 + " ?";
     container.appendChild(intro1);
 
-    // add VAS slider
-    container.appendChild(CreateSlider(sliderIdArray[sliderIdIndex], "Unstable", "Stable"));
-    sliderIdIndex++;
-
-    // add explaination before the slider
-    intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-    intro1.innerHTML = "Is the gaze movement from <b>" + methodString1 + "</b> smooth?";
-    container.appendChild(intro1);
-
-    // add VAS slider
-    container.appendChild(CreateSlider(sliderIdArray[sliderIdIndex], "Not smooth", "Smooth"));
-    sliderIdIndex++;
+    container.appendChild(CreateCommentBlock(commentIdArray[commentIdIndex]));
+    commentIdIndex++;
 
 
     // add explaination before the slider
@@ -111,25 +105,13 @@ function CreateQuestionBlock(legendText, videoURL, sliderIdArray, switchId, meth
     container.appendChild(CreateSlider(sliderIdArray[sliderIdIndex], "Unnatural", "Natural"));
     sliderIdIndex++;
 
-    // add explaination before the slider
-    intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-    intro1.innerHTML = "Is the gaze movement from <b>" + methodString2 + "</b> stable?";
+    // add explaination before the comment block
+    var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
+    intro1.innerHTML = "How do feel about the characteristics or the mental situation of the character " + methodString2 + " ?";
     container.appendChild(intro1);
 
-    // add VAS slider
-    container.appendChild(CreateSlider(sliderIdArray[sliderIdIndex], "Unstable", "Stable"));
-    sliderIdIndex++;
-
-    // add explaination before the slider
-    intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-    intro1.innerHTML = "Is the gaze movement from <b>" + methodString2 + "</b> smooth?";
-    container.appendChild(intro1);
-
-    // add VAS slider
-    container.appendChild(CreateSlider(sliderIdArray[sliderIdIndex], "Not smooth", "Smooth"));
-    sliderIdIndex++;
-
-
+    container.appendChild(CreateCommentBlock(commentIdArray[commentIdIndex]));
+    commentIdIndex++;
 
     return container;
 }
@@ -163,10 +145,18 @@ function SetSubmitButton() {
                 csvContent += slider.value + "\r\n";
             }
 
+            for (var i = 0; i < MaleCommentIdArray.length; i++) {
+                csvContent += document.getElementById(MaleCommentIdArray[i]).value + "\r\n";
+            }
+
             // input the value of each VAS slider
             for (var i = 0; i < FeMaleSliderIdArray.length; i++) {
                 const slider = document.getElementById(FeMaleSliderIdArray[i]);
                 csvContent += slider.value + "\r\n";
+            }
+
+            for (var i = 0; i < FemaleCommentIdArray.length; i++) {
+                csvContent += document.getElementById(FemaleCommentIdArray[i]).value + "\r\n";
             }
 
             csvContent += document.getElementById("comment").value + "\r\n";
@@ -322,6 +312,29 @@ function CreateVideoBlock(videoURL) {
     node.setAttributeNode(frameborderAtt);
     node.setAttributeNode(allowAtt);
     node.setAttributeNode(allowFullScreenAtt);
+
+    return node;
+
+}
+
+function CreateCommentBlock(commentId) {
+    const node = document.createElement("textarea");
+    const typeAtt = document.createAttribute("type");
+    const idAtt = document.createAttribute("id");
+    const sizeAtt = document.createAttribute("size");
+    const rowAtt = document.createAttribute("row");
+    const placeHolderAtt = document.createAttribute("placeholder");
+    typeAtt.value = "text";
+    idAtt.value = commentId;
+    sizeAtt.vale = "100";
+    rowAtt.value = "5";
+    placeHolderAtt.value = "e.g. The character seems excited / calm / abnormal. The character acts strange.";
+
+    node.setAttributeNode(typeAtt);
+    node.setAttributeNode(idAtt);
+    node.setAttributeNode(sizeAtt);
+    node.setAttributeNode(rowAtt);
+    node.setAttributeNode(placeHolderAtt);
 
     return node;
 

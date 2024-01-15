@@ -111,3 +111,9 @@ iframe {
     font-size:large;
     border-radius:10%; /* radius corner of button */
 }
+
+textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 5%;
+}
