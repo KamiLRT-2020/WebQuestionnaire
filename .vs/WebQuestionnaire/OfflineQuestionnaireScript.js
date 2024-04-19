@@ -3,7 +3,9 @@
 // id array for each VAS slider, for later getting value
 const MaleSliderIdArray = new Array("MaleHumanlikePrevious", "MaleHumanlikeProposed", "MaleNaturalPrevious", "MaleNaturalProposed");
 const FeMaleSliderIdArray = new Array("FemaleHumanlikeProposed", "FemaleHumanlikePrevious",  "FemaleNaturalProposed", "FemaleNaturalPrevious");
-const YesNoSwitchIdArray = new Array("switchFix", "switchMove");
+//const YesNoSwitchIdArray = new Array("switchFix", "switchMove");
+const YesNoSwitchIdArray = new Array("switchMale");
+
 const MaleCommentIdArray = new Array("MaleCommentPrevious", "MaleCommentProposed");
 const FemaleCommentIdArray = new Array("FemaleCommentProposed", "FemaleCommentPrevious");
 
@@ -20,14 +22,14 @@ const SubmitButton = document.getElementById("submitButton");
 
 const CommentBlock = document.getElementById("commentBlock");
 
-//const MaleCharacterVideoURL = "https://www.youtube.com/embed/t20v0VghKns?si=7-uMp2VYQKwkvF9k";
-//const FemaleCharacterVideoURL = "https://www.youtube.com/embed/UiAiAvyY4po?si=ViAyLAL0mQevhRwI";
-const MaleCharacterVideoURL = "https://drive.google.com/file/d/1JFZ33nD0ha3OFxRRb401HQQEeLHH0Fdl/preview";
-const FemaleCharacterVideoURL = "https://drive.google.com/file/d/1HpRtRfeWWosU7ffafWlJf2PrVdaKFSma/preview";
+const MaleCharacterVideoURL = "https://drive.google.com/file/d/11hQZgH4G16SOIxmmcU8fVCSDvH0Ix8v6/preview";
+//const FemaleCharacterVideoURL = "https://drive.google.com/file/d/1HpRtRfeWWosU7ffafWlJf2PrVdaKFSma/preview";
+
+
 
 // add elements for evaluation section
 document.body.insertBefore(CreateQuestionBlock("Male Characters:", MaleCharacterVideoURL, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock);
-document.body.insertBefore(CreateQuestionBlock("Female Characters:", FemaleCharacterVideoURL, FeMaleSliderIdArray, FemaleCommentIdArray, YesNoSwitchIdArray[1], "C", "D"), CommentBlock);
+//document.body.insertBefore(CreateQuestionBlock("Female Characters:", FemaleCharacterVideoURL, FeMaleSliderIdArray, FemaleCommentIdArray, YesNoSwitchIdArray[1], "C", "D"), CommentBlock);
 
 // set up the behavior when click submit button
 SetSubmitButton();
@@ -149,15 +151,15 @@ function SetSubmitButton() {
                 csvContent += document.getElementById(MaleCommentIdArray[i]).value + "\r\n";
             }
 
-            // input the value of each VAS slider
-            for (var i = 0; i < FeMaleSliderIdArray.length; i++) {
-                const slider = document.getElementById(FeMaleSliderIdArray[i]);
-                csvContent += slider.value + "\r\n";
-            }
+            //// input the value of each VAS slider
+            //for (var i = 0; i < FeMaleSliderIdArray.length; i++) {
+            //    const slider = document.getElementById(FeMaleSliderIdArray[i]);
+            //    csvContent += slider.value + "\r\n";
+            //}
 
-            for (var i = 0; i < FemaleCommentIdArray.length; i++) {
-                csvContent += document.getElementById(FemaleCommentIdArray[i]).value + "\r\n";
-            }
+            //for (var i = 0; i < FemaleCommentIdArray.length; i++) {
+            //    csvContent += document.getElementById(FemaleCommentIdArray[i]).value + "\r\n";
+            //}
 
             csvContent += document.getElementById("comment").value + "\r\n";
 
