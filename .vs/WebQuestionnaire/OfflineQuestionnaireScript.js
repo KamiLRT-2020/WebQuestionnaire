@@ -1,15 +1,15 @@
 // JavaScript source code
 
 // id array for each VAS slider, for later getting value
-//const MaleSliderIdArray = new Array("MaleHumanlikePrevious", "MaleNaturalPrevious", "MaleHumanlikeProposed", "MaleNaturalProposed"); // C
-const MaleSliderIdArray = new Array("MaleHumanlikeProposed", "MaleNaturalProposed", "MaleHumanlikePrevious",  "MaleNaturalPrevious"); // P
+const MaleSliderIdArray = new Array("MaleHumanlikePrevious", "MaleNaturalPrevious", "MaleHumanlikeProposed", "MaleNaturalProposed"); // C
+//const MaleSliderIdArray = new Array("MaleHumanlikeProposed", "MaleNaturalProposed", "MaleHumanlikePrevious",  "MaleNaturalPrevious"); // P
 
 //const FeMaleSliderIdArray = new Array("FemaleHumanlikeProposed", "FemaleHumanlikePrevious",  "FemaleNaturalProposed", "FemaleNaturalPrevious");
 //const YesNoSwitchIdArray = new Array("switchFix", "switchMove");
 const YesNoSwitchIdArray = new Array("switchDifferent");
 
-//const MaleCommentIdArray = new Array("MaleCommentPrevious", "MaleCommentProposed"); // C
-const MaleCommentIdArray = new Array("MaleCommentProposed", "MaleCommentPrevious"); // P
+const MaleCommentIdArray = new Array("MaleCommentPrevious", "MaleCommentProposed"); // C
+//const MaleCommentIdArray = new Array("MaleCommentProposed", "MaleCommentPrevious"); // P
 
 //const FemaleCommentIdArray = new Array("FemaleCommentProposed", "FemaleCommentPrevious");
 
@@ -26,14 +26,14 @@ const SubmitButton = document.getElementById("submitButton");
 
 const CommentBlock = document.getElementById("commentBlock");
 
-const PVideoURLArray = new Array(
-    "https://drive.google.com/file/d/1jyq4V7RO69AhC3t8xk5SXjzhJN5nfp-6/preview",
-    "https://drive.google.com/file/d/1-S5wzjbRX7jXRoIqHVgTvxDp6Nrpgr2d/preview",
-    "https://drive.google.com/file/d/12WEin1cC3W8oAto15YFMvSoaHqp_xada/preview",
-    "https://drive.google.com/file/d/1m3rAx1i_9RMjuXBrwJdG_XQHGRqahZai/preview",
-    "https://drive.google.com/file/d/1pkqJ6AvO3y_3d7wLIbG2Zgf_XsRZ3MyV/preview",
-    "https://drive.google.com/file/d/1cDwP6F0o-jVKfocVZ7AzuRht891TeNb3/preview"
-);
+//const PVideoURLArray = new Array(
+//    "https://drive.google.com/file/d/1jyq4V7RO69AhC3t8xk5SXjzhJN5nfp-6/preview",
+//    "https://drive.google.com/file/d/1-S5wzjbRX7jXRoIqHVgTvxDp6Nrpgr2d/preview",
+//    "https://drive.google.com/file/d/12WEin1cC3W8oAto15YFMvSoaHqp_xada/preview",
+//    "https://drive.google.com/file/d/1m3rAx1i_9RMjuXBrwJdG_XQHGRqahZai/preview",
+//    "https://drive.google.com/file/d/1pkqJ6AvO3y_3d7wLIbG2Zgf_XsRZ3MyV/preview",
+//    "https://drive.google.com/file/d/1cDwP6F0o-jVKfocVZ7AzuRht891TeNb3/preview"
+//);
 
 const CVideoURLArray = new Array(
     "https://drive.google.com/file/d/1VtWdbuAilKRdA9Hoxu-vmwkkAkfoiJ-n/preview",
@@ -50,7 +50,9 @@ const CVideoURLArray = new Array(
 
 
 // add elements for evaluation section
-document.body.insertBefore(CreateQuestionBlock("Male Characters:", PVideoURLArray, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock);
+//document.body.insertBefore(CreateQuestionBlock("Male Characters:", PVideoURLArray, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock); //P
+
+document.body.insertBefore(CreateQuestionBlock("Male Characters:", CVideoURLArray, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock); //C
 
 //document.body.insertBefore(CreateQuestionBlock("Male Characters:", MaleCharacterVideoURL, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock);
 //document.body.insertBefore(CreateQuestionBlock("Female Characters:", FemaleCharacterVideoURL, FeMaleSliderIdArray, FemaleCommentIdArray, YesNoSwitchIdArray[1], "C", "D"), CommentBlock);
@@ -195,8 +197,8 @@ function SetSubmitButton() {
             var encodedUri = encodeURI(csvContent);
             var link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "P_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // P
-            //link.setAttribute("download", "C_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // C
+            //link.setAttribute("download", "P_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // P
+            link.setAttribute("download", "C_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // C
             document.body.appendChild(link);
             link.click(); // and click automatically
             alert("Please send the downloaded file to the owner of the questionnaire."); // information to send back the result
