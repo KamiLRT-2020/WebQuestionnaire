@@ -1,15 +1,15 @@
 // JavaScript source code
 
 // id array for each VAS slider, for later getting value
-const MaleSliderIdArray = new Array("MaleHumanlikePrevious", "MaleNaturalPrevious", "MaleHumanlikeProposed", "MaleNaturalProposed"); // C
-//const MaleSliderIdArray = new Array("MaleHumanlikeProposed", "MaleNaturalProposed", "MaleHumanlikePrevious",  "MaleNaturalPrevious"); // P
+//const MaleSliderIdArray = new Array("MaleHumanlikePrevious", "MaleNaturalPrevious", "MaleHumanlikeProposed", "MaleNaturalProposed"); // C
+const MaleSliderIdArray = new Array("MaleHumanlikeProposed", "MaleNaturalProposed", "MaleHumanlikePrevious",  "MaleNaturalPrevious"); // P
 
 //const FeMaleSliderIdArray = new Array("FemaleHumanlikeProposed", "FemaleHumanlikePrevious",  "FemaleNaturalProposed", "FemaleNaturalPrevious");
 //const YesNoSwitchIdArray = new Array("switchFix", "switchMove");
 const YesNoSwitchIdArray = new Array("switchDifferent");
 
-const MaleCommentIdArray = new Array ("MaleMentalPrevious", "MaleCommentPrevious", "MaleMentalProposed", "MaleCommentProposed"); // C
-//const MaleCommentIdArray = new Array("MaleMentalProposed", "MaleCommentProposed", "MaleMentalPrevious", "MaleCommentPrevious"); // P
+//const MaleCommentIdArray = new Array ("MaleMentalPrevious", "MaleCommentPrevious", "MaleMentalProposed", "MaleCommentProposed"); // C
+const MaleCommentIdArray = new Array("MaleMentalProposed", "MaleCommentProposed", "MaleMentalPrevious", "MaleCommentPrevious"); // P
 
 //const FemaleCommentIdArray = new Array("FemaleCommentProposed", "FemaleCommentPrevious");
 
@@ -28,23 +28,23 @@ const CommentBlock = document.getElementById("commentBlock");
 
 
 // PC 345 videos are used
-//const PVideoURLArray = new Array(
-//    //"https://drive.google.com/file/d/1jyq4V7RO69AhC3t8xk5SXjzhJN5nfp-6/preview",
-//    //"https://drive.google.com/file/d/1ipwNFlpxx3psafh3ExNIrZOh4XkRzGsw/preview",
-//    "https://drive.google.com/file/d/12WEin1cC3W8oAto15YFMvSoaHqp_xada/preview",
-//    "https://drive.google.com/file/d/1m3rAx1i_9RMjuXBrwJdG_XQHGRqahZai/preview",
-//    "https://drive.google.com/file/d/1pkqJ6AvO3y_3d7wLIbG2Zgf_XsRZ3MyV/preview",
-//    //"https://drive.google.com/file/d/1cDwP6F0o-jVKfocVZ7AzuRht891TeNb3/preview"
-//);
-
-const CVideoURLArray = new Array(
-//    "https://drive.google.com/file/d/1VtWdbuAilKRdA9Hoxu-vmwkkAkfoiJ-n/preview",
-//    "https://drive.google.com/file/d/1pnrGKfUQGIGSq5orTXxDqBe1kGukoP3K/preview",
-    "https://drive.google.com/file/d/12DjGfk2Wx3gNklGFrSYgNm7iW_9wSTNc/preview",
-    "https://drive.google.com/file/d/1nd6HKmyjE1uxmUDloghkVfv7Bb524z4C/preview",
-    "https://drive.google.com/file/d/1UJvjo060T2vsuslOvyLrpKhB2TnW1Bqy/preview",
-//    "https://drive.google.com/file/d/1UceywxMEGuDgHdIQEXJIBJTrSpvz53to/preview"
+const PVideoURLArray = new Array(
+    //"https://drive.google.com/file/d/1jyq4V7RO69AhC3t8xk5SXjzhJN5nfp-6/preview",
+    //"https://drive.google.com/file/d/1ipwNFlpxx3psafh3ExNIrZOh4XkRzGsw/preview",
+    "https://drive.google.com/file/d/12WEin1cC3W8oAto15YFMvSoaHqp_xada/preview",
+    "https://drive.google.com/file/d/1m3rAx1i_9RMjuXBrwJdG_XQHGRqahZai/preview",
+    "https://drive.google.com/file/d/1pkqJ6AvO3y_3d7wLIbG2Zgf_XsRZ3MyV/preview",
+    //"https://drive.google.com/file/d/1cDwP6F0o-jVKfocVZ7AzuRht891TeNb3/preview"
 );
+
+//const CVideoURLArray = new Array(
+////    "https://drive.google.com/file/d/1VtWdbuAilKRdA9Hoxu-vmwkkAkfoiJ-n/preview",
+////    "https://drive.google.com/file/d/1pnrGKfUQGIGSq5orTXxDqBe1kGukoP3K/preview",
+//    "https://drive.google.com/file/d/12DjGfk2Wx3gNklGFrSYgNm7iW_9wSTNc/preview",
+//    "https://drive.google.com/file/d/1nd6HKmyjE1uxmUDloghkVfv7Bb524z4C/preview",
+//    "https://drive.google.com/file/d/1UJvjo060T2vsuslOvyLrpKhB2TnW1Bqy/preview",
+////    "https://drive.google.com/file/d/1UceywxMEGuDgHdIQEXJIBJTrSpvz53to/preview"
+//);
 
 //const MaleCharacterVideoURL = "https://drive.google.com/file/d/11hQZgH4G16SOIxmmcU8fVCSDvH0Ix8v6/preview";
 //const FemaleCharacterVideoURL = "https://drive.google.com/file/d/1HpRtRfeWWosU7ffafWlJf2PrVdaKFSma/preview";
@@ -52,9 +52,9 @@ const CVideoURLArray = new Array(
 
 
 // add elements for evaluation section
-//document.body.insertBefore(CreateQuestionBlock("Male Characters:", PVideoURLArray, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock); //P
+document.body.insertBefore(CreateQuestionBlock("Male Characters:", PVideoURLArray, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock); //P
 
-document.body.insertBefore(CreateQuestionBlock("Male Characters:", CVideoURLArray, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock); //C
+//document.body.insertBefore(CreateQuestionBlock("Male Characters:", CVideoURLArray, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock); //C
 
 //document.body.insertBefore(CreateQuestionBlock("Male Characters:", MaleCharacterVideoURL, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock);
 //document.body.insertBefore(CreateQuestionBlock("Female Characters:", FemaleCharacterVideoURL, FeMaleSliderIdArray, FemaleCommentIdArray, YesNoSwitchIdArray[1], "C", "D"), CommentBlock);
@@ -215,8 +215,8 @@ function SetSubmitButton() {
             var encodedUri = encodeURI(csvContent);
             var link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            //link.setAttribute("download", "P_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // P
-            link.setAttribute("download", "C_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // C
+            link.setAttribute("download", "P_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // P
+            //link.setAttribute("download", "C_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // C
             document.body.appendChild(link);
             link.click(); // and click automatically
             alert("Please send the downloaded file to the owner of the questionnaire."); // information to send back the result
