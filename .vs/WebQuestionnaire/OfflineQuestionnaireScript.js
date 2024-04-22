@@ -1,15 +1,15 @@
 // JavaScript source code
 
 // id array for each VAS slider, for later getting value
-//const MaleSliderIdArray = new Array("MaleHumanlikePrevious", "MaleNaturalPrevious", "MaleHumanlikeProposed", "MaleNaturalProposed"); // C
-const MaleSliderIdArray = new Array("MaleHumanlikeProposed", "MaleNaturalProposed", "MaleHumanlikePrevious",  "MaleNaturalPrevious"); // P
+const MaleSliderIdArray = new Array("MaleHumanlikePrevious", "MaleNaturalPrevious", "MaleHumanlikeProposed", "MaleNaturalProposed"); // C
+//const MaleSliderIdArray = new Array("MaleHumanlikeProposed", "MaleNaturalProposed", "MaleHumanlikePrevious",  "MaleNaturalPrevious"); // P
 
 //const FeMaleSliderIdArray = new Array("FemaleHumanlikeProposed", "FemaleHumanlikePrevious",  "FemaleNaturalProposed", "FemaleNaturalPrevious");
 //const YesNoSwitchIdArray = new Array("switchFix", "switchMove");
 const YesNoSwitchIdArray = new Array("switchDifferent");
 
-//const MaleCommentIdArray = new Array("MaleCommentPrevious", "MaleCommentProposed"); // C
-const MaleCommentIdArray = new Array("MaleCommentProposed", "MaleCommentPrevious"); // P
+const MaleCommentIdArray = new Array ("MaleMentalPrevious", "MaleCommentPrevious", "MaleMentalProposed", "MaleCommentProposed"); // C
+//const MaleCommentIdArray = new Array("MaleMentalProposed", "MaleCommentProposed", "MaleMentalPrevious", "MaleCommentPrevious"); // P
 
 //const FemaleCommentIdArray = new Array("FemaleCommentProposed", "FemaleCommentPrevious");
 
@@ -26,23 +26,25 @@ const SubmitButton = document.getElementById("submitButton");
 
 const CommentBlock = document.getElementById("commentBlock");
 
-const PVideoURLArray = new Array(
-    "https://drive.google.com/file/d/1jyq4V7RO69AhC3t8xk5SXjzhJN5nfp-6/preview",
-    "https://drive.google.com/file/d/1-S5wzjbRX7jXRoIqHVgTvxDp6Nrpgr2d/preview",
-    "https://drive.google.com/file/d/12WEin1cC3W8oAto15YFMvSoaHqp_xada/preview",
-    "https://drive.google.com/file/d/1m3rAx1i_9RMjuXBrwJdG_XQHGRqahZai/preview",
-    "https://drive.google.com/file/d/1pkqJ6AvO3y_3d7wLIbG2Zgf_XsRZ3MyV/preview",
-    "https://drive.google.com/file/d/1cDwP6F0o-jVKfocVZ7AzuRht891TeNb3/preview"
-);
 
-//const CVideoURLArray = new Array(
-//    "https://drive.google.com/file/d/1VtWdbuAilKRdA9Hoxu-vmwkkAkfoiJ-n/preview",
-//    "https://drive.google.com/file/d/1h2kaB2WiChf8G9QhhwxDGrrn9zT6TYZL/preview",
-//    "https://drive.google.com/file/d/12DjGfk2Wx3gNklGFrSYgNm7iW_9wSTNc/preview",
-//    "https://drive.google.com/file/d/1nd6HKmyjE1uxmUDloghkVfv7Bb524z4C/preview",
-//    "https://drive.google.com/file/d/1UJvjo060T2vsuslOvyLrpKhB2TnW1Bqy/preview",
-//    "https://drive.google.com/file/d/1UceywxMEGuDgHdIQEXJIBJTrSpvz53to/preview"
+// PC 345 videos are used
+//const PVideoURLArray = new Array(
+//    //"https://drive.google.com/file/d/1jyq4V7RO69AhC3t8xk5SXjzhJN5nfp-6/preview",
+//    //"https://drive.google.com/file/d/1ipwNFlpxx3psafh3ExNIrZOh4XkRzGsw/preview",
+//    "https://drive.google.com/file/d/12WEin1cC3W8oAto15YFMvSoaHqp_xada/preview",
+//    "https://drive.google.com/file/d/1m3rAx1i_9RMjuXBrwJdG_XQHGRqahZai/preview",
+//    "https://drive.google.com/file/d/1pkqJ6AvO3y_3d7wLIbG2Zgf_XsRZ3MyV/preview",
+//    //"https://drive.google.com/file/d/1cDwP6F0o-jVKfocVZ7AzuRht891TeNb3/preview"
 //);
+
+const CVideoURLArray = new Array(
+//    "https://drive.google.com/file/d/1VtWdbuAilKRdA9Hoxu-vmwkkAkfoiJ-n/preview",
+//    "https://drive.google.com/file/d/1pnrGKfUQGIGSq5orTXxDqBe1kGukoP3K/preview",
+    "https://drive.google.com/file/d/12DjGfk2Wx3gNklGFrSYgNm7iW_9wSTNc/preview",
+    "https://drive.google.com/file/d/1nd6HKmyjE1uxmUDloghkVfv7Bb524z4C/preview",
+    "https://drive.google.com/file/d/1UJvjo060T2vsuslOvyLrpKhB2TnW1Bqy/preview",
+//    "https://drive.google.com/file/d/1UceywxMEGuDgHdIQEXJIBJTrSpvz53to/preview"
+);
 
 //const MaleCharacterVideoURL = "https://drive.google.com/file/d/11hQZgH4G16SOIxmmcU8fVCSDvH0Ix8v6/preview";
 //const FemaleCharacterVideoURL = "https://drive.google.com/file/d/1HpRtRfeWWosU7ffafWlJf2PrVdaKFSma/preview";
@@ -50,9 +52,9 @@ const PVideoURLArray = new Array(
 
 
 // add elements for evaluation section
-document.body.insertBefore(CreateQuestionBlock("Male Characters:", PVideoURLArray, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock); //P
+//document.body.insertBefore(CreateQuestionBlock("Male Characters:", PVideoURLArray, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock); //P
 
-//document.body.insertBefore(CreateQuestionBlock("Male Characters:", CVideoURLArray, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock); //C
+document.body.insertBefore(CreateQuestionBlock("Male Characters:", CVideoURLArray, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock); //C
 
 //document.body.insertBefore(CreateQuestionBlock("Male Characters:", MaleCharacterVideoURL, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock);
 //document.body.insertBefore(CreateQuestionBlock("Female Characters:", FemaleCharacterVideoURL, FeMaleSliderIdArray, FemaleCommentIdArray, YesNoSwitchIdArray[1], "C", "D"), CommentBlock);
@@ -72,7 +74,7 @@ function CreateQuestionBlock(legendText, videoURLArray, sliderIdArray, commentId
 
     // add explaination before the video
     const introAll = document.createElement("li"); // use "li" to add a black dot before the text
-    introAll.innerHTML = "Please watch the video at fullscreen.";
+    introAll.innerHTML = "Please watch the video at <mark><b>fullscreen</b></mark>. Please watch each video <mark><b>at least twice</b></mark> to compare the difference.";
     container.appendChild(introAll);
 
     for (var i = 0; i < videoURLArray.length; i++) {
@@ -110,12 +112,20 @@ function CreateQuestionBlock(legendText, videoURLArray, sliderIdArray, commentId
     container.appendChild(CreateSlider(sliderIdArray[sliderIdIndex], "Unnatural", "Natural"));
     sliderIdIndex++;
 
-    // add explaination before the comment block
+    // add mental state question before the comment block
     var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-    intro1.innerHTML = "How do feel about the characteristics or the mental situation of the character " + methodString1 + " ?";
+    intro1.innerHTML = "How do you feel about the mental state of the character " + methodString1 + " ?";
     container.appendChild(intro1);
 
-    container.appendChild(CreateCommentBlock(commentIdArray[commentIdIndex]));
+    container.appendChild(CreateCommentBlock(commentIdArray[commentIdIndex], "e.g. The character seems excited / calm / abnormal. Because ..."));
+    commentIdIndex++;
+
+    // add explaination before the comment block
+    var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
+    intro1.innerHTML = "Do you have any comment on the character " + methodString1 + " ?";
+    container.appendChild(intro1);
+
+    container.appendChild(CreateCommentBlock(commentIdArray[commentIdIndex], "e.g. The character acts strange. Because ..."));
     commentIdIndex++;
 
 
@@ -137,12 +147,20 @@ function CreateQuestionBlock(legendText, videoURLArray, sliderIdArray, commentId
     container.appendChild(CreateSlider(sliderIdArray[sliderIdIndex], "Unnatural", "Natural"));
     sliderIdIndex++;
 
-    // add explaination before the comment block
+    // add mental state question before the comment block
     var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-    intro1.innerHTML = "How do feel about the characteristics or the mental situation of the character " + methodString2 + " ?";
+    intro1.innerHTML = "How do you feel about the mental state of the character " + methodString2 + " ?";
     container.appendChild(intro1);
 
-    container.appendChild(CreateCommentBlock(commentIdArray[commentIdIndex]));
+    container.appendChild(CreateCommentBlock(commentIdArray[commentIdIndex], "e.g. The character seems excited / calm / abnormal. Because ..."));
+    commentIdIndex++;
+
+    // add explaination before the comment block
+    var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
+    intro1.innerHTML = "Do you have any comment on the character " + methodString2 + " ?";
+    container.appendChild(intro1);
+
+    container.appendChild(CreateCommentBlock(commentIdArray[commentIdIndex], "e.g. The character acts strange. Because ..."));
     commentIdIndex++;
 
     return container;
@@ -197,8 +215,8 @@ function SetSubmitButton() {
             var encodedUri = encodeURI(csvContent);
             var link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "P_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // P
-            //link.setAttribute("download", "C_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // C
+            //link.setAttribute("download", "P_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // P
+            link.setAttribute("download", "C_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // C
             document.body.appendChild(link);
             link.click(); // and click automatically
             alert("Please send the downloaded file to the owner of the questionnaire."); // information to send back the result
@@ -350,7 +368,7 @@ function CreateVideoBlock(videoURL) {
 
 }
 
-function CreateCommentBlock(commentId) {
+function CreateCommentBlock(commentId, placeHolderText) {
     const node = document.createElement("textarea");
     const typeAtt = document.createAttribute("type");
     const idAtt = document.createAttribute("id");
@@ -361,7 +379,7 @@ function CreateCommentBlock(commentId) {
     idAtt.value = commentId;
     sizeAtt.vale = "100";
     rowAtt.value = "5";
-    placeHolderAtt.value = "e.g. The character seems excited / calm / abnormal. The character acts strange.";
+    placeHolderAtt.value = placeHolderText;
 
     node.setAttributeNode(typeAtt);
     node.setAttributeNode(idAtt);
