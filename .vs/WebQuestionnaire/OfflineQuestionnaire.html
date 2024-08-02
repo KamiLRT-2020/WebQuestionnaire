@@ -13,13 +13,13 @@
 
     <h2 id="introduction">Introduction 説明</h2> <!--Introduction of the questionnaire-->
     <p>
-        Our research aims to generate human-like eye movements for virtual characters. This questionnaire aims to evaluate the human-likeness and naturalness of the generated gaze movement from 2 methods.
-        You will watch several videos of generated gaze movement, then answer several questions. The videos will show gaze movements generated from 2 different methods.
+        Our research aims to generate human-like eye movements for virtual characters. This questionnaire aims to evaluate the human-likeness and naturalness of the generated gaze movement from 4 methods.
+        You will watch several videos of generated gaze movement, then answer several questions. The videos will show gaze movements generated from 4 different methods.
         Please carefully observe the eye movements of the characters and answer the following questions, after observation. You can watch the video as many times as you want. You can also revise your answer at any time.
         (Please watch the videos repeatedly to compare the difference.)
         Thank you for participating!
-        <br>私たちの研究は、キャラクターに対して人間のような目の動きを生成することを目的としています。このアンケートは、2 つの方法で生成された視線動作の人間らしさと自然さを評価することを目的としています。
-        参加者は生成された視線のいくつのビデオを見て、いくつかの質問に答えてください。ビデオでは、2 つの方法で生成された視線の動きが表示されます。キャラクターの目の動きをよく観察して、次の質問に答えてください。
+        <br>私たちの研究は、キャラクターに対して人間のような目の動きを生成することを目的としています。このアンケートは、4 つの方法で生成された視線動作の人間らしさと自然さを評価することを目的としています。
+        参加者は生成された視線のいくつのビデオを見て、いくつかの質問に答えてください。ビデオでは、4 つの方法で生成された視線の動きが表示されます。キャラクターの目の動きをよく観察して、次の質問に答えてください。
         生成された動きは何度でも観察できます。回答はいつでも変更できます。(ビデオを何回を見て、違うことを観察してください。)
         ご参加いただきありがとうございます！
         (Human-like:人間らしい, Natural:自然(な))
@@ -77,9 +77,11 @@
 
 
     <fieldset>
-        <legend>Please input participant's NAME:<br>参加者のIDを入力してください:</legend>
+        <legend>Please input participant's NAME and Number: (click "finish" button after inputing Number)<br>参加者の名前と番号を入力してください: (番号を入力してfinishボタンを押してください)</legend>
 
-        <input type="text" id="name" name="name" required minlength="1" size="20" /> <!--Input participant's Id-->
+        <input type="text" id="name" name="name" required minlength="1" size="20" /> <!--Input participant's Name-->
+        <input type="number" id="Number" name="Number" min="1" max="99" /> <!--Input participant's Id-->
+        <input id="id_button" type="button" value="Finish Input Participant Number." /> <!--Show video after inputing ID-->
     </fieldset>
 
     <fieldset id="commentBlock">
