@@ -3,6 +3,7 @@
 // id array for each VAS slider, for later getting value
 const HumanLikenessSliderIdArray = new Array("HumanlikeProposed", "HumanlikeDirectly", "HumanlikePreviousSmall", "HumanlikePreviousLarge");
 const NaturalnessSliderIdArray = new Array("NaturalnessProposed", "NaturalnessDirectly", "NaturalnessPreviousSmall", "NaturalnessPreviousLarge");
+const RoboticSliderIdArray = new Array("RoboticProposed", "RoboticDirectly", "RoboticPreviousSmall", "RoboticPreviousLarge");
 
 //const YesNoSwitchIdArray = new Array("switchDifferent");
 
@@ -49,7 +50,7 @@ SetNumberInputButton();
 SetSubmitButton();
 
 // function to create a VAS block
-function CreateQuestionBlock(legendText, videoURLArray, HumanLknessSliderIdArray, NaturalnessSliderIdArray, MentalCommentIdArray, GeneralCommentIdArray, methodString) {
+function CreateQuestionBlock(legendText, videoURLArray, HumanLknessSliderIdArray, NaturalnessSliderIdArray, RoboticSliderIdArray, MentalCommentIdArray, GeneralCommentIdArray, methodString) {
 
     // create outside container
     const container = document.createElement("fieldset");
@@ -101,6 +102,14 @@ function CreateQuestionBlock(legendText, videoURLArray, HumanLknessSliderIdArray
         // add VAS slider
         container.appendChild(CreateSlider(NaturalnessSliderIdArray[i], "Unnatural", "Natural"));
 
+        // add explaination before the slider
+        intro1 = document.createElement("li"); // use "li" to add a black dot before the text
+        intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> seem robotic?";
+        container.appendChild(intro1);
+
+        // add VAS slider
+        container.appendChild(CreateSlider(RoboticSliderIdArray[i], "Not Robotic", "Robotic"));
+
         // add mental state question before the comment block
         var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
         intro1.innerHTML = "How do you feel about the mental state of the character " + methodString[i] + " ?";
@@ -150,6 +159,11 @@ function SetSubmitButton() {
 
             for (var i = 0; i < NaturalnessSliderIdArray.length; i++) {
                 const slider = document.getElementById(NaturalnessSliderIdArray[i]);
+                csvContent += slider.value + "\r\n";
+            }
+
+            for (var i = 0; i < RoboticSliderIdArray.length; i++) {
+                const slider = document.getElementById(RoboticSliderIdArray[i]);
                 csvContent += slider.value + "\r\n";
             }
 
@@ -219,10 +233,11 @@ function SetNumberInputButton() {
         OrderVideoURLArray = OrderArrayWith(VideoURLArray, OrderArray);
         const OrderHumanLikenessSliderId = OrderArrayWith(HumanLikenessSliderIdArray, OrderArray);
         const OrderNaturalnessSliderId = OrderArrayWith(NaturalnessSliderIdArray, OrderArray);
+        const OrderRoboticSliderId = OrderArrayWith(RoboticSliderIdArray, OrderArray);
         const OrderMentalCommentId = OrderArrayWith(MentalCommentIdArray, OrderArray);
         const OrderGeneralCommentId = OrderArrayWith(GeneralCommentIdArray, OrderArray);
         // add elements for evaluation section
-        document.body.insertBefore(CreateQuestionBlock("Generated Eye Movements:", OrderVideoURLArray, OrderHumanLikenessSliderId, OrderNaturalnessSliderId, OrderMentalCommentId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
+        document.body.insertBefore(CreateQuestionBlock("Generated Eye Movements:", OrderVideoURLArray, OrderHumanLikenessSliderId, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderMentalCommentId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
         console.log(OrderArray.toString());
     }
 
