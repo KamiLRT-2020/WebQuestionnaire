@@ -144,6 +144,7 @@ function SetSubmitButton() {
             let csvContent = "data:text/csv;charset=utf-8,";
 
             // input the participant's name
+            csvContent += document.getElementById("Number").value + "\r\n";
             csvContent += document.getElementById("name").value + "\r\n";
 
             //for (var i = 0; i < YesNoSwitchIdArray.length; i++) {
