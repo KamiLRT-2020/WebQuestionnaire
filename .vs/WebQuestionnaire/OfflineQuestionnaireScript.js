@@ -39,29 +39,30 @@ const CommentBlock = document.getElementById("commentBlock");
 
 // Videos P D PS PL are used
 const VideoURLArray = new Array(
-    //// google drive
-    //"https://drive.google.com/file/d/1kiAoSZYhunoqEZBpBqVq1B5ci6HgUWAN/preview", // PP
-    //"https://drive.google.com/file/d/1KBHWu7RpflPwjHs_aqeLg3T1QiAphDdK/preview", // PD
-    //"https://drive.google.com/file/d/1GqVGY02llV7QLzYlmx-uJLZYFuYCV5BZ/preview", // PS
-    //"https://drive.google.com/file/d/1ELCge-2eaGAvf3LmMrh9hov9iozfCTh1/preview", // PL
+    // google drive
+    "https://drive.google.com/file/d/194QddL84yP8Idb_g-AB4UNM6q7WUrJfA/preview", // PP
+    "https://drive.google.com/file/d/150ED-EtA-AqOEC9_LNQ0GECQBfNrk8hU/preview", // PD
+    "https://drive.google.com/file/d/1PQrT0p7Ptuq90lbI1Nn8kySUAUdpakms/preview", // PS
+    "https://drive.google.com/file/d/1QL2kkWRsV9K-ZJVUrRMX_hECvZ3DYQjL/preview", // PL
 
-    "https://player.bilibili.com/player.html?isOutside=true&aid=112954133450091&bvid=BV1JuYCeaEhj&cid=500001648121412&p=1", // PP
-    "http://player.bilibili.com/player.html?isOutside=true&aid=112954133448865&bvid=BV1JuYCeaECv&cid=500001648121946&p=1", // PD
-    "https://player.bilibili.com/player.html?isOutside=true&aid=112954133513366&bvid=BV16uYCeaE8W&cid=500001648123228&p=1", // PS
-    "https://player.bilibili.com/player.html?isOutside=true&aid=112954133516188&bvid=BV16uYCeaETV&cid=500001648122735&p=1", // PL
+    //"https://player.bilibili.com/player.html?isOutside=true&aid=112954133450091&bvid=BV1JuYCeaEhj&cid=500001648121412&p=1", // PP
+    //"http://player.bilibili.com/player.html?isOutside=true&aid=112954133448865&bvid=BV1JuYCeaECv&cid=500001648121946&p=1", // PD
+    //"https://player.bilibili.com/player.html?isOutside=true&aid=112954133513366&bvid=BV16uYCeaE8W&cid=500001648123228&p=1", // PS
+    //"https://player.bilibili.com/player.html?isOutside=true&aid=112954133516188&bvid=BV16uYCeaETV&cid=500001648122735&p=1", // PL
 );
 
 const VideoURLArrayL = new Array(
-    //// google drive
-    //"https://drive.google.com/file/d/1kiAoSZYhunoqEZBpBqVq1B5ci6HgUWAN/preview", // PP
-    //"https://drive.google.com/file/d/1KBHWu7RpflPwjHs_aqeLg3T1QiAphDdK/preview", // PD
-    //"https://drive.google.com/file/d/1GqVGY02llV7QLzYlmx-uJLZYFuYCV5BZ/preview", // PS
-    //"https://drive.google.com/file/d/1ELCge-2eaGAvf3LmMrh9hov9iozfCTh1/preview", // PL
+    // google drive
+    "https://drive.google.com/file/d/1P8x4eWHbcsbqsSee6PVNc-MkGmRGfQje/preview", // PP
+    "https://drive.google.com/file/d/1Ykqxk_6MCrX-oLO5aXTjZ7XwF63ZIsQg/preview", // PD
+    "https://drive.google.com/file/d/18gxBXWlKBDmIrbqHn8v9RWBklkCq000m/preview", // PS
+    "https://drive.google.com/file/d/17H0o_tEDYGjcQwK_TJjznziH3sN33wBx/preview", // PL
 
-    "https://player.bilibili.com/player.html?isOutside=true&aid=112954133448591&bvid=BV1nuYCeaE5S&cid=500001648123312&p=1", // PP_L
-    "http://player.bilibili.com/player.html?isOutside=true&aid=112954133581705&bvid=BV1FuYCeYEin&cid=500001648123420&p=1", // PD_L
-    "https://player.bilibili.com/player.html?isOutside=true&aid=112954133579652&bvid=BV1cuYCeYEGX&cid=500001648124001&p=1", // PS_L
-    "https://player.bilibili.com/player.html?isOutside=true&aid=112954133515645&bvid=BV16uYCeaEFw&cid=500001648124133&p=1", // PL_L
+
+    //"https://player.bilibili.com/player.html?isOutside=true&aid=112954133448591&bvid=BV1nuYCeaE5S&cid=500001648123312&p=1", // PP_L
+    //"http://player.bilibili.com/player.html?isOutside=true&aid=112954133581705&bvid=BV1FuYCeYEin&cid=500001648123420&p=1", // PD_L
+    //"https://player.bilibili.com/player.html?isOutside=true&aid=112954133579652&bvid=BV1cuYCeYEGX&cid=500001648124001&p=1", // PS_L
+    //"https://player.bilibili.com/player.html?isOutside=true&aid=112954133515645&bvid=BV16uYCeaEFw&cid=500001648124133&p=1", // PL_L
 );
 
 
