@@ -27,10 +27,10 @@ const CommentBlock = document.getElementById("commentBlock");
 
 // Videos P D PS PL are used
 const VideoURLArray = new Array(
-    "https://drive.google.com/file/d/1Rx7atfDO5K6qE66sjKWPSQLEjVSFzhRK/preview", // P
-    "https://drive.google.com/file/d/1uHA1ee6mVSbX8StAa9G4-70Ow5wmJDvb/preview", // D
-    "https://drive.google.com/file/d/1jhzYnuzNJ4AndgOOg8FYWzFWk9OyVV41/preview", // PS
-    "https://drive.google.com/file/d/1AAvBh-zKQKmhaJ9putAsxgqFu9F58On0/preview", // PL
+    "https://drive.google.com/file/d/1kiAoSZYhunoqEZBpBqVq1B5ci6HgUWAN/preview", // PP
+    "https://drive.google.com/file/d/1KBHWu7RpflPwjHs_aqeLg3T1QiAphDdK/preview", // PD
+    "https://drive.google.com/file/d/1GqVGY02llV7QLzYlmx-uJLZYFuYCV5BZ/preview", // PS
+    "https://drive.google.com/file/d/1ELCge-2eaGAvf3LmMrh9hov9iozfCTh1/preview", // PL
 );
 const RandomizedVideoURLArray = new Array();
 
@@ -47,7 +47,6 @@ const RandomizedVideoURLArray = new Array();
 SetNumberInputButton();
 
 // set up the behavior when click submit button
-SetSubmitButton();
 
 // function to create a VAS block
 function CreateQuestionBlock(legendText, videoURLArray, HumanLknessSliderIdArray, NaturalnessSliderIdArray, RoboticSliderIdArray, MentalCommentIdArray, GeneralCommentIdArray, methodString) {
@@ -160,7 +159,7 @@ function SetSubmitButton() {
 
             for (var i = 0; i < NaturalnessSliderIdArray.length; i++) {
                 const slider = document.getElementById(NaturalnessSliderIdArray[i]);
-                csvContent += slider.value + "\r\n";
+                csvContent +=  slider.value + "\r\n";
             }
 
             for (var i = 0; i < RoboticSliderIdArray.length; i++) {
@@ -169,11 +168,11 @@ function SetSubmitButton() {
             }
 
             for (var i = 0; i < MentalCommentIdArray.length; i++) {
-                csvContent += document.getElementById(MentalCommentIdArray[i]).value + "\r\n" + "\r\n";
+                csvContent += i.toString() + ": " + document.getElementById(MentalCommentIdArray[i]).value + "\r\n" + "\r\n";
             }
 
             for (var i = 0; i < GeneralCommentIdArray.length; i++) {
-                csvContent += document.getElementById(GeneralCommentIdArray[i]).value + "\r\n" + "\r\n";
+                csvContent += i.toString() + ": " + document.getElementById(GeneralCommentIdArray[i]).value + "\r\n" + "\r\n";
             }
 
             //// input the value of each VAS slider
@@ -186,7 +185,7 @@ function SetSubmitButton() {
             //    csvContent += document.getElementById(FemaleCommentIdArray[i]).value + "\r\n";
             //}
 
-            csvContent += document.getElementById("comment").value + "\r\n";
+            csvContent += "General: " + document.getElementById("comment").value + "\r\n";
 
             // create a element to download the file
             var encodedUri = encodeURI(csvContent);
@@ -241,6 +240,7 @@ function SetNumberInputButton() {
         document.body.insertBefore(CreateQuestionBlock("Generated Eye Movements:", OrderVideoURLArray, OrderHumanLikenessSliderId, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderMentalCommentId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
         console.log(OrderArray.toString());
     }
+    SetSubmitButton();
 
 }
 
