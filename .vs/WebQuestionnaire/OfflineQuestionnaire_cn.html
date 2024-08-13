@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">OfflineQuestionnaire</title>
+    <link rel="stylesheet" type="text/css" href="OfflineQuestionnaireStyle.css" /> <!--Import the layout script-->
+</head>
+
+<body>
+    <h1 id="head_title">head title 1</h1> <!--large title on the top-->
+
+    <h2 id="introduction">Introduction 説明</h2> <!--Introduction of the questionnaire-->
+    <p>
+        本问卷目的是为了对生成的虚拟角色的视线动作进行评估。在问卷中，您将观看若干个视频，然后回答几个问题。视频中会展示虚拟人物在两种条件下的视线动作。请仔细观察反复观看视频，并观察彼此间的不同点。你可以重复多次观看视频，并随时修改自己的回答。谢谢参与！
+    </p>
+
+    <h2 id="introduction">Consent: 同意書:</h2> <!--Consent of the questionnaire-->
+    <fieldset>
+        <p>
+            I have been adequately informed about the goals and methods of the research titled "Character research that realizes natural interaction and attractive expression" by the researchers. I feel confident that I understand the following aspects of this research:
+            <br>私は、｢自然なインタラクションと魅力的な表現を実現するキャラクタの研究｣について、目的・方法・予測される問題等について研究者等より説明文書を用いて十分な説明を受け、以下の項目を理解しました。
+        </p>
+
+        <div>
+            <input type="checkbox" class="info" id="info1" />
+            <label for="info1">
+                The goals, methods and potentially dangerous aspects or consequences of this research, and how these will be managed,
+                <br>研究の目的、方法そして予測される危険性とそれに対する対応について。
+            </label>
+        </div>
+
+        <div>
+            <input type="checkbox" class="info" id="info2" />
+            <label for="info2">
+                The fact that I may withdraw from this study at any time at will,
+                <br>私は自らの自由意思でいつでも実験・調査を中止することができること。
+            </label>
+        </div>
+        <div>
+            <input type="checkbox" class="info" id="info3" />
+            <label for="info3">
+                The fact that even if I choose not to participate at any point, I will not be penalized in any way,
+                <br>私はいかなる時点において実験・調査への参加の拒否をしても何ら不利益を被らないこと。
+            </label>
+        </div>
+        <div>
+            <input type="checkbox" class="info" id="info4" />
+            <label for="info4">
+                The fact that my personal information will be strictly controlled to prevent leaks and will not be used for any purpose other than re-testing or contacting in case of unexpected accidents, and
+                <br>記録された個人情報は外部に漏洩しないよう厳密に管理され、再実験・再調査または事故が生じたときの連絡等以外の目的には使用されないこと。
+            </label>
+        </div>
+        <div>
+            <input type="checkbox" class="info" id="info5" />
+            <label for="info5">
+                The fact that I may claim compensation from the Tokyo Institute of Technology if I am harmed in the course of this research.
+                <br>私は、万一不利益を被った場合に東京工業大学に対して申し立てを行うことができること。
+            </label>
+        </div>
+        <p>
+            英文同意书原件： Details in <a target="_blank" href="https://docs.google.com/document/d/1i5Kgq6Ehp3vt_KgQEcOOJOy5Pb7v5abR/edit?usp=share_link&ouid=118109089828611572867&rtpof=true&sd=true">Explanation in Details</a>
+            <br>日文同意书原件：詳しい情報はここ: <a target="_blank" href="https://docs.google.com/document/d/1i5Kgq6Ehp3vt_KgQEcOOJOy5Pb7v5abR/edit?usp=share_link&ouid=118109089828611572867&rtpof=true&sd=true">Explanation in Details</a>
+        </p>
+    </fieldset>
+
+
+
+    <fieldset>
+        <legend>请输入你的名字/昵称和问卷序号：（输入完成后点击"finish"按钮，记载问卷内容）</legend>
+
+        <input type="text" id="name" name="name" required minlength="1" size="20" /> <!--Input participant's Name-->
+        <input type="number" id="Number" name="Number" min="1" max="99" /> <!--Input participant's Id-->
+        <input id="id_button" type="button" value="Finish Input Participant Number." /> <!--Show video after inputing ID-->
+    </fieldset>
+
+    <fieldset id="commentBlock">
+        <legend>任何建议或评论：</legend>
+
+        <textarea type="text" id="comment" name="comment" size="100" rows="5" placeholder="例如：我觉得彼此之间的区别在于..." style="width: 100%; height:100px"></textarea> <!--Input participant's Id-->
+    </fieldset>
+
+    <p>
+        <mark><b>注意:</b></mark>点击"Submit"后，会自动下载一个包含结果的文件。<mark><b>请将该文件发回问卷发布者</b></mark>。
+
+    </p>
+
+    <input id="submitButton" class="submitButton" type="button" value="Submit" /> <!--Submit button for questionnaire-->
+
+    <script src="OfflineQuestionnaireScript_cn.js"></script> <!--Import the .js script-->
+</body>
+</html>
