@@ -88,12 +88,12 @@ function CreateQuestionBlock(legendText, videoURLArray, HumanLknessSliderIdArray
     container.setAttributeNode(QuestionContainerAtt);
     // set legend of container
     const legend = document.createElement("legend");
-    legend.innerText = legendText;
+    legend.innerHTML = "<b>" + legendText + "</b>";
     container.appendChild(legend);
 
     // add explaination before the video
     const introAll = document.createElement("li"); // use "li" to add a black dot before the text
-    introAll.innerHTML = "请保持<mark><b>全屏高清</b></mark>观看。请每个视频至少观看<mark><b>两次以上</b></mark>以观察彼此间的区别。";
+    introAll.innerHTML = "请打开<b>b站网页保持>全屏高清</b>观看。请每个视频至少观<b>两次以上</b>以观察彼此间的区别。";
     container.appendChild(introAll);
 
     for (var i = 0; i < videoURLArray.length; i++) {
@@ -313,7 +313,7 @@ function SetNumberInputButton() {
         const OrderRelaxSliderId = OrderArrayWith(RelaxSliderIdArray, OrderArray);
         const OrderGeneralCommentId = OrderArrayWith(GeneralCommentIdArray, OrderArray);
         // add elements for evaluation section
-        document.body.insertBefore(CreateQuestionBlock("当物体均在虚拟人物视野内：", OrderVideoURLArray, OrderHumanLikenessSliderId, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderCalmSliderId, OrderRelaxSliderId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
+        document.body.insertBefore(CreateQuestionBlock("当物体均在虚拟人物视野内（物体都在人物前方）：", OrderVideoURLArray, OrderHumanLikenessSliderId, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderCalmSliderId, OrderRelaxSliderId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
         //console.log(OrderArray.toString());
         const OrderVideoURLArrayL = OrderArrayWith(VideoURLArrayL, OrderArray);
         const OrderHumanLikenessSliderIdL = OrderArrayWith(HumanLikenessSliderIdArrayL, OrderArray);
@@ -323,7 +323,7 @@ function SetNumberInputButton() {
         const OrderRelaxSliderIdL = OrderArrayWith(RelaxSliderIdArrayL, OrderArray);
         const OrderGeneralCommentIdL = OrderArrayWith(GeneralCommentIdArrayL, OrderArray);
         // add elements for evaluation section
-        document.body.insertBefore(CreateQuestionBlock("当物体在虚拟人物视野边缘：", OrderVideoURLArrayL, OrderHumanLikenessSliderIdL, OrderNaturalnessSliderIdL, OrderRoboticSliderIdL, OrderCalmSliderIdL, OrderRelaxSliderIdL, OrderGeneralCommentIdL, AnonmyMethodNameStringArrayL), CommentBlock);
+        document.body.insertBefore(CreateQuestionBlock("当物体在虚拟人物视野边缘（画面左面物体在人物前方，画面右边物体在人物侧面，接近视野外）：", OrderVideoURLArrayL, OrderHumanLikenessSliderIdL, OrderNaturalnessSliderIdL, OrderRoboticSliderIdL, OrderCalmSliderIdL, OrderRelaxSliderIdL, OrderGeneralCommentIdL, AnonmyMethodNameStringArrayL), CommentBlock);
     }
     SetSubmitButton();
 
