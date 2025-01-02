@@ -25,7 +25,7 @@
         (Human-like:人間らしい, Natural:自然(な))
     </p>
 
-    <h2 id="introduction">Consent: 同意書:</h2> <!--Consent of the questionnaire-->
+    <h2 id="consent">Consent: 同意書:</h2> <!--Consent of the questionnaire-->
     <fieldset>
         <p>
             I have been adequately informed about the goals and methods of the research titled "Character research that realizes natural interaction and attractive expression" by the researchers. I feel confident that I understand the following aspects of this research:
@@ -74,14 +74,18 @@
         </p>
     </fieldset>
 
+    <h2>Scene Introduction シーンの説明</h2> <!--Introduction of the questionnaire-->
+    <p id="scene">
+        The character is in a lobby and try to look at the other guests (dummy). The character will change target among 4 virtual guests randomly.
+        <br>キャラクターはロビーにいて、他のゲスト（ダミー）を見ようとしています。キャラクターは4人の仮想ゲストの間でランダムにターゲットを変更します。
+    </p>
+
 
 
     <fieldset>
-        <legend>Please input participant's NAME and Number: (click "finish" button after inputing Number)<br>参加者の名前と番号を入力してください: (番号を入力してfinishボタンを押してください)</legend>
+        <legend>Please input participant's NAME:<br>参加者の名前を入力してください:</legend>
 
         <input type="text" id="name" name="name" required minlength="1" size="20" /> <!--Input participant's Name-->
-        <input type="number" id="Number" name="Number" min="1" max="99" /> <!--Input participant's Id-->
-        <input id="id_button" type="button" value="Finish Input Participant Number." /> <!--Show video after inputing ID-->
     </fieldset>
 
     <fieldset id="commentBlock">

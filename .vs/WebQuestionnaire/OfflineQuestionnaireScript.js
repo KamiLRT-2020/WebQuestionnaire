@@ -1,28 +1,14 @@
-// JavaScript source code
+﻿// JavaScript source code
 
 // id array for each VAS slider, for later getting value
-const HumanLikenessSliderIdArray = new Array("HumanlikeProposed", "HumanlikeDirectly", "HumanlikePreviousSmall", "HumanlikePreviousLarge");
-const NaturalnessSliderIdArray = new Array("NaturalnessProposed", "NaturalnessDirectly", "NaturalnessPreviousSmall", "NaturalnessPreviousLarge");
-const RoboticSliderIdArray = new Array("RoboticProposed", "RoboticDirectly", "RoboticPreviousSmall", "RoboticPreviousLarge");
+//const HumanLikenessSliderIdArray = new Array("HumanlikeProposed", "HumanlikeDirectly", "HumanlikePreviousSmall", "HumanlikePreviousLarge");
+const NaturalnessSliderIdArray = new Array("NaturalnessProposed", "NaturalnessDirectly", "NaturalnessPrevious");
+const RoboticSliderIdArray = new Array("RoboticProposed", "RoboticDirectly", "RoboticPrevious");
 
-const HumanLikenessSliderIdArrayL = new Array("HumanlikeProposedL", "HumanlikeDirectlyL", "HumanlikePreviousSmallL", "HumanlikePreviousLargeL");
-const NaturalnessSliderIdArrayL = new Array("NaturalnessProposedL", "NaturalnessDirectlyL", "NaturalnessPreviousSmallL", "NaturalnessPreviousLargeL");
-const RoboticSliderIdArrayL = new Array("RoboticProposedL", "RoboticDirectlyL", "RoboticPreviousSmallL", "RoboticPreviousLargeL");
+const GeneralCommentIdArray = new Array("GeneralProposed", "GeneralDirectly", "GeneralPreviousLarge");
 
-//const YesNoSwitchIdArray = new Array("switchDifferent");
 
-const CalmSliderIdArray = new Array("CalmProposed", "CalmDirectly", "CalmPreviousSmall", "CalmPreviousLarge"); // calm - nervous
-const RelaxSliderIdArray = new Array("RelaxProposed", "RelaxDirectly", "RelaxPreviousSmall", "RelaxPreviousLarge"); // relax - excited
-
-const GeneralCommentIdArray = new Array("GeneralProposed", "GeneralDirectly", "GeneralPreviousSmall", "GeneralPreviousLarge");
-
-const CalmSliderIdArrayL = new Array("CalmProposedL", "CalmDirectlyL", "CalmPreviousSmallL", "CalmPreviousLargeL"); // calm - nervous
-const RelaxSliderIdArrayL = new Array("RelaxProposedL", "RelaxDirectlyL", "RelaxPreviousSmallL", "RelaxPreviousLargeL"); // relax - excited
-
-const GeneralCommentIdArrayL = new Array("GeneralProposedL", "GeneralDirectlyL", "GeneralPreviousSmallL", "GeneralPreviousLargeL");
-
-const AnonmyMethodNameStringArray = new Array("A", "B", "C", "D");
-const AnonmyMethodNameStringArrayL = new Array("E", "F", "G", "H");
+const AnonmyMethodNameStringArray = new Array("A", "B", "C");
 
 // id array for consent information, to check whether they are checked later
 const consentIdArray = new Array("info1", "info2", "info3", "info4", "info5");
@@ -36,34 +22,20 @@ const SubmitButton = document.getElementById("submitButton");
 
 const CommentBlock = document.getElementById("commentBlock");
 
+const SceneIntroduction = document.getElementById("scene");
 
-// Videos P D PS PL are used
+
+// Videos P D PL are used
 const VideoURLArray = new Array(
     // google drive
-    "https://drive.google.com/file/d/194QddL84yP8Idb_g-AB4UNM6q7WUrJfA/preview", // PP
-    "https://drive.google.com/file/d/150ED-EtA-AqOEC9_LNQ0GECQBfNrk8hU/preview", // PD
-    "https://drive.google.com/file/d/1PQrT0p7Ptuq90lbI1Nn8kySUAUdpakms/preview", // PS
-    "https://drive.google.com/file/d/1QL2kkWRsV9K-ZJVUrRMX_hECvZ3DYQjL/preview", // PL
+    "https://drive.google.com/file/d/1_DiYc47pBcBOzj8Pup00iU7pkCbFfH_6/preview", // PP
+    "https://drive.google.com/file/d/1q6-L3QIslkjYsRX-3GcWb0vYKxQ1RkVp/preview", // PD
+    "https://drive.google.com/file/d/1J_kwcYt15l7muUiTf1BXEA9TWaEI7BdQ/preview", // PL
 
-    //"https://player.bilibili.com/player.html?isOutside=true&aid=112954133450091&bvid=BV1JuYCeaEhj&cid=500001648121412&p=1", // PP
-    //"http://player.bilibili.com/player.html?isOutside=true&aid=112954133448865&bvid=BV1JuYCeaECv&cid=500001648121946&p=1", // PD
-    //"https://player.bilibili.com/player.html?isOutside=true&aid=112954133513366&bvid=BV16uYCeaE8W&cid=500001648123228&p=1", // PS
-    //"https://player.bilibili.com/player.html?isOutside=true&aid=112954133516188&bvid=BV16uYCeaETV&cid=500001648122735&p=1", // PL
+    
 );
 
-const VideoURLArrayL = new Array(
-    // google drive
-    "https://drive.google.com/file/d/1P8x4eWHbcsbqsSee6PVNc-MkGmRGfQje/preview", // PP
-    "https://drive.google.com/file/d/1Ykqxk_6MCrX-oLO5aXTjZ7XwF63ZIsQg/preview", // PD
-    "https://drive.google.com/file/d/18gxBXWlKBDmIrbqHn8v9RWBklkCq000m/preview", // PS
-    "https://drive.google.com/file/d/17H0o_tEDYGjcQwK_TJjznziH3sN33wBx/preview", // PL
-
-
-    //"https://player.bilibili.com/player.html?isOutside=true&aid=112954133448591&bvid=BV1nuYCeaE5S&cid=500001648123312&p=1", // PP_L
-    //"http://player.bilibili.com/player.html?isOutside=true&aid=112954133581705&bvid=BV1FuYCeYEin&cid=500001648123420&p=1", // PD_L
-    //"https://player.bilibili.com/player.html?isOutside=true&aid=112954133579652&bvid=BV1cuYCeYEGX&cid=500001648124001&p=1", // PS_L
-    //"https://player.bilibili.com/player.html?isOutside=true&aid=112954133515645&bvid=BV16uYCeaEFw&cid=500001648124133&p=1", // PL_L
-);
+const SceneIntrodcutionVideo = "https://drive.google.com/file/d/1uMCOje4eZcWH29S-bADcbb9JXofYGIwm/preview";
 
 
 //// add elements for evaluation section
@@ -74,13 +46,15 @@ const VideoURLArrayL = new Array(
 //document.body.insertBefore(CreateQuestionBlock("Male Characters:", MaleCharacterVideoURL, MaleSliderIdArray, MaleCommentIdArray, YesNoSwitchIdArray[0], "A", "B"), CommentBlock);
 //document.body.insertBefore(CreateQuestionBlock("Female Characters:", FemaleCharacterVideoURL, FeMaleSliderIdArray, FemaleCommentIdArray, YesNoSwitchIdArray[1], "C", "D"), CommentBlock);
 
+SceneIntroduction.appendChild(CreateVideoBlock(SceneIntrodcutionVideo));
+
 // set up the behavior when click finish button after inputing Id
-SetNumberInputButton();
+ServerGetResult();
 
 // set up the behavior when click submit button
 
 // function to create a VAS block
-function CreateQuestionBlock(legendText, videoURLArray, HumanLknessSliderIdArray, NaturalnessSliderIdArray, RoboticSliderIdArray, CalmSliderIdArray, RelaxSliderIdArray, GeneralCommentIdArray, methodString) {
+function CreateQuestionBlock(legendText, videoURLArray, NaturalnessSliderIdArray, RoboticSliderIdArray, GeneralCommentIdArray, methodString) {
 
     // create outside container
     const container = document.createElement("fieldset");
@@ -117,12 +91,12 @@ function CreateQuestionBlock(legendText, videoURLArray, HumanLknessSliderIdArray
 
     for (var i = 0; i < videoURLArray.length; i++) {
         // add explaination before the slider
-        var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> human-like?";
-        container.appendChild(intro1);
+        //var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
+        //intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> human-like?";
+        //container.appendChild(intro1);
 
         // add VAS slider
-        container.appendChild(CreateSlider(HumanLknessSliderIdArray[i], "Not human-like", "Human-like"));
+        //container.appendChild(CreateSlider(HumanLknessSliderIdArray[i], "Not human-like", "Human-like"));
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
@@ -139,22 +113,6 @@ function CreateQuestionBlock(legendText, videoURLArray, HumanLknessSliderIdArray
 
         // add VAS slider
         container.appendChild(CreateSlider(RoboticSliderIdArray[i], "Not Robotic", "Robotic"));
-
-        // add explaination before the slider
-        intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the character <b>" + methodString[i] + "</b> calm or nervous?";
-        container.appendChild(intro1);
-
-        // add VAS slider
-        container.appendChild(CreateSlider(CalmSliderIdArray[i], "Calm", "Nervous"));
-
-        // add explaination before the slider
-        intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the character <b>" + methodString[i] + "</b> relaxed or excited?";
-        container.appendChild(intro1);
-
-        // add VAS slider
-        container.appendChild(CreateSlider(RelaxSliderIdArray[i], "Relaxed", "Excited"));
 
         // add explaination before the comment block
         var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
@@ -180,10 +138,10 @@ function SetSubmitButton() {
         }
         else {
             // set up content for csv file
-            let csvContent = "data:text/csv;charset=utf-8,";
+            //let csvContent = "data:text/csv;charset=utf-8,";
 
             // input the participant's name
-            csvContent += document.getElementById("Number").value + "\r\n";
+            let csvContent = QuestionnaireIndex + "\r\n";
             csvContent += document.getElementById("name").value + "\r\n";
 
             //for (var i = 0; i < YesNoSwitchIdArray.length; i++) {
@@ -192,10 +150,10 @@ function SetSubmitButton() {
             //}
 
             // input the value of each VAS slider
-            for (var i = 0; i < HumanLikenessSliderIdArray.length; i++) {
-                const slider = document.getElementById(HumanLikenessSliderIdArray[i]);
-                csvContent += slider.value + "\r\n";
-            }
+            //for (var i = 0; i < HumanLikenessSliderIdArray.length; i++) {
+            //    const slider = document.getElementById(HumanLikenessSliderIdArray[i]);
+            //    csvContent += slider.value + "\r\n";
+            //}
 
             for (var i = 0; i < NaturalnessSliderIdArray.length; i++) {
                 const slider = document.getElementById(NaturalnessSliderIdArray[i]);
@@ -207,48 +165,9 @@ function SetSubmitButton() {
                 csvContent += slider.value + "\r\n";
             }
 
-            for (var i = 0; i < CalmSliderIdArray.length; i++) {
-                const slider = document.getElementById(CalmSliderIdArray[i]);
-                csvContent += slider.value + "\r\n";
-            }
-
-            for (var i = 0; i < RelaxSliderIdArray.length; i++) {
-                const slider = document.getElementById(RelaxSliderIdArray[i]);
-                csvContent += slider.value + "\r\n";
-            }
-
-            // input the value of each VAS slider
-            for (var i = 0; i < HumanLikenessSliderIdArrayL.length; i++) {
-                const slider = document.getElementById(HumanLikenessSliderIdArrayL[i]);
-                csvContent += slider.value + "\r\n";
-            }
-
-            for (var i = 0; i < NaturalnessSliderIdArrayL.length; i++) {
-                const slider = document.getElementById(NaturalnessSliderIdArrayL[i]);
-                csvContent += slider.value + "\r\n";
-            }
-
-            for (var i = 0; i < RoboticSliderIdArrayL.length; i++) {
-                const slider = document.getElementById(RoboticSliderIdArrayL[i]);
-                csvContent += slider.value + "\r\n";
-            }
-
-            for (var i = 0; i < CalmSliderIdArrayL.length; i++) {
-                const slider = document.getElementById(CalmSliderIdArrayL[i]);
-                csvContent += slider.value + "\r\n";
-            }
-
-            for (var i = 0; i < RelaxSliderIdArrayL.length; i++) {
-                const slider = document.getElementById(RelaxSliderIdArrayL[i]);
-                csvContent += slider.value + "\r\n";
-            }
 
             for (var i = 0; i < GeneralCommentIdArray.length; i++) {
                 csvContent += i.toString() + ": " + document.getElementById(GeneralCommentIdArray[i]).value + "\r\n" + "\r\n";
-            }
-
-            for (var i = 0; i < GeneralCommentIdArrayL.length; i++) {
-                csvContent += i.toString() + ": " + document.getElementById(GeneralCommentIdArrayL[i]).value + "\r\n" + "\r\n";
             }
 
             //// input the value of each VAS slider
@@ -263,71 +182,106 @@ function SetSubmitButton() {
 
             csvContent += "General: " + document.getElementById("comment").value + "\r\n";
 
-            // create a element to download the file
-            var encodedUri = encodeURI(csvContent);
-            var link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", document.getElementById("Number").value + "_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // P
-            //link.setAttribute("download", "C_QuestionnaireResultOf" + document.getElementById("name").value + ".csv"); // C
-            document.body.appendChild(link);
-            link.click(); // and click automatically
-            alert("Please send the downloaded file to the owner of the questionnaire."); // information to send back the result
+            ServerPostResult(csvContent);
+
+           // alert("Please send the downloaded file to the owner of the questionnaire."); // information to send back the result
         }
 
     }
 
 }
 
-function SetNumberInputButton() {
-    document.getElementById("id_button").onclick = function () {
-        var contianer = document.getElementById("questionBlock")
-        if (contianer != null) { document.removeChild(contianer); }
-        
-        var Number = parseInt(document.getElementById("Number").value) -1;
-        var first = Math.floor(Number / 6) % 4;
-        var second = Math.floor(Number / 2) % 3;
-        if (second >= first) second++;
-        var third = Number % 2;
-        if (third >= first) {
-            if (third + 1 >= second) {
-                third += 2;
-            }
-            else {
-                third++;
-            }
-        }
-        else if (third >= second) {
-            if (third + 1 >= first) {
-                third += 2;
-            }
-            else {
-                third++;
-            }
-        }
-        var fourth = 6 - first - second - third;
-        const OrderArray = new Array( first, second, third, fourth);
-        const OrderVideoURLArray = OrderArrayWith(VideoURLArray, OrderArray);
-        const OrderHumanLikenessSliderId = OrderArrayWith(HumanLikenessSliderIdArray, OrderArray);
-        const OrderNaturalnessSliderId = OrderArrayWith(NaturalnessSliderIdArray, OrderArray);
-        const OrderRoboticSliderId = OrderArrayWith(RoboticSliderIdArray, OrderArray);
-        const OrderCalmSliderId = OrderArrayWith(CalmSliderIdArray, OrderArray);
-        const OrderRelaxSliderId = OrderArrayWith(RelaxSliderIdArray, OrderArray);
-        const OrderGeneralCommentId = OrderArrayWith(GeneralCommentIdArray, OrderArray);
-        // add elements for evaluation section
-        document.body.insertBefore(CreateQuestionBlock("When objects are within the view of character:", OrderVideoURLArray, OrderHumanLikenessSliderId, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderCalmSliderId, OrderRelaxSliderId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
-        //console.log(OrderArray.toString());
-        const OrderVideoURLArrayL = OrderArrayWith(VideoURLArrayL, OrderArray);
-        const OrderHumanLikenessSliderIdL = OrderArrayWith(HumanLikenessSliderIdArrayL, OrderArray);
-        const OrderNaturalnessSliderIdL = OrderArrayWith(NaturalnessSliderIdArrayL, OrderArray);
-        const OrderRoboticSliderIdL = OrderArrayWith(RoboticSliderIdArrayL, OrderArray);
-        const OrderCalmSliderIdL = OrderArrayWith(CalmSliderIdArrayL, OrderArray);
-        const OrderRelaxSliderIdL = OrderArrayWith(RelaxSliderIdArrayL, OrderArray);
-        const OrderGeneralCommentIdL = OrderArrayWith(GeneralCommentIdArrayL, OrderArray);
-        // add elements for evaluation section
-        document.body.insertBefore(CreateQuestionBlock("When objects are almost out of the view of character:", OrderVideoURLArrayL, OrderHumanLikenessSliderIdL, OrderNaturalnessSliderIdL, OrderRoboticSliderIdL, OrderCalmSliderIdL, OrderRelaxSliderIdL, OrderGeneralCommentIdL, AnonmyMethodNameStringArrayL), CommentBlock);
-    }
+var QuestionnaireIndex = 999;
+
+function ServerGetResult() {
+    // 使用 fetch 发送 GET 请求到 Flask 后端
+    fetch('http://127.0.0.1:45557/get-number')
+        .then(response => response.json())  // 解析响应为 JSON
+        .then(data => {
+            // 获取返回的数字 a
+            const a = data.a;
+
+            // 显示接收到的值
+            console.log("server result = " + a);
+            QuestionnaireIndex = a;
+            LoadVideoFromIndex();
+
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+
+function ServerPostResult(result)
+{
+
+    fetch('http://127.0.0.1:45557/collect-result', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: result })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            alert('Submit successfully! Thank you!');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Error submiting! Please try again.');
+        });
+}
+
+function LoadVideoFromIndex() {
+
+    var contianer = document.getElementById("questionBlock")
+    if (contianer != null) { document.removeChild(contianer); }
+    const tempArr = new Array(0, 1, 2);
+    let OrderArray = getNthPermutation(tempArr, QuestionnaireIndex);
+    console.log("order array = " + OrderArray);
+    const OrderVideoURLArray = OrderArrayWith(VideoURLArray, OrderArray);
+    //const OrderHumanLikenessSliderId = OrderArrayWith(HumanLikenessSliderIdArray, OrderArray);
+    const OrderNaturalnessSliderId = OrderArrayWith(NaturalnessSliderIdArray, OrderArray);
+    const OrderRoboticSliderId = OrderArrayWith(RoboticSliderIdArray, OrderArray);
+    const OrderGeneralCommentId = OrderArrayWith(GeneralCommentIdArray, OrderArray);
+    // add elements for evaluation section
+    document.body.insertBefore(CreateQuestionBlock("Please watch the videos:", OrderVideoURLArray, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
+
     SetSubmitButton();
 
+}
+
+// from GPT
+function getPermutations(arr) {
+    let result = [];
+
+    if (arr.length === 1) {
+        return [arr];
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+        let current = arr[i];
+        let remaining = arr.slice(0, i).concat(arr.slice(i + 1));
+
+        let remainingPerms = getPermutations(remaining);
+        for (let perm of remainingPerms) {
+            result.push([current].concat(perm));
+        }
+    }
+
+    return result;
+}
+
+//from GPT
+function getNthPermutation(arr, N) {
+    let permutations = getPermutations(arr);
+
+    // 注意：N是从1开始的，所以我们需要减1来获取数组的正确索引
+    if (N > 0) {
+        return permutations[(N - 1) % arr.length]; // 返回第N种排列
+    } else {
+        return null; // 如果N超出范围，返回null
+    }
 }
 
 function OrderArrayWith(array, order) {
