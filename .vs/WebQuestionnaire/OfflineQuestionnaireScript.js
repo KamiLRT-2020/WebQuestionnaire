@@ -133,7 +133,7 @@ function SetSubmitButton() {
         else if (document.getElementById("name").value == "")
         {
             // alert to input the name, if have not
-            alert("Pleas input participant's ID.");
+            alert("Pleas input your name.");
         }
         else {
             // set up content for csv file
