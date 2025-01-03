@@ -118,7 +118,7 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalnessSliderIdArray
         intro1.innerHTML = "Do you have any comment on the character " + methodString[i] + " ?";
         container.appendChild(intro1);
 
-        container.appendChild(CreateCommentBlock(GeneralCommentIdArray[i], "e.g. The character acts strange. Because ..."));
+        container.appendChild(CreateCommentBlock(GeneralCommentIdArray[i], "e.g. The character seems unnatural. Because ... / The character seems natural. Because ..."));
     }
 
     return container;
