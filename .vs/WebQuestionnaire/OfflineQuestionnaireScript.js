@@ -24,18 +24,17 @@ const CommentBlock = document.getElementById("commentBlock");
 
 const SceneIntroduction = document.getElementById("scene");
 
-
-// Videos P D PL are used
+// Videos P D I are used
 const VideoURLArray = new Array(
     // google drive
-    "https://drive.google.com/file/d/1_DiYc47pBcBOzj8Pup00iU7pkCbFfH_6/preview", // PP
-    "https://drive.google.com/file/d/1q6-L3QIslkjYsRX-3GcWb0vYKxQ1RkVp/preview", // PD
-    "https://drive.google.com/file/d/1J_kwcYt15l7muUiTf1BXEA9TWaEI7BdQ/preview", // PL
+    "https://drive.google.com/file/d/1iYB6_SjyXyHNDLSdtW6ePcVu_6YVp5ZN/preview", // P
+    "https://drive.google.com/file/d/1OYqlNO-MPHFJzU64_Mj8bnqU4Wue4Le0/preview", // D
+    "https://drive.google.com/file/d/1oszr_mLvP1j2Tczy7x0ssquGDuNAjAmD/preview", // I
 
     
 );
 
-const SceneIntrodcutionVideo = "https://drive.google.com/file/d/1uMCOje4eZcWH29S-bADcbb9JXofYGIwm/preview";
+const SceneIntrodcutionVideo = "https://drive.google.com/file/d/15gWfLbjfFuwL1GCFw-ts9jIMHfPmrRcx/preview";
 
 
 //// add elements for evaluation section
