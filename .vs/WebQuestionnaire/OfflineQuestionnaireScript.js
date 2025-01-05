@@ -244,7 +244,7 @@ function LoadVideoFromIndex() {
     const OrderRoboticSliderId = OrderArrayWith(RoboticSliderIdArray, OrderArray);
     const OrderGeneralCommentId = OrderArrayWith(GeneralCommentIdArray, OrderArray);
     // add elements for evaluation section
-    document.body.insertBefore(CreateQuestionBlock("Please watch the videos:", OrderVideoURLArray, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
+    document.body.insertBefore(CreateQuestionBlock("Videos will show the character's face and the first person view of the character:", OrderVideoURLArray, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
 
     SetSubmitButton();
 
