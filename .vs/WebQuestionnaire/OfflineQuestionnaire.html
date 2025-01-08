@@ -11,7 +11,7 @@
 <body>
     <h1 id="head_title">head title 1</h1> <!--large title on the top-->
 
-    <h2 id="introduction">Introduction 説明</h2> <!--Introduction of the questionnaire-->
+    <h2 id="introduction">Introduction 説明 说明</h2> <!--Introduction of the questionnaire-->
     <p>
         Our research aims to generate natural eye movements for virtual characters. This questionnaire aims to evaluate the naturalness of the generated gaze movement from 3 methods.
         You will watch several videos of generated gaze movement, then answer several questions. The videos will show gaze movements generated from 3 different methods.
@@ -23,13 +23,19 @@
         生成された動きは何度でも観察できます。回答はいつでも変更できます。(ビデオを何回を見てください。)
         ご参加いただきありがとうございます！
         (Natural:自然(な))
+        <br>我们的研究旨在生成虚拟人物的自然的视线动作。此问卷旨在评估通过三种方法生成的视线动作是否自然。
+        您将观看几段视频，然后回答一些问题。这些视频将展示通过三种不同方法生成的视线动作。
+        请仔细观察人物的眼睛动作，并在观看后回答以下问题。您可以多次观看视频，您也可以随时修改您的答案。
+        （请多次观看视频。）
+        感谢您的参与！
     </p>
 
-    <h2 id="consent">Consent: 同意書:</h2> <!--Consent of the questionnaire-->
+    <h2 id="consent">Consent: 同意書: 同意事项：</h2> <!--Consent of the questionnaire-->
     <fieldset>
         <p>
             I have been adequately informed about the goals and methods of the research titled "Character research that realizes natural interaction and attractive expression" by the researchers. I feel confident that I understand the following aspects of this research:
             <br>私は、｢自然なインタラクションと魅力的な表現を実現するキャラクタの研究｣について、目的・方法・予測される問題等について研究者等より説明文書を用いて十分な説明を受け、以下の項目を理解しました。
+            <br>我已充分了解研究者关于“实现自然互动和富有吸引力的表情的角色研究”这一课题的目标和方法。我确信我理解了以下几个方面的内容：
         </p>
 
         <div>
@@ -37,6 +43,7 @@
             <label for="info1">
                 The goals, methods and potentially dangerous aspects or consequences of this research, and how these will be managed,
                 <br>研究の目的、方法そして予測される危険性とそれに対する対応について。
+                <br>我已充分了解这项研究的目标、方法以及可能存在的危险性或后果，并了解这些风险将如何得到管理。
             </label>
         </div>
 
@@ -45,6 +52,7 @@
             <label for="info2">
                 The fact that I may withdraw from this study at any time at will,
                 <br>私は自らの自由意思でいつでも実験・調査を中止することができること。
+                <br>我知道我可以随时自愿退出本研究。
             </label>
         </div>
         <div>
@@ -52,6 +60,7 @@
             <label for="info3">
                 The fact that even if I choose not to participate at any point, I will not be penalized in any way,
                 <br>私はいかなる時点において実験・調査への参加の拒否をしても何ら不利益を被らないこと。
+                <br>我知道即使我选择在任何时候不参与研究，我也不会受到任何惩罚。
             </label>
         </div>
         <div>
@@ -59,6 +68,7 @@
             <label for="info4">
                 The fact that my personal information will be strictly controlled to prevent leaks and will not be used for any purpose other than re-testing or contacting in case of unexpected accidents, and
                 <br>記録された個人情報は外部に漏洩しないよう厳密に管理され、再実験・再調査または事故が生じたときの連絡等以外の目的には使用されないこと。
+                <br>我知道我的个人信息将严格控制，以防泄露，并且仅会用于重新测试或在发生意外事故时联系我，绝不会用于其他任何目的。
             </label>
         </div>
         <div>
@@ -66,6 +76,7 @@
             <label for="info5">
                 The fact that I may claim compensation from the Tokyo Institute of Technology if I am harmed in the course of this research.
                 <br>私は、万一不利益を被った場合に東京工業大学に対して申し立てを行うことができること。
+                <br>我知道如果在本研究过程中受到伤害，我可以向东京工业大学要求赔偿。
             </label>
         </div>
         <p>
@@ -74,24 +85,25 @@
         </p>
     </fieldset>
 
-    <h2>Scene Introduction シーンの説明</h2> <!--Introduction of the questionnaire-->
+    <h2>Scene Introduction シーンの説明 场景说明</h2> <!--Introduction of the questionnaire-->
     <p id="scene">
         The character is in a lobby and try to look at the other guests (dummy). The character will change target among 4 virtual guests randomly.
         <br>キャラクターはロビーにいて、他のゲスト（ダミー）を見ようとしています。キャラクターは4人の仮想ゲストの間でランダムにターゲットを変更します。
+        <br>人物在大堂内，观察着其他客人（虚拟）。人物会在四个客人中随机选择观察对象。
     </p>
 
 
 
     <fieldset>
-        <legend>Please input participant's NAME:<br>参加者の名前を入力してください:</legend>
+        <legend>Please input participant's NAME:<br>参加者の名前を入力してください:<br>请输入您的名字：</legend>
 
         <input type="text" id="name" name="name" required minlength="1" size="20" /> <!--Input participant's Name-->
     </fieldset>
 
     <fieldset id="commentBlock">
-        <legend>Do you have any comment? <br>コメントがあれば:</legend>
+        <legend>Do you have any comment? <br>コメントがあれば:<br>如果你有任何评论或留言：</legend>
 
-        <textarea type="text" id="comment" name="comment" size="100" rows="5" placeholder="e.g. What is difference? How do you feel about the character? 何が違いますか? キャラクターのことはどう思いますか？" style="width: 100%; height:100px"></textarea> <!--Input participant's Id-->
+        <textarea type="text" id="comment" name="comment" size="100" rows="5" placeholder="e.g. How do you feel about the character? キャラクターのことはどう思いますか？ 你对不同的人物有什么看法或观点？" style="width: 100%; height:100px"></textarea> <!--Input participant's Id-->
     </fieldset>
 
     <!--<p>
