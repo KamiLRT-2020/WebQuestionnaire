@@ -15,7 +15,8 @@ const consentIdArray = new Array("info1", "info2", "info3", "info4", "info5");
 
 // setting top title
 const titleElement = document.getElementById("head_title");
-titleElement.innerText = "Gaze Movement Evaluation";
+titleElement.innerHTML = "Gaze Movement Evaluation <br>視線の動きの評価実験";
+
 
 // get submit button
 const SubmitButton = document.getElementById("submitButton");
@@ -27,14 +28,26 @@ const SceneIntroduction = document.getElementById("scene");
 // Videos P D I are used
 const VideoURLArray = new Array(
     // google drive
-    "https://drive.google.com/file/d/1iYB6_SjyXyHNDLSdtW6ePcVu_6YVp5ZN/preview", // P
-    "https://drive.google.com/file/d/1OYqlNO-MPHFJzU64_Mj8bnqU4Wue4Le0/preview", // D
-    "https://drive.google.com/file/d/1oszr_mLvP1j2Tczy7x0ssquGDuNAjAmD/preview", // I
+    //"https://drive.google.com/file/d/1iYB6_SjyXyHNDLSdtW6ePcVu_6YVp5ZN/preview", // P
+    //"https://drive.google.com/file/d/1OYqlNO-MPHFJzU64_Mj8bnqU4Wue4Le0/preview", // D
+    //"https://drive.google.com/file/d/1oszr_mLvP1j2Tczy7x0ssquGDuNAjAmD/preview", // I
+
+    //"http://192.168.1.7:45555/P.mp4",
+    //"http://192.168.1.7:45555/D.mp4",
+    //"http://192.168.1.7:45555/I.mp4"
+
+    "http://131.112.182.91:45555/P.mp4",
+    "http://131.112.182.91:45555/D.mp4",
+    "http://131.112.182.91:45555/I.mp4"
+
 
     
 );
 
-const SceneIntrodcutionVideo = "https://drive.google.com/file/d/15gWfLbjfFuwL1GCFw-ts9jIMHfPmrRcx/preview";
+//const SceneIntrodcutionVideo = "https://drive.google.com/file/d/15gWfLbjfFuwL1GCFw-ts9jIMHfPmrRcx/preview";
+//const SceneIntrodcutionVideo = "http://192.168.1.7:45555/Scene.mp4";
+const SceneIntrodcutionVideo = "http://131.112.182.91:45555/Scene.mp4";
+
 
 
 //// add elements for evaluation section
@@ -67,7 +80,7 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalnessSliderIdArray
 
     // add explaination before the video
     const introAll = document.createElement("li"); // use "li" to add a black dot before the text
-    introAll.innerHTML = "Please watch the video at <mark><b>fullscreen</b></mark>. Please watch each video <mark><b>at least twice</b></mark> to compare the difference.";
+    introAll.innerHTML = "Please watch the video at <mark><b>fullscreen</b></mark >.Please watch each video <mark><b>at least twice</b></mark> to compare the difference.<br>ビデオを<mark><b>全画面</b></mark>でご覧ください。ビデオは<mark><b>少なくとも二回</b></mark>視聴して、違いを比較してください。";
     container.appendChild(introAll);
 
     for (var i = 0; i < videoURLArray.length; i++) {
@@ -99,26 +112,26 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalnessSliderIdArray
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> natural?";
+        intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> natural? <b>" + methodString[i] + "</b> の視線の動きは自然ですか？";
         container.appendChild(intro1);
 
         // add VAS slider
-        container.appendChild(CreateSlider(NaturalnessSliderIdArray[i], "Unnatural", "Natural"));
+        container.appendChild(CreateSlider(NaturalnessSliderIdArray[i], "Unnatural<br>不自然", "Natural<br>自然"));
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> seem robotic?";
+        intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> seem robotic? <b>" + methodString[i] + "</b> の視線の動きはロボットのように見えますか？";
         container.appendChild(intro1);
 
         // add VAS slider
-        container.appendChild(CreateSlider(RoboticSliderIdArray[i], "Not Robotic", "Robotic"));
+        container.appendChild(CreateSlider(RoboticSliderIdArray[i], "Not Robotic<br>ロボットのようではない", "Robotic<br>ロボットのような"));
 
         // add explaination before the comment block
         var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Do you have any comment on the character " + methodString[i] + " ?";
+        intro1.innerHTML = "Do you have any comment on the character " + methodString[i] + " ?  キャラクター" + methodString[i] + "について何かコメントはありますか？";
         container.appendChild(intro1);
 
-        container.appendChild(CreateCommentBlock(GeneralCommentIdArray[i], "e.g. The character seems unnatural. Because ... / The character seems natural. Because ..."));
+        container.appendChild(CreateCommentBlock(GeneralCommentIdArray[i], "e.g. The character seems unnatural. Because ... / The character seems natural. Because ... キャラクターは不自然に見えます。なぜなら... / キャラクターは自然に見えます。なぜなら..."));
     }
 
     return container;
@@ -128,12 +141,12 @@ function SetSubmitButton() {
     document.getElementById("submitButton").onclick = function () {
         if (!IsConsentAllChecked()) {
             // alert to check all the consent information, if not all the checkbox are checked
-            alert("Pleas Check all the checkbox in Consent.")
+            alert("Pleas Check all the checkbox in Consent. 同意のチェックボックスをすべて確認してください。")
         }
         else if (document.getElementById("name").value == "")
         {
             // alert to input the name, if have not
-            alert("Pleas input your name.");
+            alert("Pleas input your name. お名前を入力してください。");
         }
         else {
             // set up content for csv file
@@ -194,7 +207,10 @@ var QuestionnaireIndex = 999;
 
 function ServerGetResult() {
     // 使用 fetch 发送 GET 请求到 Flask 后端
-    fetch('http://127.0.0.1:45557/get-number')
+    //fetch('http://127.0.0.1:45557/get-number')
+    //fetch('http://192.168.1.7:45557/get-number')
+    
+    fetch('http://131.112.182.91:45557/get-number')
         .then(response => response.json())  // 解析响应为 JSON
         .then(data => {
             // 获取返回的数字 a
@@ -213,7 +229,11 @@ function ServerGetResult() {
 function ServerPostResult(result)
 {
 
-    fetch('http://127.0.0.1:45557/collect-result', {
+    //fetch('http://127.0.0.1:45557/collect-result', {
+    //fetch('http://192.168.1.7:45557/collect-result', {
+
+    fetch('http://131.112.182.91:45557/collect-result', {
+
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -223,11 +243,11 @@ function ServerPostResult(result)
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            alert('Submit successfully! Thank you!');
+            alert('Submit successfully! Thank you! 送信が成功しました！ありがとうございます！');
         })
         .catch((error) => {
             console.error('Error:', error);
-            alert('Error submiting! Please try again.');
+            alert('Error submiting! Please try again. 送信エラーが発生しました！もう一度お試しください。');
         });
 }
 
@@ -244,7 +264,7 @@ function LoadVideoFromIndex() {
     const OrderRoboticSliderId = OrderArrayWith(RoboticSliderIdArray, OrderArray);
     const OrderGeneralCommentId = OrderArrayWith(GeneralCommentIdArray, OrderArray);
     // add elements for evaluation section
-    document.body.insertBefore(CreateQuestionBlock("Videos will show the character's face and the first person view of the character:", OrderVideoURLArray, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
+    document.body.insertBefore(CreateQuestionBlock("Videos will show the character's face and the first person view of the character: <br>ビデオではキャラクターの顔とキャラクターの一人称視点が表示されます。", OrderVideoURLArray, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
 
     SetSubmitButton();
 
@@ -355,7 +375,7 @@ function CreateLabel(text) {
     const LegendClassAtt = document.createAttribute("class");
     LegendClassAtt.value = "sliderLegend";
     Legend.setAttributeNode(LegendClassAtt);
-    Legend.innerText = text;
+    Legend.innerHTML = text;
     return Legend;
 }
 
@@ -416,7 +436,7 @@ function CreateVideoBlock(videoURL) {
     const allowFullScreenAtt = document.createAttribute("allowfullscreen");
     widthAtt.value = "1120"; // "560";
     heightAtt.value = "630";//"315";
-    srcAtt.value = videoURL;
+    srcAtt.value = videoURL
     titleAtt.value = "YouTube video player";
     frameborderAtt.value = "0";
     allowAtt.value = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
@@ -428,6 +448,20 @@ function CreateVideoBlock(videoURL) {
     node.setAttributeNode(frameborderAtt);
     node.setAttributeNode(allowAtt);
     node.setAttributeNode(allowFullScreenAtt);
+
+    // 等待 iframe 加载后执行代码
+    node.onload = function () {
+        // 获取 iframe 内部的 document 对象
+        const iframeDocument = node.contentWindow.document;
+
+        // 获取视频元素
+        const video = iframeDocument.querySelector('video');
+
+        // 确保视频不自动播放
+        if (video) {
+            video.autoplay = false;  // 禁止自动播放
+        }
+    }
 
     return node;
 
