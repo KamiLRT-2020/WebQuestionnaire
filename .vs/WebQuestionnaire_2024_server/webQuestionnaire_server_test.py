@@ -35,7 +35,7 @@ import re
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/get-number', methods=['GET'])
+@app.route('/lian_qserver/get-number', methods=['GET'])
 def get_number():
     with open('QuestionnaireIndexFile.csv', mode='r', newline='') as file:
         csv_reader = csv.reader(file)
@@ -51,7 +51,7 @@ def get_number():
         a = last_value + 1
     return jsonify({'a': a})  # 以 JSON 格式返回
 
-@app.route('/collect-result', methods=['POST'])
+@app.route('/lian_qserver/collect-result', methods=['POST'])
 def collect_reslt():
     try:
             # 获取传来的 JSON 数据
@@ -100,4 +100,4 @@ def collect_reslt():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=45557)
+    app.run(host='0.0.0.0',port=30058)
