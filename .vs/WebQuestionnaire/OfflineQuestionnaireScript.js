@@ -9,6 +9,7 @@ const GeneralCommentIdArray = new Array("GeneralProposed", "GeneralDirectly", "G
 
 
 const AnonmyMethodNameStringArray = new Array("A", "B", "C");
+let OrderAnonmyMethodNameStringArray;
 
 // id array for consent information, to check whether they are checked later
 const consentIdArray = new Array("info1", "info2", "info3", "info4", "info5");
@@ -36,9 +37,13 @@ const VideoURLArray = new Array(
     //"http://192.168.1.7:45555/D.mp4",
     //"http://192.168.1.7:45555/I.mp4"
 
-    "http://131.112.182.91:45555/P.mp4",
-    "http://131.112.182.91:45555/D.mp4",
-    "http://131.112.182.91:45555/I.mp4"
+    //"http://131.112.182.91:45555/P.mp4",
+    //"http://131.112.182.91:45555/D.mp4",
+    //"http://131.112.182.91:45555/I.mp4"
+
+    "P.mp4",
+    "D.mp4",
+    "I.mp4"
 
 
     
@@ -46,7 +51,9 @@ const VideoURLArray = new Array(
 
 //const SceneIntrodcutionVideo = "https://drive.google.com/file/d/15gWfLbjfFuwL1GCFw-ts9jIMHfPmrRcx/preview";
 //const SceneIntrodcutionVideo = "http://192.168.1.7:45555/Scene.mp4";
-const SceneIntrodcutionVideo = "http://131.112.182.91:45555/Scene.mp4";
+//const SceneIntrodcutionVideo = "http://131.112.182.91:45555/Scene.mp4";
+const SceneIntrodcutionVideo = "Scene.mp4";
+
 
 
 
@@ -80,7 +87,7 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalnessSliderIdArray
 
     // add explaination before the video
     const introAll = document.createElement("li"); // use "li" to add a black dot before the text
-    introAll.innerHTML = "Please watch the video at <mark><b>fullscreen</b></mark >.Please watch each video <mark><b>at least twice</b></mark> to compare the difference.<br>ビデオを<mark><b>全画面</b></mark>でご覧ください。ビデオは<mark><b>少なくとも二回</b></mark>視聴して、違いを比較してください。<br>请在<mark><b>全屏</b></mark>状态下至少观看<mark><b>两遍</b></mark>以比较区别。";
+    introAll.innerHTML = "Please watch the video at <b>fullscreen</b.Please watch each video <b>at least twice</b> to compare the difference.<br>ビデオを<b>全画面</b>でご覧ください。ビデオは<b>少なくとも二回</b>視聴して、違いを比較してください。<br>请在<b>全屏</b>状态下至少观看<b>两遍</b>以比较区别。";
     container.appendChild(introAll);
 
     for (var i = 0; i < videoURLArray.length; i++) {
@@ -112,19 +119,19 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalnessSliderIdArray
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> natural? <br><b>" + methodString[i] + "</b> の視線の動きは自然ですか？ <br>请问<b>" + methodString[i] + "</b> 的视线动作看起来自然吗？";
+        intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> natural? <b>(Unnatural~Natural)</b> <br><b>" + methodString[i] + "</b> の視線の動きは自然ですか？<b>(不自然~自然)</b> <br>请问<b>" + methodString[i] + "</b> 的视线动作看起来自然吗？<b>(不自然~自然)</b>";
         container.appendChild(intro1);
 
         // add VAS slider
-        container.appendChild(CreateSlider(NaturalnessSliderIdArray[i], "Unnatural<br>不自然<br>不自然", "Natural<br>自然<br>自然"));
+        container.appendChild(CreateSlider(NaturalnessSliderIdArray[i], "<b>Unnatural<br>不自然<br>不自然</b>", "<b>Natural<br>自然<br>自然</b>"));
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" lito add a black dot before the text
-        intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> seem robotic? <br><b>" + methodString[i] + "</b> の視線の動きはロボットのように見えますか？ <br>请问<b>" + methodString[i] + "</b> 的视线动作看起来像机器人吗？";
+        intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> seem robotic? <b>(Robotic~Not Robotic)</b><br><b>" + methodString[i] + "</b> の視線の動きはロボットのように見えますか？<b>(ロボットのような~ロボットのようではない)</b> <br>请问<b>" + methodString[i] + "</b> 的视线动作看起来像机器人吗？ <b>(像机器人~不像机器人)";
         container.appendChild(intro1);
 
         // add VAS slider
-        container.appendChild(CreateSlider(RoboticSliderIdArray[i], "Not Robotic<br>ロボットのようではない<br>不像机器人", "Robotic<br>ロボットのような<br>像机器人"));
+        container.appendChild(CreateSlider(RoboticSliderIdArray[i], "<b>Robotic<br>ロボットのような<br>像机器人</b>", "<b>Not Robotic<br>ロボットのようではない<br>不像机器人</b>"));
 
         // add explaination before the comment block
         var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
@@ -160,7 +167,7 @@ function SetSubmitButton() {
             // input the participant's name
             let csvContent = QuestionnaireIndex + "\r\n";
             csvContent += document.getElementById("name").value + "\r\n";
-            csvContent += "Duration:" + Duration + "\r\n";
+            csvContent += "Duration: \r\n" + Duration + "\r\n\r\n";
 
             //for (var i = 0; i < YesNoSwitchIdArray.length; i++) {
             //    const YesOrNotSwitch = document.getElementById(YesNoSwitchIdArray[i]);
@@ -178,14 +185,17 @@ function SetSubmitButton() {
                 csvContent +=  slider.value + "\r\n";
             }
 
+            csvContent += "\r\n";
+
             for (var i = 0; i < RoboticSliderIdArray.length; i++) {
                 const slider = document.getElementById(RoboticSliderIdArray[i]);
                 csvContent += slider.value + "\r\n";
             }
 
+            csvContent += "\r\n";
 
             for (var i = 0; i < GeneralCommentIdArray.length; i++) {
-                csvContent += i.toString() + ": " + document.getElementById(GeneralCommentIdArray[i]).value + "\r\n" + "\r\n";
+                csvContent += OrderAnonmyMethodNameStringArray[i] + ": " + document.getElementById(GeneralCommentIdArray[i]).value + "\r\n" + "\r\n";
             }
 
             //// input the value of each VAS slider
@@ -218,8 +228,9 @@ function ServerGetResult() {
     // 使用 fetch 发送 GET 请求到 Flask 后端
     //fetch('http://127.0.0.1:45557/get-number')
     //fetch('http://192.168.1.7:45557/get-number')
-    
-    fetch('http://131.112.182.91:45557/get-number')
+
+    //fetch('http://131.112.182.91:45557/get-number')
+    fetch(' https://ex.haselab.net/lian_qserver/get-number')
         .then(response => response.json())  // 解析响应为 JSON
         .then(data => {
             // 获取返回的数字 a
@@ -243,7 +254,8 @@ function ServerPostResult(result)
     //fetch('http://127.0.0.1:45557/collect-result', {
     //fetch('http://192.168.1.7:45557/collect-result', {
 
-    fetch('http://131.112.182.91:45557/collect-result', {
+    //fetch('http://131.112.182.91:45557/collect-result', {
+    fetch(' https://ex.haselab.net/lian_qserver/collect-result', {
 
         method: 'POST',
         headers: {
@@ -274,6 +286,7 @@ function LoadVideoFromIndex() {
     const OrderNaturalnessSliderId = OrderArrayWith(NaturalnessSliderIdArray, OrderArray);
     const OrderRoboticSliderId = OrderArrayWith(RoboticSliderIdArray, OrderArray);
     const OrderGeneralCommentId = OrderArrayWith(GeneralCommentIdArray, OrderArray);
+    OrderAnonmyMethodNameStringArray = OrderArrayWith(AnonmyMethodNameStringArray, OrderArray);
     // add elements for evaluation section
     document.body.insertBefore(CreateQuestionBlock("Videos will show the character's face and the first person view of the character: <br>ビデオではキャラクターの顔とキャラクターの一人称視点が表示されます：<br>视频会展示人物的面部特写及人物的第一人称视角：", OrderVideoURLArray, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
 
@@ -308,7 +321,7 @@ function getNthPermutation(arr, N) {
 
     // 注意：N是从1开始的，所以我们需要减1来获取数组的正确索引
     if (N > 0) {
-        return permutations[(N - 1) % arr.length]; // 返回第N种排列
+        return permutations[(N - 1) % permutations.length]; // 返回第N种排列
     } else {
         return null; // 如果N超出范围，返回null
     }
