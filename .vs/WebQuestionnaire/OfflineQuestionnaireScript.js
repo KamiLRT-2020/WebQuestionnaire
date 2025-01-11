@@ -154,10 +154,10 @@ function SetSubmitButton() {
             // alert to check all the consent information, if not all the checkbox are checked
             alert("Pleas Check all the checkbox in Consent. 同意のチェックボックスをすべて確認してください。请阅读后勾选所有的同意事项。")
         }
-        else if (document.getElementById("name").value == "")
+        else if (document.getElementById("name").value == "" || document.getElementById("age").value == "")
         {
             // alert to input the name, if have not
-            alert("Pleas input your name. お名前を入力してください。请输入您的名字。");
+            alert("Pleas input your name and age. おニックネームと年齢を入力してください。请输入您的昵称和年龄。");
         }
         else {
             // set up content for csv file
@@ -166,6 +166,8 @@ function SetSubmitButton() {
             // input the participant's name
             let csvContent = QuestionnaireIndex + "\r\n";
             csvContent += document.getElementById("name").value + "\r\n";
+            csvContent += document.getElementById("gender").value + "\r\n";
+            csvContent += document.getElementById("age").value + "\r\n";
             csvContent += "Duration: \r\n" + Duration + "\r\n\r\n";
 
             //for (var i = 0; i < YesNoSwitchIdArray.length; i++) {

@@ -95,9 +95,21 @@
 
 
     <fieldset>
-        <legend>Please input participant's NAME:<br>参加者の名前を入力してください:<br>请输入您的名字：</legend>
+        <legend>Please input participant's NICK NAME:<br>参加者のニックネームを入力してください:<br>请输入您的昵称：</legend>
 
         <input type="text" id="name" name="name" required minlength="1" size="20" /> <!--Input participant's Name-->
+        <form>
+            <label for="gender">Gender: 性別を選択: 请选择性别:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male 男性 男</option>
+                <option value="female">Female 女性 女</option>
+                <option value="other" selected>Other その他 其他</option>
+            </select>
+        </form>
+        <form>
+            <label for="age">Age: 年齢: 年龄:</label>
+            <input type="number" id="age" name="age" min="0" max="120" placeholder="e.g. 20">
+        </form>
     </fieldset>
 
     <fieldset id="commentBlock">
