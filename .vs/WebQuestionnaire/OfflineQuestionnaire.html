@@ -110,22 +110,34 @@
             <label for="age">Age: 年齢: 年龄:</label>
             <input type="number" id="age" name="age" min="0" max="120" placeholder="e.g. 20">
         </form>
+
     </fieldset>
 
-    <fieldset id="commentBlock">
-        <legend>Do you have any comment? <br>コメントがあれば:<br>如果你有任何评论或留言：</legend>
-
-        <textarea type="text" id="comment" name="comment" size="100" rows="5" placeholder="e.g. How do you feel about the character? キャラクターのことはどう思いますか？ 你对不同的人物有什么看法或观点？" style="width: 100%; height:100px"></textarea> <!--Input participant's Id-->
+    <fieldset>
+        <form>
+            <label for="answer">Have you ever experienced 3D games or 3D animation?<br>3Dゲームや3Dアニメに体験したことがありますか？<br>您是否接触过3D游戏或3D动画?</label>
+            <select id="answer" name="answer" required>
+                <option value="">Please choose 選択してください 请选择</option>
+                <option value="yes">Yes はい 是</option>
+                <option value="no">No いいえ 否</option>
+            </select>
+        </form>
     </fieldset>
 
-    <!--<p>
-        <mark><b>Notice:</b></mark> After you click the "Submit" button, you will download a file containing the result. Please <mark><b>send back this file to the owner of the Questionnaire</b></mark>.
-        <br><mark><b>注意:</b></mark>"Submit"ボタンを押したら、結果を含むファイルが自動でダウンロードされます。このファイルを<mark><b>実験の担当者に送ってください</b></mark>。
+        <fieldset id="commentBlock">
+            <legend>Do you have any comment? <br>コメントがあれば:<br>如果你有任何评论或留言：</legend>
 
-    </p>-->
+            <textarea type="text" id="comment" name="comment" size="100" rows="5" placeholder="e.g. How do you feel about the character? キャラクターのことはどう思いますか？ 你对不同的人物有什么看法或观点？" style="width: 100%; height:100px"></textarea> <!--Input participant's Id-->
+        </fieldset>
 
-    <input id="submitButton" class="submitButton" type="button" value="Submit" /> <!--Submit button for questionnaire-->
+        <!--<p>
+            <mark><b>Notice:</b></mark> After you click the "Submit" button, you will download a file containing the result. Please <mark><b>send back this file to the owner of the Questionnaire</b></mark>.
+            <br><mark><b>注意:</b></mark>"Submit"ボタンを押したら、結果を含むファイルが自動でダウンロードされます。このファイルを<mark><b>実験の担当者に送ってください</b></mark>。
 
-    <script src="OfflineQuestionnaireScript.js"></script> <!--Import the .js script-->
+        </p>-->
+
+        <input id="submitButton" class="submitButton" type="button" value="Submit" /> <!--Submit button for questionnaire-->
+
+        <script src="OfflineQuestionnaireScript.js"></script> <!--Import the .js script-->
 </body>
 </html>

@@ -152,12 +152,16 @@ function SetSubmitButton() {
 
         if (!IsConsentAllChecked()) {
             // alert to check all the consent information, if not all the checkbox are checked
-            alert("Pleas Check all the checkbox in Consent. 同意のチェックボックスをすべて確認してください。请阅读后勾选所有的同意事项。")
+            alert("Please Check all the checkbox in Consent. 同意のチェックボックスをすべて確認してください。请阅读后勾选所有的同意事项。")
         }
         else if (document.getElementById("name").value == "" || document.getElementById("age").value == "")
         {
             // alert to input the name, if have not
-            alert("Pleas input your name and age. おニックネームと年齢を入力してください。请输入您的昵称和年龄。");
+            alert("Please input your name and age. おニックネームと年齢を入力してください。请输入您的昵称和年龄。");
+        }
+        else if (document.getElementById("answer").value == "") {
+            // alert to input the name, if have not
+            alert("Please answer the question about 3D game and 3D animation. 3Dゲームと3Dアニメに関する質問に答えてください。请回答关于是否接触过3D游戏或3D动画的问题。");
         }
         else {
             // set up content for csv file
@@ -168,6 +172,7 @@ function SetSubmitButton() {
             csvContent += document.getElementById("name").value + "\r\n";
             csvContent += document.getElementById("gender").value + "\r\n";
             csvContent += document.getElementById("age").value + "\r\n";
+            csvContent += document.getElementById("answer").value + "\r\n";
             csvContent += "Duration: \r\n" + Duration + "\r\n\r\n";
 
             //for (var i = 0; i < YesNoSwitchIdArray.length; i++) {
