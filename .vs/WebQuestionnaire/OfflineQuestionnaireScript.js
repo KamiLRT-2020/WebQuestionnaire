@@ -96,7 +96,7 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalnessSliderIdArray
         intro.innerHTML = "<b>" + methodString[i] + ":</b>";
         container.appendChild(intro);
         container.appendChild(CreateVideoBlock(URL));
-    }
+    
     //container.appendChild(CreateVideoBlock(videoURL));
 
 
@@ -108,7 +108,6 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalnessSliderIdArray
     //// add ask difference switch
     //container.appendChild(CreateYesNoSwitch(switchId));
 
-    for (var i = 0; i < videoURLArray.length; i++) {
         // add explaination before the slider
         //var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
         //intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> human-like?";
@@ -131,7 +130,7 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalnessSliderIdArray
         container.appendChild(intro1);
 
         // add VAS slider
-        container.appendChild(CreateSlider(RoboticSliderIdArray[i], "<b>Robotic<br>ロボットのような<br>像机器人</b>", "<b>Not Robotic<br>ロボットのようではない<br>不像机器人</b>"));
+        container.appendChild(CreateSlider(RoboticSliderIdArray[i], "<b>Robotic<br>ロボットのようだ<br>像机器人</b>", "<b>Not Robotic<br>ロボットのようでない<br>不像机器人</b>"));
 
         // add explaination before the comment block
         var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
