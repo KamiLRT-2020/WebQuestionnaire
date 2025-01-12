@@ -87,7 +87,7 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalnessSliderIdArray
 
     // add explaination before the video
     const introAll = document.createElement("li"); // use "li" to add a black dot before the text
-    introAll.innerHTML = "Please watch the video at <b>fullscreen</b.Please watch each video <b>at least twice</b> to compare the difference.<br>ビデオを<b>全画面</b>でご覧ください。ビデオは<b>少なくとも二回</b>視聴して、違いを比較してください。<br>请在<b>全屏</b>状态下至少观看<b>两遍</b>以比较区别。";
+    introAll.innerHTML = "Please watch the video at <b>fullscreen</b.Please watch each video <b>at least twice</b> to compare the difference. Then evaluate it with the red bar.<br>ビデオを<b>全画面</b>でご覧ください。ビデオは<b>少なくとも二回</b>視聴して、違いを比較してください。その後、どのくらい自然に感じたかを赤い線を動かして教えてください。<br>请在<b>全屏</b>状态下至少观看<b>两遍</b>以比较区别。并移动红色的刻度线作出相应评估。";
     container.appendChild(introAll);
 
     for (var i = 0; i < videoURLArray.length; i++) {
@@ -118,7 +118,7 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalnessSliderIdArray
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> natural? <b>(Unnatural~Natural)</b> <br><b>" + methodString[i] + "</b> の視線の動きは自然ですか？<b>(不自然~自然)</b> <br>请问<b>" + methodString[i] + "</b> 的视线动作看起来自然吗？<b>(不自然~自然)</b>";
+        intro1.innerHTML = "Is the gaze movement of the male character in video <b>" + methodString[i] + "</b> natural? <b>(Unnatural~Natural)</b> <br>ビデオ<b>" + methodString[i] + "</b>:男性キャラクターの視線の動きは自然ですか？<b>(不自然~自然)</b> <br>请问视频<b>" + methodString[i] + "</b>中男性角色的视线动作看起来自然吗？<b>(不自然~自然)</b>";
         container.appendChild(intro1);
 
         // add VAS slider
@@ -126,15 +126,15 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalnessSliderIdArray
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" lito add a black dot before the text
-        intro1.innerHTML = "Is the gaze movement from <b>" + methodString[i] + "</b> seem robotic? <b>(Robotic~Not Robotic)</b><br><b>" + methodString[i] + "</b> の視線の動きはロボットのように見えますか？<b>(ロボットのような~ロボットのようではない)</b> <br>请问<b>" + methodString[i] + "</b> 的视线动作看起来像机器人吗？ <b>(像机器人~不像机器人)";
+        intro1.innerHTML = "Is the gaze movement of the male character in video <b>" + methodString[i] + "</b> seem robotic? <b>(Robotic~Not Robotic)</b><br>ビデオ<b>" + methodString[i] + "</b>:男性キャラクターの視線の動きはロボットのように見えますか？<b>(ロボットのような~ロボットのようではない)</b> <br>请问视频<b>" + methodString[i] + "</b>中男性角色的视线动作看起来像机器人吗？ <b>(像机器人~不像机器人)";
         container.appendChild(intro1);
 
         // add VAS slider
-        container.appendChild(CreateSlider(RoboticSliderIdArray[i], "<b>Robotic<br>ロボットのようだ<br>像机器人</b>", "<b>Not Robotic<br>ロボットのようでない<br>不像机器人</b>"));
+        container.appendChild(CreateSlider(RoboticSliderIdArray[i], "<b>Robotic<br>ロボットのようだ<br>像机器人</b>", "<b>Not Robotic<br>ロボットのようではない<br>不像机器人</b>"));
 
         // add explaination before the comment block
         var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Do you have any comment on the character " + methodString[i] + " ?  <br>キャラクター" + methodString[i] + "について何かコメントはありますか？<br>请问对人物" + methodString[i] + "有什么评论吗？";
+        intro1.innerHTML = "Do you have any comment on the character  in video " + methodString[i] + " ?  <br>ビデオ" + methodString[i] + "のキャラクターについて何かコメントはありますか？<br>请问对视频" + methodString[i] + "中的人物有什么评论吗？";
         container.appendChild(intro1);
 
         container.appendChild(CreateCommentBlock(GeneralCommentIdArray[i], "e.g. The character seems unnatural. Because ... / The character seems natural. Because ... キャラクターは不自然に見えます。なぜなら... / キャラクターは自然に見えます。なぜなら... 人物的动作看起来不自然，因为....../人物的动作看起来很自然，因为......"));
@@ -294,7 +294,7 @@ function LoadVideoFromIndex() {
     const OrderGeneralCommentId = OrderArrayWith(GeneralCommentIdArray, OrderArray);
     OrderAnonmyMethodNameStringArray = OrderArrayWith(AnonmyMethodNameStringArray, OrderArray);
     // add elements for evaluation section
-    document.body.insertBefore(CreateQuestionBlock("Videos will show the character's face and the first person view of the character: <br>ビデオではキャラクターの顔とキャラクターの一人称視点が表示されます：<br>视频会展示人物的面部特写及人物的第一人称视角：", OrderVideoURLArray, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
+                            document.body.insertBefore(CreateQuestionBlock("Videos will show the character's face and the first person view of the character: <br>ビデオでは、キャラクターの顔や一人称視点が映し出されます：<br>视频会展示人物的面部特写及人物的第一人称视角：", OrderVideoURLArray, OrderNaturalnessSliderId, OrderRoboticSliderId, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
 
     SetSubmitButton();
 
