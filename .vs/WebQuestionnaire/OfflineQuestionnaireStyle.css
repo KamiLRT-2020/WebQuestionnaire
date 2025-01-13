@@ -36,9 +36,10 @@ iframe {
     width: 100%; /* Width of the outside container */
     height: 30px; /* Height of the bar of silder */
     display: flex; /* inline with labels */
-    justify-content: center; /* place the slider in center */
+    justify-content: center;
     align-items: center; /* place the slider in center */
 }
+
 
 /* The slider itself */
 .slider {
@@ -98,7 +99,7 @@ iframe {
 }
 
 .sliderLegend {
-    width: fit-content; /* label of VAS */
+    width: 15%; /* label of VAS */
     height: fit-content;
 }
 
