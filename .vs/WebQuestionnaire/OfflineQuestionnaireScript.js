@@ -14,7 +14,6 @@ const NaturalAllSliderIdArray = MethodTypes.map(item => `Natural_All_${item}`);
 const NaturalEyeSliderIdArray = MethodTypes.map(item => `Natural_Eye_${item}`);
 const NaturalHeadSliderIdArray = MethodTypes.map(item => `Natural_Head_${item}`);
 const HeadEyeCodSliderIdArray = MethodTypes.map(item => `Coordinate_${item}`);
-const WillSliderIdArray = MethodTypes.map(item => `Will_${item}`);
 const GeneralCommentIdArray = MethodTypes.map(item => `Comment_${item}`);
 let OrderAnonmyMethodNameStringArray;
 
@@ -58,7 +57,7 @@ ServerGetResult();
 // set up the behavior when click submit button
 
 // function to create a VAS block
-function CreateQuestionBlock(legendText, videoURLArray, NaturalAllSliderIdArray, NaturalEyeSliderIdArray, NaturalHeadSliderIdArray, HeadEyeCodSliderIdArray, WillSliderIdArray, GeneralCommentIdArray, methodString) {
+function CreateQuestionBlock(legendText, videoURLArray, NaturalAllSliderIdArray, NaturalEyeSliderIdArray, NaturalHeadSliderIdArray, HeadEyeCodSliderIdArray, GeneralCommentIdArray, methodString) {
 
     // create outside container
     const container = document.createElement("fieldset");
@@ -84,38 +83,31 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalAllSliderIdArray,
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the movement of the male character in the video <b>" + methodString[i] + "</b> natural overall? <b>(Unnatural~Natural)</b> 動画<b> + methodString[i] + </b>の男性キャラクターの動きは全体的に自然ですか？<b>(不自然~自然)</b> <br>请问视频<b>" + methodString[i] + "</b>中的男性角色动作整体来说自然吗？<b>(不自然~自然)</b>";
+        intro1.innerHTML = "Is the movement of the male character in the video <b>" + methodString[i] + "</b> natural overall? <b>(Unnatural~Natural)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの動きは全体的に自然ですか？<b>(不自然~自然)</b> <br>请问视频<b>" + methodString[i] + "</b>中的男性角色动作整体来说自然吗？<b>(不自然~自然)</b>";
         container.appendChild(intro1);
         // add VAS slider
         container.appendChild(CreateSlider(NaturalAllSliderIdArray[i], "<b>Unnatural<br>不自然<br>不自然</b>", "<b>Natural<br>自然<br>自然</b>"));
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the male character's eye movement in the video <b>" + methodString[i] + "</b> natural? <b>(Unnatural~Natural)</b> 動画<b> + methodString[i] + </b>の男性キャラクターの目の動きは自然ですか？<b>(不自然~自然)</b> <br>请问视频<b>" + methodString[i] + "</b>中的男性角色的眼睛动作自然吗？<b>(不自然~自然)</b>";
+        intro1.innerHTML = "Is the male character's eye movement in the video <b>" + methodString[i] + "</b> natural? <b>(Unnatural~Natural)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの目の動きは自然ですか？<b>(不自然~自然)</b> <br>请问视频<b>" + methodString[i] + "</b>中的男性角色的眼睛动作自然吗？<b>(不自然~自然)</b>";
         container.appendChild(intro1);
         // add VAS slider
         container.appendChild(CreateSlider(NaturalEyeSliderIdArray[i], "<b>Unnatural<br>不自然<br>不自然</b>", "<b>Natural<br>自然<br>自然</b>"));
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the male character's head movement in the video <b>" + methodString[i] + "</b> natural? <b>(Unnatural~Natural)</b> 動画<b> + methodString[i] + </b>の男性キャラクターの頭の動きは自然ですか？<b>(不自然~自然)</b> <br>请问视频<b>" + methodString[i] + "</b>中的男性角色的头部动作自然吗？<b>(不自然~自然)</b>";
+        intro1.innerHTML = "Is the male character's head movement in the video <b>" + methodString[i] + "</b> natural? <b>(Unnatural~Natural)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの頭の動きは自然ですか？<b>(不自然~自然)</b> <br>请问视频<b>" + methodString[i] + "</b>中的男性角色的头部动作自然吗？<b>(不自然~自然)</b>";
         container.appendChild(intro1);
         // add VAS slider
         container.appendChild(CreateSlider(NaturalHeadSliderIdArray[i], "<b>Unnatural<br>不自然<br>不自然</b>", "<b>Natural<br>自然<br>自然</b>"));
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Do the male character's eye and head movements in the video <b>" + methodString[i] + "</b> look coordinated? <b>(Uncoordinated~Coordinated)</b> 動画<b> + methodString[i] + </b>の男性キャラクターの目と頭の動きは自然に連携していますか？<b>(連携してない~連携している)</b> <br>视频<b>" + methodString[i] + "</b>中的男性角色的眼睛和头部动作看起来协调吗？<b>(不协调~协调)</b>";
+        intro1.innerHTML = "Do the male character's eye and head movements in the video <b>" + methodString[i] + "</b> look coordinated? <b>(Uncoordinated~Coordinated)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの目と頭の動きは自然に連携していますか？<b>(連携してない~連携している)</b> <br>视频<b>" + methodString[i] + "</b>中的男性角色的眼睛和头部动作看起来协调吗？<b>(不协调~协调)</b>";
         container.appendChild(intro1);
         // add VAS slider
         container.appendChild(CreateSlider(HeadEyeCodSliderIdArray[i], "<b>Uncoordinated<br>連携してない<br>不协调</b>", "<b>Coordinated<br>連携している<br>协调</b>"));
-
-        // add explaination before the slider
-        intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Would you be willing to interact with the character in the video <b>" + methodString[i] + "</b>? <b>(Unwilling~Willing)</b> 動画<b> + methodString[i] + </b>のキャラクターと会話や交流をしたいですか？<b>(したくない~したい)</b> <br>你愿意与视频<b>" + methodString[i] + "</b>中的角色进行互动吗？<b>(不愿意~愿意)</b>";
-        container.appendChild(intro1);
-        // add VAS slider
-        container.appendChild(CreateSlider(WillSliderIdArray[i], "<b>Unwilling<br>したくない<br>不愿意</b>", "<b>Willing<br>したい<br>愿意</b>"));
 
 
         // add explaination before the comment block
@@ -154,13 +146,14 @@ function SetSubmitButton() {
             //let csvContent = "data:text/csv;charset=utf-8,";
 
             // input the participant's name
-            let csvContent = QuestionnaireIndex + "\r\n";
+            let csvContent = "";
             csvContent += document.getElementById("name").value + "\r\n";
             csvContent += document.getElementById("gender").value + "\r\n";
             csvContent += document.getElementById("age").value + "\r\n";
             csvContent += document.getElementById("answer").value + "\r\n";
             csvContent += "Duration: \r\n" + Duration + "\r\n\r\n";
 
+            csvContent += "Natural Over all" + "\r\n";
             for (var i = 0; i < NaturalAllSliderIdArray.length; i++) {
                 const slider = document.getElementById(NaturalAllSliderIdArray[i]);
                 csvContent +=  slider.value + "\r\n";
@@ -168,6 +161,7 @@ function SetSubmitButton() {
 
             csvContent += "\r\n";
 
+            csvContent += "Natural Eye" + "\r\n";
             for (var i = 0; i < NaturalEyeSliderIdArray.length; i++) {
                 const slider = document.getElementById(NaturalEyeSliderIdArray[i]);
                 csvContent += slider.value + "\r\n";
@@ -175,6 +169,7 @@ function SetSubmitButton() {
 
             csvContent += "\r\n";
 
+            csvContent += "Natural Head" + "\r\n";
             for (var i = 0; i < NaturalHeadSliderIdArray.length; i++) {
                 const slider = document.getElementById(NaturalHeadSliderIdArray[i]);
                 csvContent += slider.value + "\r\n";
@@ -182,6 +177,7 @@ function SetSubmitButton() {
 
             csvContent += "\r\n";
 
+            csvContent += "Head eye coordinate" + "\r\n";
             for (var i = 0; i < HeadEyeCodSliderIdArray.length; i++) {
                 const slider = document.getElementById(HeadEyeCodSliderIdArray[i]);
                 csvContent += slider.value + "\r\n";
@@ -189,20 +185,14 @@ function SetSubmitButton() {
 
             csvContent += "\r\n";
 
-            for (var i = 0; i < WillSliderIdArray.length; i++) {
-                const slider = document.getElementById(WillSliderIdArray[i]);
-                csvContent += slider.value + "\r\n";
-            }
-
-            csvContent += "\r\n";
-
+            csvContent += "Comment" + "\r\n";
             for (var i = 0; i < GeneralCommentIdArray.length; i++) {
                 csvContent += OrderAnonmyMethodNameStringArray[i] + ": " + document.getElementById(GeneralCommentIdArray[i]).value + "\r\n" + "\r\n";
             }
 
             csvContent += "General: " + document.getElementById("comment").value + "\r\n";
 
-            ServerPostResult(csvContent);
+            ServerPostResult(Comb,csvContent);
 
            // alert("Please send the downloaded file to the owner of the questionnaire."); // information to send back the result
         }
@@ -214,28 +204,33 @@ function SetSubmitButton() {
 var QuestionnaireIndex = 999;
 let StartTime;
 let EndTime;
+let Comb;
 
 function ServerGetResult() {
     // 使用 fetch 发送 GET 请求到 Flask 后端
-    fetch(' https://ex.haselab.net/lian_qserver/get-number')
+    fetch('https://ex.haselab.net/lian_qserver/get_combination')
         .then(response => response.json())  // 解析响应为 JSON
         .then(data => {
-            // 获取返回的数字 a
-            const a = data.a;
 
-            // 显示接收到的值
-            console.log("server result = " + a);
-            QuestionnaireIndex = a;
-            LoadVideoFromIndex();
+
             StartTime = new Date();
             console.log("Start at = " + StartTime);
+            if (data.error) {
+                console.error(data.error);
+            } else {
+                Comb = data.combination;
+                console.log("Comb = " + Comb);
+                const orderArray = Comb.map(item => MethodTypes.indexOf(item));
+                console.log("OrderArray = " + orderArray);
+                LoadVideoFromIndex(orderArray);
+            }
 
         })
         .catch(error => console.error('Error:', error));
 }
 
 
-function ServerPostResult(result)
+function ServerPostResult(combination, result)
 {
     fetch(' https://ex.haselab.net/lian_qserver/collect-result', {
 
@@ -243,7 +238,10 @@ function ServerPostResult(result)
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text: result })
+        body: JSON.stringify({
+            combination: combination,
+            text: result
+        })
     })
         .then(response => response.json())
         .then(data => {
@@ -256,23 +254,19 @@ function ServerPostResult(result)
         });
 }
 
-function LoadVideoFromIndex() {
+function LoadVideoFromIndex(OrderArray) {
 
     var contianer = document.getElementById("questionBlock")
     if (contianer != null) { document.removeChild(contianer); }
-    const tempArr = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8);
-    let OrderArray = getNthPermutation(tempArr, QuestionnaireIndex);
-    console.log("order array = " + OrderArray);
     const OrderVideoURLArray = OrderArrayWith(VideoURLArray, OrderArray);
     const OrderNaturalAllSliderIdArray = OrderArrayWith(NaturalAllSliderIdArray, OrderArray); 
     const OrderNaturalEyeSliderIdArray = OrderArrayWith(NaturalEyeSliderIdArray, OrderArray);
     const OrderNaturalHeadSliderIdArray = OrderArrayWith(NaturalHeadSliderIdArray, OrderArray);
     const OrderHeadEyeCodSliderIdArray = OrderArrayWith(HeadEyeCodSliderIdArray, OrderArray);
-    const OrderWillSliderIdArray = OrderArrayWith(WillSliderIdArray, OrderArray);
     const OrderGeneralCommentId = OrderArrayWith(GeneralCommentIdArray, OrderArray);
     OrderAnonmyMethodNameStringArray = OrderArrayWith(AnonmyMethodNameStringArray, OrderArray);
     // add elements for evaluation section
-    document.body.insertBefore(CreateQuestionBlock("Videos will show the character's face and the first person view of the character: <br>動画では、キャラクターの顔や一人称視点が表示されます。<br>视频会展示人物的面部特写及人物的第一人称视角：", OrderVideoURLArray, OrderNaturalAllSliderIdArray, OrderNaturalEyeSliderIdArray, OrderNaturalHeadSliderIdArray, OrderHeadEyeCodSliderIdArray, OrderWillSliderIdArray, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
+    document.body.insertBefore(CreateQuestionBlock("Videos will show the character's face and the first person view of the character: <br>動画では、キャラクターの顔や一人称視点が表示されます。<br>视频会展示人物的面部特写及人物的第一人称视角：", OrderVideoURLArray, OrderNaturalAllSliderIdArray, OrderNaturalEyeSliderIdArray, OrderNaturalHeadSliderIdArray, OrderHeadEyeCodSliderIdArray, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
 
     SetSubmitButton();
 
