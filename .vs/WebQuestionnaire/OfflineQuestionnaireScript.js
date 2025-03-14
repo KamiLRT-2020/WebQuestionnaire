@@ -15,6 +15,9 @@ const NaturalEyeSliderIdArray = MethodTypes.map(item => `Natural_Eye_${item}`);
 const NaturalHeadSliderIdArray = MethodTypes.map(item => `Natural_Head_${item}`);
 const HeadEyeCodSliderIdArray = MethodTypes.map(item => `Coordinate_${item}`);
 const GeneralCommentIdArray = MethodTypes.map(item => `Comment_${item}`);
+let watchedCompleteArray = new Array(MethodTypes.length).fill(false);
+let videoProgressArray = new Array(MethodTypes.length).fill(0);
+const VideolArray = new Array(MethodTypes.length);
 let OrderAnonmyMethodNameStringArray;
 
 // id array for consent information, to check whether they are checked later
@@ -123,88 +126,112 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalAllSliderIdArray,
 
 function SetSubmitButton() {
     document.getElementById("submitButton").onclick = function () {
-        EndTime = new Date();
-        console.log("End At " + EndTime);
-        let Duration = (EndTime - StartTime)/1000;
-        console.log("Duration = " + Duration);
+        if (!AlreadySubmitted) {
+            EndTime = new Date();
+            console.log("End At " + EndTime);
+            let Duration = (EndTime - StartTime) / 1000;
+            console.log("Duration = " + Duration);
 
-        if (!IsConsentAllChecked()) {
-            // alert to check all the consent information, if not all the checkbox are checked
-            alert("Please Check all the checkbox in Consent. 同意のチェックボックスをすべて確認してください。请阅读后勾选所有的同意事项。")
-        }
-        else if (document.getElementById("name").value == "" || document.getElementById("age").value == "")
-        {
-            // alert to input the name, if have not
-            alert("Please input your name and age. おニックネームと年齢を入力してください。请输入您的昵称和年龄。");
-        }
-        else if (document.getElementById("answer").value == "") {
-            // alert to input the name, if have not
-            alert("Please answer the question about 3D game and 3D animation. 3Dゲームと3Dアニメに関する質問に答えてください。请回答关于是否接触过3D游戏或3D动画的问题。");
+            if (!IsConsentAllChecked()) {
+                // alert to check all the consent information, if not all the checkbox are checked
+                alert("Please Check all the checkbox in Consent. \n 同意のチェックボックスをすべて確認してください。\n 请阅读后勾选所有的同意事项。")
+            }
+            else if (document.getElementById("name").value == "" || document.getElementById("age").value == "") {
+                // alert to input the name, if have not
+                alert("Please input your name and age. \n おニックネームと年齢を入力してください。\n 请输入您的昵称和年龄。");
+            }
+            else if (document.getElementById("answer").value == "") {
+                // alert to input the name, if have not
+                alert("Please answer the question about 3D game and 3D animation. \n 3Dゲームと3Dアニメに関する質問に答えてください。 \n 请回答关于是否接触过3D游戏或3D动画的问题。");
+            }
+            else if (!IsAllVideoWatched()) {
+                alert("Please watch the whole video before you answer the question. \n 動画を最後まで視聴してから質問に答えてください。 \n 请看完视频后再回答问题。");
+            }
+            else {
+                SetCompleteCode();
+                // set up content for csv file
+                //let csvContent = "data:text/csv;charset=utf-8,";
+
+                // input the participant's name
+                let csvContent = "";
+                csvContent += document.getElementById("name").value + "\r\n";
+                csvContent += document.getElementById("gender").value + "\r\n";
+                csvContent += document.getElementById("age").value + "\r\n";
+                csvContent += document.getElementById("answer").value + "\r\n";
+                csvContent += "Duration: \r\n" + Duration + "\r\n\r\n";
+                csvContent += "Complete Code: \r\n" + CompleteCode + "\r\n\r\n";
+
+                csvContent += "Natural Over all" + "\r\n";
+                for (var i = 0; i < NaturalAllSliderIdArray.length; i++) {
+                    const slider = document.getElementById(NaturalAllSliderIdArray[i]);
+                    csvContent += slider.value + "\r\n";
+                }
+
+                csvContent += "\r\n";
+
+                csvContent += "Natural Eye" + "\r\n";
+                for (var i = 0; i < NaturalEyeSliderIdArray.length; i++) {
+                    const slider = document.getElementById(NaturalEyeSliderIdArray[i]);
+                    csvContent += slider.value + "\r\n";
+                }
+
+                csvContent += "\r\n";
+
+                csvContent += "Natural Head" + "\r\n";
+                for (var i = 0; i < NaturalHeadSliderIdArray.length; i++) {
+                    const slider = document.getElementById(NaturalHeadSliderIdArray[i]);
+                    csvContent += slider.value + "\r\n";
+                }
+
+                csvContent += "\r\n";
+
+                csvContent += "Head eye coordinate" + "\r\n";
+                for (var i = 0; i < HeadEyeCodSliderIdArray.length; i++) {
+                    const slider = document.getElementById(HeadEyeCodSliderIdArray[i]);
+                    csvContent += slider.value + "\r\n";
+                }
+
+                csvContent += "\r\n";
+
+                csvContent += "Comment" + "\r\n";
+                for (var i = 0; i < GeneralCommentIdArray.length; i++) {
+                    csvContent += OrderAnonmyMethodNameStringArray[i] + ": " + document.getElementById(GeneralCommentIdArray[i]).value + "\r\n" + "\r\n";
+                }
+
+                csvContent += "General: " + document.getElementById("comment").value + "\r\n";
+
+                ServerPostResult(Comb, csvContent);
+
+                // alert("Please send the downloaded file to the owner of the questionnaire."); // information to send back the result
+            }
+
         }
         else {
-            // set up content for csv file
-            //let csvContent = "data:text/csv;charset=utf-8,";
-
-            // input the participant's name
-            let csvContent = "";
-            csvContent += document.getElementById("name").value + "\r\n";
-            csvContent += document.getElementById("gender").value + "\r\n";
-            csvContent += document.getElementById("age").value + "\r\n";
-            csvContent += document.getElementById("answer").value + "\r\n";
-            csvContent += "Duration: \r\n" + Duration + "\r\n\r\n";
-
-            csvContent += "Natural Over all" + "\r\n";
-            for (var i = 0; i < NaturalAllSliderIdArray.length; i++) {
-                const slider = document.getElementById(NaturalAllSliderIdArray[i]);
-                csvContent +=  slider.value + "\r\n";
-            }
-
-            csvContent += "\r\n";
-
-            csvContent += "Natural Eye" + "\r\n";
-            for (var i = 0; i < NaturalEyeSliderIdArray.length; i++) {
-                const slider = document.getElementById(NaturalEyeSliderIdArray[i]);
-                csvContent += slider.value + "\r\n";
-            }
-
-            csvContent += "\r\n";
-
-            csvContent += "Natural Head" + "\r\n";
-            for (var i = 0; i < NaturalHeadSliderIdArray.length; i++) {
-                const slider = document.getElementById(NaturalHeadSliderIdArray[i]);
-                csvContent += slider.value + "\r\n";
-            }
-
-            csvContent += "\r\n";
-
-            csvContent += "Head eye coordinate" + "\r\n";
-            for (var i = 0; i < HeadEyeCodSliderIdArray.length; i++) {
-                const slider = document.getElementById(HeadEyeCodSliderIdArray[i]);
-                csvContent += slider.value + "\r\n";
-            }
-
-            csvContent += "\r\n";
-
-            csvContent += "Comment" + "\r\n";
-            for (var i = 0; i < GeneralCommentIdArray.length; i++) {
-                csvContent += OrderAnonmyMethodNameStringArray[i] + ": " + document.getElementById(GeneralCommentIdArray[i]).value + "\r\n" + "\r\n";
-            }
-
-            csvContent += "General: " + document.getElementById("comment").value + "\r\n";
-
-            ServerPostResult(Comb,csvContent);
-
-           // alert("Please send the downloaded file to the owner of the questionnaire."); // information to send back the result
+            alert("You already submitted. \n すでに提出しました。 \n 你已经成功提交了。");
         }
 
     }
 
 }
 
+
 var QuestionnaireIndex = 999;
 let StartTime;
 let EndTime;
 let Comb;
+
+let CompleteCode;
+function generateTimeBasedCode() {
+    return "MTURK-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).substr(2, 5).toUpperCase();
+}
+
+function SetCompleteCode()
+{
+    CompleteCode = generateTimeBasedCode();
+    document.getElementById("complete_code").innerHTML = "Survey Code: " + CompleteCode;
+}
+
+console.log(generateTimeBasedCode()); // 示例输出: "MTURK-LKR8G-7F1XZ"
 
 function ServerGetResult() {
     // 使用 fetch 发送 GET 请求到 Flask 后端
@@ -229,6 +256,7 @@ function ServerGetResult() {
         .catch(error => console.error('Error:', error));
 }
 
+let AlreadySubmitted = false;
 
 function ServerPostResult(combination, result)
 {
@@ -246,11 +274,12 @@ function ServerPostResult(combination, result)
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            alert('Submit successfully! Thank you! 送信が成功しました！ありがとうございます！提交成功，感谢您的参与！');
+            AlreadySubmitted = true;
+            alert('Submit successfully! Thank you! \n 送信が成功しました！ありがとうございます！\n 提交成功，感谢您的参与！');
         })
         .catch((error) => {
             console.error('Error:', error);
-            alert('Error submiting! Please try again. 送信エラーが発生しました！もう一度お試しください。提交失败，请再次提交。');
+            alert('Error submiting! Please try again. \n 送信エラーが発生しました！もう一度お試しください。\n 提交失败，请再次提交。');
         });
 }
 
@@ -267,7 +296,13 @@ function LoadVideoFromIndex(OrderArray) {
     OrderAnonmyMethodNameStringArray = OrderArrayWith(AnonmyMethodNameStringArray, OrderArray);
     // add elements for evaluation section
     document.body.insertBefore(CreateQuestionBlock("Videos will show the character's face and the first person view of the character: <br>動画では、キャラクターの顔や一人称視点が表示されます。<br>视频会展示人物的面部特写及人物的第一人称视角：", OrderVideoURLArray, OrderNaturalAllSliderIdArray, OrderNaturalEyeSliderIdArray, OrderNaturalHeadSliderIdArray, OrderHeadEyeCodSliderIdArray, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
-
+    // 监听页面切换
+    document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+            // 页面不可见时，暂停所有视频
+            VideolArray.forEach(video => video.pause());
+        }
+    });
     SetSubmitButton();
 
 }
@@ -323,6 +358,16 @@ function IsConsentAllChecked() {
     return true;
 }
 
+// check whether all the checkbox in consent section are checked
+function IsAllVideoWatched() {
+    for (var i = 0; i < watchedCompleteArray.length; i++) {
+        if (!watchedCompleteArray[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 // function to create VAS slider
 function CreateSlider(sliderIdText, negativeLable, positiveLable)
 {
@@ -367,6 +412,20 @@ function CreateSlider(sliderIdText, negativeLable, positiveLable)
     sliderContainerElement.appendChild(CreateLabel(negativeLable));
     sliderContainerElement.appendChild(inputContainerElement);
     sliderContainerElement.appendChild(CreateLabel(positiveLable));
+
+    sliderElement.addEventListener("input", function () {
+        VideolArray.forEach(video => {
+            video.pause(); // 其他视频暂停
+        });
+        const lastTwoDigits = sliderIdText.slice(-2);
+        const index = MethodTypes.indexOf(lastTwoDigits);
+        if (!watchedCompleteArray[index]) {
+            if (sliderElement.value != 0) { 
+                sliderElement.value = 0; // 强制回退
+                alert("Please watch the whole video before you answer the question. \n 動画を最後まで視聴してから質問に答えてください。 \n 请看完视频后再回答问题。");
+            }
+        }
+    });
 
     return sliderContainerElement;
 }
@@ -439,7 +498,7 @@ function CreateVideoBlock(videoURL) {
     widthAtt.value = "1120"; // "560";
     heightAtt.value = "630";//"315";
     srcAtt.value = videoURL
-    titleAtt.value = "YouTube video player";
+    titleAtt.value = "Video player";
     frameborderAtt.value = "0";
     allowAtt.value = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
 
@@ -458,11 +517,43 @@ function CreateVideoBlock(videoURL) {
 
         // 获取视频元素
         const video = iframeDocument.querySelector('video');
+        const index = VideoURLArray.indexOf(videoURL);
+        VideolArray[index] = video;
+
 
         // 确保视频不自动播放
         if (video) {
             video.autoplay = false;  // 禁止自动播放
         }
+
+        video.addEventListener('play', function () {
+            VideolArray.forEach(otherVideo => {
+                if (otherVideo !== video) {
+                    otherVideo.pause(); // 其他视频暂停
+                }
+            });
+        });
+
+        // 监听播放进度，防止快进
+        video.addEventListener("timeupdate", function () {
+            const index = VideoURLArray.indexOf(videoURL);
+            if (!watchedCompleteArray[index]) {
+                if (video.currentTime - videoProgressArray[index] > 1) { // 超过 1 秒误差
+                    video.currentTime = videoProgressArray[index]; // 强制回退
+                    alert("Please watch the whole video before you answer the question. \n 動画を最後まで視聴してから質問に答えてください。 \n 请看完视频后再回答问题。");
+                } else {
+                    videoProgressArray[index] = video.currentTime;
+                }
+
+                // 观看超过 95% 进度，解锁进度条和问卷
+                if (video.currentTime >= video.duration * 0.95) {
+                    watchedCompleteArray[index] = true;
+                    videoProgressArray[index] = video.duration;
+                    console.log("Video completed " + index);
+                    
+                }
+            }
+        });
     }
 
     return node;
