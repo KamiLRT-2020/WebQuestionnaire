@@ -54,8 +54,32 @@ const SceneIntrodcutionVideo = "EvaluationVideo/Scene.mp4";
 
 SceneIntroduction.appendChild(CreateVideoBlock(SceneIntrodcutionVideo));
 
+PreventFormSubmit();
+
 // set up the behavior when click finish button after inputing Id
 ServerGetResult();
+
+function PreventFormSubmit() { // input enter would cause reload of the page
+    document.addEventListener("DOMContentLoaded", function () {
+        // 获取所有form元素并阻止默认提交行为
+        const forms = document.querySelectorAll("form");
+        forms.forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();  // 阻止表单提交，避免页面刷新
+            });
+        });
+
+        // 阻止按回车键提交
+        const inputs = document.querySelectorAll("input");
+        inputs.forEach(function (input) {
+            input.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();  // 阻止回车键提交
+                }
+            });
+        });
+    });
+}
 
 // set up the behavior when click submit button
 
