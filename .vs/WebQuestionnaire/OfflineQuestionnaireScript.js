@@ -56,8 +56,16 @@ SceneIntroduction.appendChild(CreateVideoBlock(SceneIntrodcutionVideo));
 
 PreventFormSubmit();
 
-// set up the behavior when click finish button after inputing Id
-ServerGetResult();
+if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    // 是手机或平板
+    alert("Please complete this questionnaire using a laptop or desktop computer.");
+}
+else {
+    // set up the behavior when click finish button after inputing Id
+    ServerGetResult();
+}
+
+
 
 function PreventFormSubmit() { // input enter would cause reload of the page
     document.addEventListener("DOMContentLoaded", function () {
