@@ -12,8 +12,9 @@ CORS(app)  # 允许跨域请求
 # CSV 文件路径
 CSV_FILE = "method_permutations.csv"
 
-# 9 种方法
-METHODS = ["AA", "AB", "AC", "BA", "BB", "BC", "CA", "CB", "CC"]
+## 9 种方法
+#METHODS = ["AA", "AB", "AC", "BA", "BB", "BC", "CA", "CB", "CC"]
+METHODS = ["PA", "RP"]
 
 PREFIX = "Result_"
 EXTENSION = ".csv"
