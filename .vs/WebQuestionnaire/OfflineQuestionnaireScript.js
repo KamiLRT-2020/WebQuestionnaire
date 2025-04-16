@@ -52,7 +52,7 @@ const VideoURLArray = new Array(
 
 const SceneIntrodcutionVideo = "EvaluationVideo/Scene.mp4";
 
-SceneIntroduction.appendChild(CreateVideoBlock(SceneIntrodcutionVideo));
+SceneIntroduction.appendChild(CreateScenceVideoBlock(SceneIntrodcutionVideo));
 
 PreventFormSubmit();
 
@@ -525,6 +525,60 @@ function CreateYesNoSwitch(sliderIdText)
     sliderContainerElement.appendChild(CreateLabel("Yes"));
 
     return sliderContainerElement;
+}
+
+function CreateScenceVideoBlock(videoURL) {
+    // setting is from the share link of Youtube
+    const node = document.createElement("iframe");
+    const widthAtt = document.createAttribute("width");
+    const heightAtt = document.createAttribute("height");
+    const srcAtt = document.createAttribute("src");
+    const titleAtt = document.createAttribute("title");
+    const frameborderAtt = document.createAttribute("frameborder");
+    const allowAtt = document.createAttribute("allow");
+    const allowFullScreenAtt = document.createAttribute("allowfullscreen");
+    widthAtt.value = "1120"; // "560";
+    heightAtt.value = "630";//"315";
+    srcAtt.value = videoURL
+    titleAtt.value = "Video player";
+    frameborderAtt.value = "0";
+    allowAtt.value = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+    node.setAttributeNode(widthAtt);
+    node.setAttributeNode(heightAtt);
+    node.setAttributeNode(srcAtt);
+    node.setAttributeNode(titleAtt);
+    node.setAttributeNode(frameborderAtt);
+    node.setAttributeNode(allowAtt);
+    node.setAttributeNode(allowFullScreenAtt);
+
+    // 等待 iframe 加载后执行代码
+    node.onload = function () {
+        // 获取 iframe 内部的 document 对象
+        const iframeDocument = node.contentWindow.document;
+
+        // 获取视频元素
+        const video = iframeDocument.querySelector('video');
+        const index = VideoURLArray.indexOf(videoURL);
+        VideolArray[index] = video;
+
+
+        // 确保视频不自动播放
+        if (video) {
+            video.autoplay = false;  // 禁止自动播放
+        }
+
+        video.addEventListener('play', function () {
+            VideolArray.forEach(otherVideo => {
+                if (otherVideo !== video) {
+                    otherVideo.pause(); // 其他视频暂停
+                }
+            });
+        });
+    }
+
+    return node;
+
 }
 
 function CreateVideoBlock(videoURL) {
