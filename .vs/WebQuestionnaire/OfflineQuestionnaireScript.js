@@ -580,8 +580,13 @@ function CreateVideoBlock(videoURL) {
         video.addEventListener("timeupdate", function () {
             const index = VideoURLArray.indexOf(videoURL);
             if (!watchedCompleteArray[index]) {
-                if (video.currentTime - videoProgressArray[index] > 1) { // 超过 1 秒误差
+                if (!document.fullscreenElement) {
+                    video.pause();
+                    alert("Please watch the video in fullscreen mode before proceeding.");
+                }
+                if (video.currentTime - videoProgressArray[index] > 0.5) { // 超过 1 秒误差
                     video.currentTime = videoProgressArray[index]; // 强制回退
+                    video.pause();
                     alert("Please watch the whole video before you answer the question. \n 動画を最後まで視聴してから質問に答えてください。 \n 请看完视频后再回答问题。");
                 } else {
                     videoProgressArray[index] = video.currentTime;
