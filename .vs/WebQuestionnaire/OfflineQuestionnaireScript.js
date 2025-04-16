@@ -2,17 +2,16 @@
 
 // id array for each VAS slider, for later getting value
 //const HumanLikenessSliderIdArray = new Array("HumanlikeProposed", "HumanlikeDirectly", "HumanlikePreviousSmall", "HumanlikePreviousLarge");
-const RoboticSliderIdArray = new Array("RoboticProposed", "RoboticDirectly", "RoboticPrevious");
 
+//const AnonmyMethodNameStringArray = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9");
+//const MethodTypes = new Array("AA", "AB", "AC", "BA", "BB", "BC", "CA", "CB", "CC"); // proposed, previous, direclty
 
+const AnonmyMethodNameStringArray = new Array("A", "B");
+const MethodTypes = new Array("PA", "RP"); // proposed, realistic eye package
 
-
-const AnonmyMethodNameStringArray = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9");
-const MethodTypes = new Array("AA", "AB", "AC", "BA", "BB", "BC", "CA", "CB", "CC"); // proposed, previous, direclty
-
-const NaturalAllSliderIdArray = MethodTypes.map(item => `Natural_All_${item}`);
-const NaturalEyeSliderIdArray = MethodTypes.map(item => `Natural_Eye_${item}`);
-const NaturalHeadSliderIdArray = MethodTypes.map(item => `Natural_Head_${item}`);
+const RealisticAllSliderIdArray = MethodTypes.map(item => `Realistic_All_${item}`);
+const RealisticEyeSliderIdArray = MethodTypes.map(item => `Realistic_Eye_${item}`);
+const RealisticHeadSliderIdArray = MethodTypes.map(item => `Realistic_Head_${item}`);
 const HeadEyeCodSliderIdArray = MethodTypes.map(item => `Coordinate_${item}`);
 const GeneralCommentIdArray = MethodTypes.map(item => `Comment_${item}`);
 let watchedCompleteArray = new Array(MethodTypes.length).fill(false);
@@ -37,16 +36,17 @@ const SceneIntroduction = document.getElementById("scene");
 
 // Videos P D I are used
 const VideoURLArray = new Array(
-
-    "EvaluationVideo/AA.mp4",
-    "EvaluationVideo/AB.mp4",
-    "EvaluationVideo/AC.mp4",
-    "EvaluationVideo/BA.mp4",
-    "EvaluationVideo/BB.mp4",
-    "EvaluationVideo/BC.mp4",
-    "EvaluationVideo/CA.mp4",
-    "EvaluationVideo/CB.mp4",
-    "EvaluationVideo/CC.mp4"
+    "EvaluationVideo/PA.mp4",
+    "EvaluationVideo/RP.mp4",
+    //"EvaluationVideo/AA.mp4",
+    //"EvaluationVideo/AB.mp4",
+    //"EvaluationVideo/AC.mp4",
+    //"EvaluationVideo/BA.mp4",
+    //"EvaluationVideo/BB.mp4",
+    //"EvaluationVideo/BC.mp4",
+    //"EvaluationVideo/CA.mp4",
+    //"EvaluationVideo/CB.mp4",
+    //"EvaluationVideo/CC.mp4"
     
 );
 
@@ -107,7 +107,7 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalAllSliderIdArray,
 
     // add explaination before the video
     introAll = document.createElement("li"); // use "li" to add a black dot before the text
-    introAll.innerHTML = "Please watch the video at <b>fullscreen</b.Please watch each video <b>at least twice</b> to compare the difference. Then evaluate it with the red bar.<br>動画は<b>全画面</b>でご覧ください。動画を<b>少なくとも2回</b>視聴し、違いを比較してください。その後、どれくらい自然に感じたかを赤い線を動かしてお教えください。<br>请在<b>全屏</b>状态下至少观看<b>两遍</b>以比较区别。并移动红色的刻度线作出相应评估。";
+    introAll.innerHTML = "Please watch the video at <b>fullscreen</b.Please watch each video <b>at least twice</b> to compare the difference. Then evaluate it with the red bar.<br>動画は<b>全画面</b>でご覧ください。動画を<b>少なくとも2回</b>視聴し、違いを比較してください。その後、どれくらいリアルに感じたかを赤い線を動かしてお教えください。<br>请在<b>全屏</b>状态下至少观看<b>两遍</b>以比较区别。并移动红色的刻度线作出相应评估。";
     container.appendChild(introAll);
 
     for (var i = 0; i < videoURLArray.length; i++) {
@@ -120,24 +120,24 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalAllSliderIdArray,
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the movement of the male character in the video <b>" + methodString[i] + "</b> natural overall? <b>(Unnatural~Natural)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの動きは全体的に自然ですか？<b>(不自然~自然)</b> <br>请问视频<b>" + methodString[i] + "</b>中的男性角色动作整体来说自然吗？<b>(不自然~自然)</b>";
+        intro1.innerHTML = "How realistic is the movement of the male character in the video <b>" + methodString[i] + "</b>? <b>(Not realistic at all~Very realistic)</b> <br>動画 <b>" + methodString[i] + "</b> の男性キャラクターの動きは、全体的にどのくらいリアルだと感じましたか？<b>(全くリアルではない~非常にリアル)</b> <br>你认为视频 <b>" + methodString[i] + "</b> 中的男性角色动作整体有多逼真？<b>(完全不逼真~非常逼真)</b>";
         container.appendChild(intro1);
         // add VAS slider
-        container.appendChild(CreateSlider(NaturalAllSliderIdArray[i], "<b>Unnatural<br>不自然<br>不自然</b>", "<b>Natural<br>自然<br>自然</b>"));
+        container.appendChild(CreateSlider(NaturalAllSliderIdArray[i], "<b>Not realistic at all<br>全くリアルではない<br>完全不逼真</b>", "<b>Very realistic<br>非常にリアル<br>非常逼真</b>"));
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the male character's eye movement in the video <b>" + methodString[i] + "</b> natural? <b>(Unnatural~Natural)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの目の動きは自然ですか？<b>(不自然~自然)</b> <br>请问视频<b>" + methodString[i] + "</b>中的男性角色的眼睛动作自然吗？<b>(不自然~自然)</b>";
+        intro1.innerHTML = "How realistic is the eye movement of the male character in the video <b>" + methodString[i] + "</b>? <b>(Not realistic at all~Very realistic)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの目の動きはどのくらいリアルだと感じましたか？<b>(全くリアルではない~非常にリアル)</b> <br>你认为视频<b>" + methodString[i] + "</b>中的男性角色的眼睛动作有多逼真？<b>(完全不逼真~非常逼真)</b>";
         container.appendChild(intro1);
         // add VAS slider
-        container.appendChild(CreateSlider(NaturalEyeSliderIdArray[i], "<b>Unnatural<br>不自然<br>不自然</b>", "<b>Natural<br>自然<br>自然</b>"));
+        container.appendChild(CreateSlider(NaturalEyeSliderIdArray[i], "<b>Not realistic at all<br>全くリアルではない<br>完全不逼真</b>", "<b>Very realistic<br>非常にリアル<br>非常逼真</b>"));
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "Is the male character's head movement in the video <b>" + methodString[i] + "</b> natural? <b>(Unnatural~Natural)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの頭の動きは自然ですか？<b>(不自然~自然)</b> <br>请问视频<b>" + methodString[i] + "</b>中的男性角色的头部动作自然吗？<b>(不自然~自然)</b>";
+        intro1.innerHTML = "How realistic is the head movement of the male character in the video <b>" + methodString[i] + "</b>? <b>(Not realistic at all~Very realistic)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの頭の動きはどのくらいリアルだと感じましたか？<b>(全くリアルではない~非常にリアル)</b> <br>你认为视频<b>" + methodString[i] + "</b>中的男性角色的头部动作有多逼真？<b>(完全不逼真~非常逼真)</b>";
         container.appendChild(intro1);
         // add VAS slider
-        container.appendChild(CreateSlider(NaturalHeadSliderIdArray[i], "<b>Unnatural<br>不自然<br>不自然</b>", "<b>Natural<br>自然<br>自然</b>"));
+        container.appendChild(CreateSlider(NaturalHeadSliderIdArray[i], "<b>Not realistic at all<br>全くリアルではない<br>完全不逼真</b>", "<b>Very realistic<br>非常にリアル<br>非常逼真</b>"));
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
@@ -152,7 +152,7 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalAllSliderIdArray,
         intro1.innerHTML = "Do you have any comment on the character  in video " + methodString[i] + " ?  <br>動画" + methodString[i] + "のキャラクターについて何かコメントはありますか？<br>请问对视频" + methodString[i] + "中的人物有什么评论吗？";
         container.appendChild(intro1);
 
-        container.appendChild(CreateCommentBlock(GeneralCommentIdArray[i], "e.g. The character seems unnatural. Because ... / The character seems natural. Because ... キャラクターは不自然に見えます。なぜなら... / キャラクターは自然に見えます。なぜなら... 人物的动作看起来不自然，因为....../人物的动作看起来很自然，因为......"));
+        container.appendChild(CreateCommentBlock(GeneralCommentIdArray[i], "e.g. The character seems not realistic. Because ... / The character seems realistic. Because ... このキャラクターはリアルに見えません。なぜなら... / このキャラクターはリアルに見えます。なぜなら... 人物的动作看起来不逼真，因为....../人物的动作看起来很逼真，因为......"));
     }
 
     return container;
@@ -196,24 +196,24 @@ function SetSubmitButton() {
                 csvContent += "Complete Code: \r\n" + CompleteCode + "\r\n\r\n";
 
                 csvContent += "Natural Over all" + "\r\n";
-                for (var i = 0; i < NaturalAllSliderIdArray.length; i++) {
-                    const slider = document.getElementById(NaturalAllSliderIdArray[i]);
+                for (var i = 0; i < RealisticAllSliderIdArray.length; i++) {
+                    const slider = document.getElementById(RealisticAllSliderIdArray[i]);
                     csvContent += slider.value + "\r\n";
                 }
 
                 csvContent += "\r\n";
 
                 csvContent += "Natural Eye" + "\r\n";
-                for (var i = 0; i < NaturalEyeSliderIdArray.length; i++) {
-                    const slider = document.getElementById(NaturalEyeSliderIdArray[i]);
+                for (var i = 0; i < RealisticEyeSliderIdArray.length; i++) {
+                    const slider = document.getElementById(RealisticEyeSliderIdArray[i]);
                     csvContent += slider.value + "\r\n";
                 }
 
                 csvContent += "\r\n";
 
                 csvContent += "Natural Head" + "\r\n";
-                for (var i = 0; i < NaturalHeadSliderIdArray.length; i++) {
-                    const slider = document.getElementById(NaturalHeadSliderIdArray[i]);
+                for (var i = 0; i < RealisticHeadSliderIdArray.length; i++) {
+                    const slider = document.getElementById(RealisticHeadSliderIdArray[i]);
                     csvContent += slider.value + "\r\n";
                 }
 
@@ -322,9 +322,9 @@ function LoadVideoFromIndex(OrderArray) {
     var contianer = document.getElementById("questionBlock")
     if (contianer != null) { document.removeChild(contianer); }
     const OrderVideoURLArray = OrderArrayWith(VideoURLArray, OrderArray);
-    const OrderNaturalAllSliderIdArray = OrderArrayWith(NaturalAllSliderIdArray, OrderArray); 
-    const OrderNaturalEyeSliderIdArray = OrderArrayWith(NaturalEyeSliderIdArray, OrderArray);
-    const OrderNaturalHeadSliderIdArray = OrderArrayWith(NaturalHeadSliderIdArray, OrderArray);
+    const OrderNaturalAllSliderIdArray = OrderArrayWith(RealisticAllSliderIdArray, OrderArray); 
+    const OrderNaturalEyeSliderIdArray = OrderArrayWith(RealisticEyeSliderIdArray, OrderArray);
+    const OrderNaturalHeadSliderIdArray = OrderArrayWith(RealisticHeadSliderIdArray, OrderArray);
     const OrderHeadEyeCodSliderIdArray = OrderArrayWith(HeadEyeCodSliderIdArray, OrderArray);
     const OrderGeneralCommentId = OrderArrayWith(GeneralCommentIdArray, OrderArray);
     OrderAnonmyMethodNameStringArray = OrderArrayWith(AnonmyMethodNameStringArray, OrderArray);
