@@ -7,6 +7,7 @@
 //const MethodTypes = new Array("AA", "AB", "AC", "BA", "BB", "BC", "CA", "CB", "CC"); // proposed, previous, direclty
 
 const AnonmyMethodNameStringArray = new Array("A", "B");
+const AnonmyTellDifferenceStringArray = new Array("1", "2","3");
 const MethodTypes = new Array("PA", "RP"); // proposed, realistic eye package
 
 const RealisticAllSliderIdArray = MethodTypes.map(item => `Realistic_All_${item}`);
@@ -18,6 +19,8 @@ let watchedCompleteArray = new Array(MethodTypes.length).fill(false);
 let videoProgressArray = new Array(MethodTypes.length).fill(0);
 const VideolArray = new Array(MethodTypes.length);
 let OrderAnonmyMethodNameStringArray;
+
+const TellDifferenceQuestionId = "TellDifference";
 
 // id array for consent information, to check whether they are checked later
 const consentIdArray = new Array("info1", "info2", "info3", "info4", "info5");
@@ -47,8 +50,23 @@ const VideoURLArray = new Array(
     //"EvaluationVideo/CA.mp4",
     //"EvaluationVideo/CB.mp4",
     //"EvaluationVideo/CC.mp4"
-    
 );
+
+const PAclipUrlArray = new Array(
+    "EvaluationVideo/PA_clip1.mp4",
+    "EvaluationVideo/PA_clip2.mp4",
+    "EvaluationVideo/PA_clip3.mp4"
+);
+
+const RPclipUrlArray = new Array(
+    "EvaluationVideo/RP_clip1.mp4",
+    "EvaluationVideo/RP_clip2.mp4",
+    "EvaluationVideo/RP_clip3.mp4"
+);
+
+const TellDifferenceVideoArray = new Array(PAclipUrlArray.length);
+let watchedCompleteTellDifferenceArray = new Array(PAclipUrlArray.length).fill(false);
+let TellDifferenceVideoProgressArray = new Array(MethodTypes.length).fill(0);
 
 const SceneIntrodcutionVideo = "EvaluationVideo/Scene.mp4";
 
@@ -166,6 +184,71 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalAllSliderIdArray,
     return container;
 }
 
+function CreateTellDifferenceQuestion() {
+    var contianer = document.getElementById("tellDifferentBlock")
+    if (contianer != null) { document.removeChild(contianer); }
+    // create outside container
+    const container = document.createElement("fieldset");
+    const QuestionContainerAtt = document.createAttribute("id");
+    QuestionContainerAtt.value = "tellDifferentBlock";
+    container.setAttributeNode(QuestionContainerAtt);
+    // set legend of container
+    const legend = document.createElement("legend");
+    legend.innerHTML = "The following three videos come from two different methods. Please try to observe the differences and select the one that is different. <br>以下の3つのビデオは2つの異なる方法から来ています。違いを観察して、異なるビデオを選んでください。 <br>以下三个视频分别来自两种不同的方法，请尝试观察不同，并选出其中不同的一个视频。";
+    container.appendChild(legend);
+
+    for (var i = 0; i < Num_Comb.length; i++) {
+        let URL;
+        if (i == PA_index) {
+            URL = PAclipUrlArray[Num_Comb[i]];
+        }
+        else {
+            URL = RPclipUrlArray[Num_Comb[i]];
+        }
+        const intro = document.createElement("h2"); // use "li" to add a black dot before the text
+        intro.innerHTML = "<b>" + AnonmyTellDifferenceStringArray[i] + ":</b>";
+        container.appendChild(intro);
+        container.appendChild(CreateTellDifferentVideoBlock(URL));
+
+    }
+
+    const tellDifferenceContainer = document.createElement("form");
+    const questionLabel = document.createElement("legend");
+    questionLabel.innerHTML = "Please select the one video that is different: <br>異なるビデオを選んでください: <br>请选出其中不同的一个视频：";
+    tellDifferenceContainer.appendChild(questionLabel);
+
+    for (var i = 0; i < Num_Comb.length; i++) {
+        const radioContainer = document.createElement("div");
+        const radioElement = document.createElement("input");
+        radioElement.id = AnonmyTellDifferenceStringArray[i];
+        radioElement.name = TellDifferenceQuestionId;
+        radioElement.type = "radio";
+        radioElement.value = i;
+        const text = document.createElement("label");
+        text.innerHTML = AnonmyTellDifferenceStringArray[i];
+        const forAtt = document.createAttribute("for");
+        forAtt.value = AnonmyTellDifferenceStringArray[i];
+        text.setAttributeNode(forAtt);
+        radioContainer.appendChild(radioElement);
+        radioContainer.appendChild(text);
+        tellDifferenceContainer.appendChild(radioContainer);
+    }
+
+    container.appendChild(tellDifferenceContainer);
+
+    document.body.insertBefore(container, CommentBlock);
+
+    const radios = document.querySelectorAll(`input[name="${TellDifferenceQuestionId}"]`);
+    radios.forEach(radio => {
+        radio.addEventListener('click', (e) => {
+            if (!watchedCompleteTellDifferenceArray.every(val => val === true)) {
+                alert("Please watch the whole video before you answer the question. \n 動画を最後まで視聴してから質問に答えてください。 \n 请看完视频后再回答问题。");
+                radio.checked = false;
+            }
+        });
+    });
+}
+
 function SetSubmitButton() {
     document.getElementById("submitButton").onclick = function () {
         if (!AlreadySubmitted) {
@@ -173,6 +256,8 @@ function SetSubmitButton() {
             console.log("End At " + EndTime);
             let Duration = (EndTime - StartTime) / 1000;
             console.log("Duration = " + Duration);
+
+            const TellDifferenceSelected = document.querySelector(`input[name="${TellDifferenceQuestionId}"]:checked`);
 
             if (!IsConsentAllChecked()) {
                 // alert to check all the consent information, if not all the checkbox are checked
@@ -189,10 +274,16 @@ function SetSubmitButton() {
             else if (!IsAllVideoWatched()) {
                 alert("Please watch the whole video before you answer the question. \n 動画を最後まで視聴してから質問に答えてください。 \n 请看完视频后再回答问题。");
             }
+            else if (!TellDifferenceSelected)
+            {
+                alert("Please answer the question regarding choosing a different video. \n 異なるビデオを選び出すことに関する質問に答えてください。 \n 请回答关于选择出不同的视频的问题。");
+            }
             else {
                 SetCompleteCode();
                 // set up content for csv file
                 //let csvContent = "data:text/csv;charset=utf-8,";
+
+
 
                 // input the participant's name
                 let csvContent = "";
@@ -202,6 +293,12 @@ function SetSubmitButton() {
                 csvContent += document.getElementById("answer").value + "\r\n";
                 csvContent += "Duration: \r\n" + Duration + "\r\n\r\n";
                 csvContent += "Complete Code: \r\n" + CompleteCode + "\r\n\r\n";
+
+                csvContent += "Number Combination: \r\n" + Num_Comb + "\r\n";
+
+                csvContent += "PA index: \r\n" + PA_index + "\r\n";
+
+                csvContent += "selected index: \r\n" + TellDifferenceSelected.value + "\r\n\r\n";
 
                 csvContent += "Natural Over all" + "\r\n";
                 for (var i = 0; i < RealisticAllSliderIdArray.length; i++) {
@@ -261,6 +358,8 @@ var QuestionnaireIndex = 999;
 let StartTime;
 let EndTime;
 let Comb;
+let Num_Comb;
+let PA_index;
 
 let CompleteCode;
 function generateTimeBasedCode() {
@@ -277,7 +376,7 @@ console.log(generateTimeBasedCode()); // 示例输出: "MTURK-LKR8G-7F1XZ"
 
 function ServerGetResult() {
     // 使用 fetch 发送 GET 请求到 Flask 后端
-    fetch('https://ex.haselab.net/lian_qserver/get_combination')
+    fetch('https://ex.haselab.net/lian_qserver/get_all_combination')
         .then(response => response.json())  // 解析响应为 JSON
         .then(data => {
 
@@ -288,14 +387,20 @@ function ServerGetResult() {
                 console.error(data.error);
             } else {
                 Comb = data.combination;
-                console.log("Comb = " + Comb);
+                Num_Comb = data.number_combination;
+                PA_index = data.random_number;
+                console.log("Comb = " + Comb + ", NumCom = " + Num_Comb + ", index = " + PA_index);
                 const orderArray = Comb.map(item => MethodTypes.indexOf(item));
                 console.log("OrderArray = " + orderArray);
+                CreateTellDifferenceQuestion();
                 LoadVideoFromIndex(orderArray);
-            }
 
+                console.log(Comb);
+            }
         })
         .catch(error => console.error('Error:', error));
+
+
 }
 
 let AlreadySubmitted = false;
@@ -310,6 +415,7 @@ function ServerPostResult(combination, result)
         },
         body: JSON.stringify({
             combination: combination,
+            number_combination: [PA_index.toString(), ...Num_Comb],
             text: result
         })
     })
@@ -323,6 +429,8 @@ function ServerPostResult(combination, result)
             console.error('Error:', error);
             alert('Error submiting! Please try again. \n 送信エラーが発生しました！もう一度お試しください。\n 提交失败，请再次提交。');
         });
+    console.log([PA_index.toString(), ...Num_Comb]);
+
 }
 
 function LoadVideoFromIndex(OrderArray) {
@@ -574,6 +682,92 @@ function CreateScenceVideoBlock(videoURL) {
                     otherVideo.pause(); // 其他视频暂停
                 }
             });
+        });
+    }
+
+    return node;
+
+}
+
+function CreateTellDifferentVideoBlock(videoURL) {
+    // setting is from the share link of Youtube
+    const node = document.createElement("iframe");
+    const widthAtt = document.createAttribute("width");
+    const heightAtt = document.createAttribute("height");
+    const srcAtt = document.createAttribute("src");
+    const titleAtt = document.createAttribute("title");
+    const frameborderAtt = document.createAttribute("frameborder");
+    const allowAtt = document.createAttribute("allow");
+    const allowFullScreenAtt = document.createAttribute("allowfullscreen");
+    widthAtt.value = "1120"; // "560";
+    heightAtt.value = "630";//"315";
+    srcAtt.value = videoURL
+    titleAtt.value = "Video player";
+    frameborderAtt.value = "0";
+    allowAtt.value = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+    node.setAttributeNode(widthAtt);
+    node.setAttributeNode(heightAtt);
+    node.setAttributeNode(srcAtt);
+    node.setAttributeNode(titleAtt);
+    node.setAttributeNode(frameborderAtt);
+    node.setAttributeNode(allowAtt);
+    node.setAttributeNode(allowFullScreenAtt);
+
+    // 等待 iframe 加载后执行代码
+    node.onload = function () {
+        // 获取 iframe 内部的 document 对象
+        const iframeDocument = node.contentWindow.document;
+
+        // 获取视频元素
+        const video = iframeDocument.querySelector('video');
+        let index = PAclipUrlArray.indexOf(videoURL);
+        if (index == -1) {
+            index = RPclipUrlArray.indexOf(videoURL);
+        }
+        TellDifferenceVideoArray[index] = video;
+
+
+        // 确保视频不自动播放
+        if (video) {
+            video.autoplay = false;  // 禁止自动播放
+        }
+
+        video.addEventListener('play', function () {
+            VideolArray.forEach(otherVideo => {
+                if (otherVideo !== video) {
+                    otherVideo.pause(); // 其他视频暂停
+                }
+            });
+        });
+
+        // 监听播放进度，防止快进
+        video.addEventListener("timeupdate", function () {
+            let index = PAclipUrlArray.indexOf(videoURL);
+            if (index == -1) {
+                index = RPclipUrlArray.indexOf(videoURL);
+            }
+            if (!watchedCompleteTellDifferenceArray[index]) {
+                if (!document.fullscreenElement) {
+                    video.pause();
+                    alert("Please watch the video in fullscreen mode before proceeding.");
+                }
+                if (video.currentTime - TellDifferenceVideoProgressArray[index] > 0.5) { // 超过 1 秒误差
+                    video.currentTime = TellDifferenceVideoProgressArray[index]; // 强制回退
+                    video.pause();
+                    alert("Please watch the whole video before you answer the question. \n 動画を最後まで視聴してから質問に答えてください。 \n 请看完视频后再回答问题。");
+                } else {
+                    TellDifferenceVideoProgressArray[index] = video.currentTime;
+                }
+
+                // 观看超过 95% 进度，解锁进度条和问卷
+                if (video.currentTime >= video.duration * 0.95) {
+                    watchedCompleteTellDifferenceArray[index] = true;
+                    TellDifferenceVideoProgressArray[index] = video.duration;
+                    console.log("Video completed " + index);
+
+                }
+            }
         });
     }
 
