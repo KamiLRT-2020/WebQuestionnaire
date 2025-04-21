@@ -122,10 +122,6 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalAllSliderIdArray,
     legend.innerHTML = legendText;
     container.appendChild(legend);
 
-    intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-    intro1.innerHTML = "The character's first-person perspective is solely for indicating the target. Please focus on the <b>eye and head movements</b>.<br>キャラクターの一人称視点は目標を示すためのものです。<b>目や頭の動き</b>に注目してください。<br>角色的第一人称视角仅用于指示目标，请集中观察<b>眼睛和头部的动作</b>。";
-    container.appendChild(intro1);
-
     // add explaination before the video
     introAll = document.createElement("li"); // use "li" to add a black dot before the text
     introAll.innerHTML = "The character does not blink to ensure that the eyes remain visible at all times.<br>キャラクターの目が常に見えるようにするため、まばたきをしません。<br>为了让眼睛始终可见，角色不会眨眼。";
@@ -196,6 +192,16 @@ function CreateTellDifferenceQuestion() {
     const legend = document.createElement("legend");
     legend.innerHTML = "The following three videos come from two different methods. Please try to observe the differences and select the one that is different. <br>以下の3つのビデオは2つの異なる方法から来ています。違いを観察して、異なるビデオを選んでください。 <br>以下三个视频分别来自两种不同的方法，请尝试观察不同，并选出其中不同的一个视频。";
     container.appendChild(legend);
+
+    // add explaination before the video
+    introAll = document.createElement("li"); // use "li" to add a black dot before the text
+    introAll.innerHTML = "The character does not blink to ensure that the eyes remain visible at all times.<br>キャラクターの目が常に見えるようにするため、まばたきをしません。<br>为了让眼睛始终可见，角色不会眨眼。";
+    container.appendChild(introAll);
+
+    // add explaination before the video
+    introAll = document.createElement("li"); // use "li" to add a black dot before the text
+    introAll.innerHTML = "Please watch the video at <b>fullscreen</b.Please watch each video <b>at least twice</b> to compare the difference. Then evaluate it with the red bar.<br>動画は<b>全画面</b>でご覧ください。動画を<b>少なくとも2回</b>視聴し、違いを比較してください。その後、どれくらいリアルに感じたかを赤い線を動かしてお教えください。<br>请在<b>全屏</b>状态下至少观看<b>两遍</b>以比较区别。并移动红色的刻度线作出相应评估。";
+    container.appendChild(introAll);
 
     for (var i = 0; i < Num_Comb.length; i++) {
         let URL;
@@ -445,7 +451,7 @@ function LoadVideoFromIndex(OrderArray) {
     const OrderGeneralCommentId = OrderArrayWith(GeneralCommentIdArray, OrderArray);
     OrderAnonmyMethodNameStringArray = OrderArrayWith(AnonmyMethodNameStringArray, OrderArray);
     // add elements for evaluation section
-    document.body.insertBefore(CreateQuestionBlock("Videos will show the character's face and the first-person perspective of the character: <br>動画では、キャラクターの顔や一人称視点が表示されます。<br>视频会展示人物的面部特写及人物的第一人称视角：", OrderVideoURLArray, OrderNaturalAllSliderIdArray, OrderNaturalEyeSliderIdArray, OrderNaturalHeadSliderIdArray, OrderHeadEyeCodSliderIdArray, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
+    document.body.insertBefore(CreateQuestionBlock("Videos will show the character's face and the mini window will indicate the visual target (flashing): <br>動画にはキャラクターの顔が表示され、ミニウィンドウが視覚ターゲットを示し、そのターゲットが点滅します。<br>视频会显示角色的面部，小窗口用来指示视觉目标（闪烁）：", OrderVideoURLArray, OrderNaturalAllSliderIdArray, OrderNaturalEyeSliderIdArray, OrderNaturalHeadSliderIdArray, OrderHeadEyeCodSliderIdArray, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
     // 监听页面切换
     document.addEventListener("visibilitychange", function () {
         if (document.hidden) {
