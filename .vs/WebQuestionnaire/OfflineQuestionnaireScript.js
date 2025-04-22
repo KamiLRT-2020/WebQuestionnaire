@@ -15,12 +15,13 @@ const RealisticEyeSliderIdArray = MethodTypes.map(item => `Realistic_Eye_${item}
 const RealisticHeadSliderIdArray = MethodTypes.map(item => `Realistic_Head_${item}`);
 const HeadEyeCodSliderIdArray = MethodTypes.map(item => `Coordinate_${item}`);
 const GeneralCommentIdArray = MethodTypes.map(item => `Comment_${item}`);
-let watchedCompleteArray = new Array(MethodTypes.length).fill(false);
+let watchedCompleteArray = new Array(MethodTypes.length).fill(true);
 let videoProgressArray = new Array(MethodTypes.length).fill(0);
 const VideolArray = new Array(MethodTypes.length);
 let OrderAnonmyMethodNameStringArray;
 
 const TellDifferenceQuestionId = "TellDifference";
+const TellDifferenceQuestionCommentId = "TellDifferenceComment";
 
 // id array for consent information, to check whether they are checked later
 const consentIdArray = new Array("info1", "info2", "info3", "info4", "info5");
@@ -65,7 +66,7 @@ const RPclipUrlArray = new Array(
 );
 
 const TellDifferenceVideoArray = new Array(PAclipUrlArray.length);
-let watchedCompleteTellDifferenceArray = new Array(PAclipUrlArray.length).fill(false);
+let watchedCompleteTellDifferenceArray = new Array(PAclipUrlArray.length).fill(true);
 let TellDifferenceVideoProgressArray = new Array(MethodTypes.length).fill(0);
 
 const SceneIntrodcutionVideo = "EvaluationVideo/Scene.mp4";
@@ -190,7 +191,7 @@ function CreateTellDifferenceQuestion() {
     container.setAttributeNode(QuestionContainerAtt);
     // set legend of container
     const legend = document.createElement("legend");
-    legend.innerHTML = "The following three videos come from two different methods. Please try to observe the differences and select the one that is different. <br>以下の3つのビデオは2つの異なる方法から来ています。違いを観察して、異なるビデオを選んでください。 <br>以下三个视频分别来自两种不同的方法，请尝试观察不同，并选出其中不同的一个视频。";
+    legend.innerHTML = "The following three videos show 2 different movement patterns. Please observe carefully and identify the one with a different movement pattern.<br>以下の3つのビデオでは、二つの異なる動きのパターンが見られます。よく観察して、動きのパターンが異なるビデオを1つ選んでください。<br>以下三个视频展示了两种不同的动作模式，请仔细观察，找出其中动作模式不同的一个视频。";
     container.appendChild(legend);
 
     // add explaination before the video
@@ -201,6 +202,11 @@ function CreateTellDifferenceQuestion() {
     // add explaination before the video
     introAll = document.createElement("li"); // use "li" to add a black dot before the text
     introAll.innerHTML = "Please watch the video at <b>fullscreen</b.Please watch each video <b>at least twice</b> to compare the difference. Then evaluate it with the red bar.<br>動画は<b>全画面</b>でご覧ください。動画を<b>少なくとも2回</b>視聴し、違いを比較してください。その後、どれくらいリアルに感じたかを赤い線を動かしてお教えください。<br>请在<b>全屏</b>状态下至少观看<b>两遍</b>以比较区别。并移动红色的刻度线作出相应评估。";
+    container.appendChild(introAll);
+
+    // add explaination before the video
+    introAll = document.createElement("li"); // use "li" to add a black dot before the text
+    introAll.innerHTML = "<b>The answer to this question will be considered in determining whether the result is approved. <br>この質問への回答は、結果が承認されるかどうかを判断する際に考慮されます。<br>这个问题的回答将会影响到这次提交是否被认可。</b>"
     container.appendChild(introAll);
 
     for (var i = 0; i < Num_Comb.length; i++) {
@@ -241,6 +247,13 @@ function CreateTellDifferenceQuestion() {
     }
 
     container.appendChild(tellDifferenceContainer);
+
+    // add explaination before the comment block
+    var intro1 = document.createElement("li"); // use "li" to add a black dot before the text
+    intro1.innerHTML = "Please describe what is different? <br>何が違うのか説明してください。 <br>请说明有什么不同：";
+    container.appendChild(intro1);
+
+    container.appendChild(CreateCommentBlock(TellDifferenceQuestionCommentId, ""));
 
     document.body.insertBefore(container, CommentBlock);
 
@@ -308,6 +321,9 @@ function SetSubmitButton() {
                 csvContent += "PA index: \r\n" + PA_index + "\r\n";
 
                 csvContent += "selected index: \r\n" + TellDifferenceSelected.value + "\r\n\r\n";
+
+                csvContent += "Difference Comment" + "\r\n";
+                csvContent +=document.getElementById(TellDifferenceQuestionCommentId).value + "\r\n" + "\r\n";
 
                 csvContent += "Natural Over all" + "\r\n";
                 for (var i = 0; i < RealisticAllSliderIdArray.length; i++) {
