@@ -15,7 +15,7 @@ const RealisticEyeSliderIdArray = MethodTypes.map(item => `Realistic_Eye_${item}
 const RealisticHeadSliderIdArray = MethodTypes.map(item => `Realistic_Head_${item}`);
 const HeadEyeCodSliderIdArray = MethodTypes.map(item => `Coordinate_${item}`);
 const GeneralCommentIdArray = MethodTypes.map(item => `Comment_${item}`);
-let watchedCompleteArray = new Array(MethodTypes.length).fill(true);
+let watchedCompleteArray = new Array(MethodTypes.length).fill(false);
 let videoProgressArray = new Array(MethodTypes.length).fill(0);
 const VideolArray = new Array(MethodTypes.length);
 let OrderAnonmyMethodNameStringArray;
@@ -66,7 +66,7 @@ const RPclipUrlArray = new Array(
 );
 
 const TellDifferenceVideoArray = new Array(PAclipUrlArray.length);
-let watchedCompleteTellDifferenceArray = new Array(PAclipUrlArray.length).fill(true);
+let watchedCompleteTellDifferenceArray = new Array(PAclipUrlArray.length).fill(false);
 let TellDifferenceVideoProgressArray = new Array(MethodTypes.length).fill(0);
 
 const SceneIntrodcutionVideo = "EvaluationVideo/Scene.mp4";
