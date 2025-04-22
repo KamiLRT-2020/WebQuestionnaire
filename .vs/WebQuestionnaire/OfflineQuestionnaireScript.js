@@ -251,6 +251,9 @@ function CreateTellDifferenceQuestion() {
                 alert("Please watch the whole video before you answer the question. \n 動画を最後まで視聴してから質問に答えてください。 \n 请看完视频后再回答问题。");
                 radio.checked = false;
             }
+
+            //const TellDifferenceSelected = document.querySelector(`input[name="${TellDifferenceQuestionId}"]:checked`);
+            //console.log("selected index: \r\n" + TellDifferenceSelected.value);
         });
     });
 }
@@ -435,7 +438,6 @@ function ServerPostResult(combination, result)
             console.error('Error:', error);
             alert('Error submiting! Please try again. \n 送信エラーが発生しました！もう一度お試しください。\n 提交失败，请再次提交。');
         });
-    console.log([PA_index.toString(), ...Num_Comb]);
 
 }
 
