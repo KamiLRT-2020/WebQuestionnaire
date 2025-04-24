@@ -6,13 +6,17 @@
 //const AnonmyMethodNameStringArray = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9");
 //const MethodTypes = new Array("AA", "AB", "AC", "BA", "BB", "BC", "CA", "CB", "CC"); // proposed, previous, direclty
 
-const AnonmyMethodNameStringArray = new Array("A", "B");
+const AnonmyMethodNameStringArray = new Array("A", "B","C");
 const AnonmyTellDifferenceStringArray = new Array("1", "2","3");
-const MethodTypes = new Array("PA", "RP"); // proposed, realistic eye package
+const MethodTypes = new Array("PA", "RP","PR"); // proposed, realistic eye package
 
-const RealisticAllSliderIdArray = MethodTypes.map(item => `Realistic_All_${item}`);
-const RealisticEyeSliderIdArray = MethodTypes.map(item => `Realistic_Eye_${item}`);
-const RealisticHeadSliderIdArray = MethodTypes.map(item => `Realistic_Head_${item}`);
+//const RealisticAllSliderIdArray = MethodTypes.map(item => `Realistic_All_${item}`);
+//const RealisticEyeSliderIdArray = MethodTypes.map(item => `Realistic_Eye_${item}`);
+//const RealisticHeadSliderIdArray = MethodTypes.map(item => `Realistic_Head_${item}`);
+
+const HumanLikeAllSliderIdArray = MethodTypes.map(item => `Humanlike_${item}`);
+const RoboticAllSliderIdArray = MethodTypes.map(item => `Robotic_${item}`);
+
 const HeadEyeCodSliderIdArray = MethodTypes.map(item => `Coordinate_${item}`);
 const GeneralCommentIdArray = MethodTypes.map(item => `Comment_${item}`);
 let watchedCompleteArray = new Array(MethodTypes.length).fill(false);
@@ -42,6 +46,7 @@ const SceneIntroduction = document.getElementById("scene");
 const VideoURLArray = new Array(
     "EvaluationVideo/PA.mp4",
     "EvaluationVideo/RP.mp4",
+    "EvaluationVideo/PR.mp4"
     //"EvaluationVideo/AA.mp4",
     //"EvaluationVideo/AB.mp4",
     //"EvaluationVideo/AC.mp4",
@@ -63,6 +68,12 @@ const RPclipUrlArray = new Array(
     "EvaluationVideo/RP_clip1.mp4",
     "EvaluationVideo/RP_clip2.mp4",
     "EvaluationVideo/RP_clip3.mp4"
+);
+
+const PRclipUrlArray = new Array(
+    "EvaluationVideo/PR_clip1.mp4",
+    "EvaluationVideo/PR_clip2.mp4",
+    "EvaluationVideo/PR_clip3.mp4"
 );
 
 const TellDifferenceVideoArray = new Array(PAclipUrlArray.length);
@@ -111,7 +122,7 @@ function PreventFormSubmit() { // input enter would cause reload of the page
 // set up the behavior when click submit button
 
 // function to create a VAS block
-function CreateQuestionBlock(legendText, videoURLArray, NaturalAllSliderIdArray, NaturalEyeSliderIdArray, NaturalHeadSliderIdArray, HeadEyeCodSliderIdArray, GeneralCommentIdArray, methodString) {
+function CreateQuestionBlock(legendText, videoURLArray, HumanLikeAllSliderIdArray, RoboticAllSliderIdArray, HeadEyeCodSliderIdArray, GeneralCommentIdArray, methodString) {
 
     // create outside container
     const container = document.createElement("fieldset");
@@ -141,26 +152,44 @@ function CreateQuestionBlock(legendText, videoURLArray, NaturalAllSliderIdArray,
 
         container.appendChild(CreateVideoBlock(URL));
 
-        // add explaination before the slider
-        intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "How realistic is the movement of the male character in the video <b>" + methodString[i] + "</b>? <b>(Not realistic at all~Very realistic)</b> <br>動画 <b>" + methodString[i] + "</b> の男性キャラクターの動きは、全体的にどのくらいリアルだと感じましたか？<b>(全くリアルではない~非常にリアル)</b> <br>你认为视频 <b>" + methodString[i] + "</b> 中的男性角色动作整体有多逼真？<b>(完全不逼真~非常逼真)</b>";
-        container.appendChild(intro1);
-        // add VAS slider
-        container.appendChild(CreateSlider(NaturalAllSliderIdArray[i], "<b>Not realistic at all<br>全くリアルではない<br>完全不逼真</b>", "<b>Very realistic<br>非常にリアル<br>非常逼真</b>"));
+        //// add explaination before the slider
+        //intro1 = document.createElement("li"); // use "li" to add a black dot before the text
+        //intro1.innerHTML = "How realistic is the gaze movement of the male character in the video <b>" + methodString[i] + "</b>? <b>(Not realistic at all~Very realistic)</b> <br>動画 <b>" + methodString[i] + "</b> の男性キャラクターの目線動作は、全体的にどのくらいリアルだと感じましたか？<b>(全くリアルではない~非常にリアル)</b> <br>你认为视频 <b>" + methodString[i] + "</b> 中的男性角色的视线动作整体有多逼真？<b>(完全不逼真~非常逼真)</b>";
+        //container.appendChild(intro1);
+        //// add VAS slider
+        //container.appendChild(CreateSlider(NaturalAllSliderIdArray[i], "<b>Not realistic at all<br>全くリアルではない<br>完全不逼真</b>", "<b>Very realistic<br>非常にリアル<br>非常逼真</b>"));
 
-        // add explaination before the slider
+        // add explanation before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "How realistic is the eye movement of the male character in the video <b>" + methodString[i] + "</b>? <b>(Not realistic at all~Very realistic)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの目の動きはどのくらいリアルだと感じましたか？<b>(全くリアルではない~非常にリアル)</b> <br>你认为视频<b>" + methodString[i] + "</b>中的男性角色的眼睛动作有多逼真？<b>(完全不逼真~非常逼真)</b>";
+        intro1.innerHTML = "How human-like does the gaze movement of the male character in the video <b>" + methodString[i] + "</b> look? <b>(Not human-like at all~Very human-like)</b> <br>動画 <b>" + methodString[i] + "</b> の男性キャラクターの目線動作は、全体的にどのくらい人間らしく見えましたか？<b>(全く人間らしくない~非常に人間らしい)</b> <br>你认为视频 <b>" + methodString[i] + "</b> 中的男性角色的视线动作看起来有多像人类？<b>(完全不像人类~非常像人类)</b>";
         container.appendChild(intro1);
-        // add VAS slider
-        container.appendChild(CreateSlider(NaturalEyeSliderIdArray[i], "<b>Not realistic at all<br>全くリアルではない<br>完全不逼真</b>", "<b>Very realistic<br>非常にリアル<br>非常逼真</b>"));
 
-        // add explaination before the slider
-        intro1 = document.createElement("li"); // use "li" to add a black dot before the text
-        intro1.innerHTML = "How realistic is the head movement of the male character in the video <b>" + methodString[i] + "</b>? <b>(Not realistic at all~Very realistic)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの頭の動きはどのくらいリアルだと感じましたか？<b>(全くリアルではない~非常にリアル)</b> <br>你认为视频<b>" + methodString[i] + "</b>中的男性角色的头部动作有多逼真？<b>(完全不逼真~非常逼真)</b>";
-        container.appendChild(intro1);
         // add VAS slider
-        container.appendChild(CreateSlider(NaturalHeadSliderIdArray[i], "<b>Not realistic at all<br>全くリアルではない<br>完全不逼真</b>", "<b>Very realistic<br>非常にリアル<br>非常逼真</b>"));
+        container.appendChild(CreateSlider(HumanLikeAllSliderIdArray[i], "<b>Not human-like at all<br>全く人間らしくない<br>完全不像人类</b>", "<b>Very human-like<br>非常に人間らしい<br>非常像人类</b>"));
+
+
+        // add explanation before the slider
+        intro1 = document.createElement("li"); // use "li" to add a black dot before the text
+        intro1.innerHTML = "How robotic does the gaze movement of the male character in the video <b>" + methodString[i] + "</b> look? <b>(Not robotic at all~Very robotic)</b> <br>動画 <b>" + methodString[i] + "</b> の男性キャラクターの目線動作は、全体的にどのくらいロボットのように見えましたか？<b>(全くロボットのようではない~非常にロボットのよう)</b> <br>你认为视频 <b>" + methodString[i] + "</b> 中的男性角色的视线动作看起来有多像机器人？<b>(完全不像机器人~非常像机器人)</b>";
+        container.appendChild(intro1);
+
+        // add VAS slider
+        container.appendChild(CreateSlider(RoboticAllSliderIdArray[i], "<b>Not robotic at all<br>全くロボットのようではない<br>完全不像机器人</b>", "<b>Very robotic<br>非常にロボットのよう<br>非常像机器人</b>"));
+
+
+        //// add explaination before the slider
+        //intro1 = document.createElement("li"); // use "li" to add a black dot before the text
+        //intro1.innerHTML = "How realistic is the eye movement of the male character in the video <b>" + methodString[i] + "</b>? <b>(Not realistic at all~Very realistic)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの目の動きはどのくらいリアルだと感じましたか？<b>(全くリアルではない~非常にリアル)</b> <br>你认为视频<b>" + methodString[i] + "</b>中的男性角色的眼睛动作有多逼真？<b>(完全不逼真~非常逼真)</b>";
+        //container.appendChild(intro1);
+        //// add VAS slider
+        //container.appendChild(CreateSlider(NaturalEyeSliderIdArray[i], "<b>Not realistic at all<br>全くリアルではない<br>完全不逼真</b>", "<b>Very realistic<br>非常にリアル<br>非常逼真</b>"));
+
+        //// add explaination before the slider
+        //intro1 = document.createElement("li"); // use "li" to add a black dot before the text
+        //intro1.innerHTML = "How realistic is the head movement of the male character in the video <b>" + methodString[i] + "</b>? <b>(Not realistic at all~Very realistic)</b> <br>動画<b>" + methodString[i] + "</b>の男性キャラクターの頭の動きはどのくらいリアルだと感じましたか？<b>(全くリアルではない~非常にリアル)</b> <br>你认为视频<b>" + methodString[i] + "</b>中的男性角色的头部动作有多逼真？<b>(完全不逼真~非常逼真)</b>";
+        //container.appendChild(intro1);
+        //// add VAS slider
+        //container.appendChild(CreateSlider(NaturalHeadSliderIdArray[i], "<b>Not realistic at all<br>全くリアルではない<br>完全不逼真</b>", "<b>Very realistic<br>非常にリアル<br>非常逼真</b>"));
 
         // add explaination before the slider
         intro1 = document.createElement("li"); // use "li" to add a black dot before the text
@@ -191,7 +220,7 @@ function CreateTellDifferenceQuestion() {
     container.setAttributeNode(QuestionContainerAtt);
     // set legend of container
     const legend = document.createElement("legend");
-    legend.innerHTML = "The following three videos show 2 different movement patterns. Please observe carefully and identify the one with a different movement pattern.<br>以下の3つのビデオでは、二つの異なる動きのパターンが見られます。よく観察して、動きのパターンが異なるビデオを1つ選んでください。<br>以下三个视频展示了两种不同的动作模式，请仔细观察，找出其中动作模式不同的一个视频。";
+    legend.innerHTML = "The following three videos show 2 different eye movement patterns. Please observe carefully and identify the one with a different pattern.<br>以下の3つのビデオでは、二つの異なる視線（アイムーブメント）のパターンが見られます。よく観察して、視線パターンが異なるビデオを1つ選んでください。<br>以下三个视频展示了两种不同的眼动模式，请仔细观察，找出其中眼动模式不同的一个视频。";
     container.appendChild(legend);
 
     // add explaination before the video
@@ -325,25 +354,41 @@ function SetSubmitButton() {
                 csvContent += "Difference Comment" + "\r\n";
                 csvContent +=document.getElementById(TellDifferenceQuestionCommentId).value + "\r\n" + "\r\n";
 
-                csvContent += "Natural Over all" + "\r\n";
-                for (var i = 0; i < RealisticAllSliderIdArray.length; i++) {
-                    const slider = document.getElementById(RealisticAllSliderIdArray[i]);
+                //csvContent += "Natural Over all" + "\r\n";
+                //for (var i = 0; i < RealisticAllSliderIdArray.length; i++) {
+                //    const slider = document.getElementById(RealisticAllSliderIdArray[i]);
+                //    csvContent += slider.value + "\r\n";
+                //}
+
+                //csvContent += "\r\n";
+
+                //csvContent += "Natural Eye" + "\r\n";
+                //for (var i = 0; i < RealisticEyeSliderIdArray.length; i++) {
+                //    const slider = document.getElementById(RealisticEyeSliderIdArray[i]);
+                //    csvContent += slider.value + "\r\n";
+                //}
+
+                //csvContent += "\r\n";
+
+                //csvContent += "Natural Head" + "\r\n";
+                //for (var i = 0; i < RealisticHeadSliderIdArray.length; i++) {
+                //    const slider = document.getElementById(RealisticHeadSliderIdArray[i]);
+                //    csvContent += slider.value + "\r\n";
+                //}
+
+                csvContent += "\r\n";
+
+                csvContent += "Human-like" + "\r\n";
+                for (var i = 0; i < HumanLikeAllSliderIdArray.length; i++) {
+                    const slider = document.getElementById(HumanLikeAllSliderIdArray[i]);
                     csvContent += slider.value + "\r\n";
                 }
 
                 csvContent += "\r\n";
 
-                csvContent += "Natural Eye" + "\r\n";
-                for (var i = 0; i < RealisticEyeSliderIdArray.length; i++) {
-                    const slider = document.getElementById(RealisticEyeSliderIdArray[i]);
-                    csvContent += slider.value + "\r\n";
-                }
-
-                csvContent += "\r\n";
-
-                csvContent += "Natural Head" + "\r\n";
-                for (var i = 0; i < RealisticHeadSliderIdArray.length; i++) {
-                    const slider = document.getElementById(RealisticHeadSliderIdArray[i]);
+                csvContent += "Robotic" + "\r\n";
+                for (var i = 0; i < RoboticAllSliderIdArray.length; i++) {
+                    const slider = document.getElementById(RoboticAllSliderIdArray[i]);
                     csvContent += slider.value + "\r\n";
                 }
 
@@ -462,14 +507,18 @@ function LoadVideoFromIndex(OrderArray) {
     var contianer = document.getElementById("questionBlock")
     if (contianer != null) { document.removeChild(contianer); }
     const OrderVideoURLArray = OrderArrayWith(VideoURLArray, OrderArray);
-    const OrderNaturalAllSliderIdArray = OrderArrayWith(RealisticAllSliderIdArray, OrderArray); 
-    const OrderNaturalEyeSliderIdArray = OrderArrayWith(RealisticEyeSliderIdArray, OrderArray);
-    const OrderNaturalHeadSliderIdArray = OrderArrayWith(RealisticHeadSliderIdArray, OrderArray);
+    //const OrderNaturalAllSliderIdArray = OrderArrayWith(RealisticAllSliderIdArray, OrderArray);
+    //const OrderNaturalEyeSliderIdArray = OrderArrayWith(RealisticEyeSliderIdArray, OrderArray);
+    //const OrderNaturalHeadSliderIdArray = OrderArrayWith(RealisticHeadSliderIdArray, OrderArray);
+    const OrderRoboticAllSliderIdArray = OrderArrayWith(RoboticAllSliderIdArray, OrderArray); 
+    const OrderHumanLikeAllSliderIdArray = OrderArrayWith(HumanLikeAllSliderIdArray, OrderArray);
     const OrderHeadEyeCodSliderIdArray = OrderArrayWith(HeadEyeCodSliderIdArray, OrderArray);
     const OrderGeneralCommentId = OrderArrayWith(GeneralCommentIdArray, OrderArray);
     OrderAnonmyMethodNameStringArray = OrderArrayWith(AnonmyMethodNameStringArray, OrderArray);
+
+    const QuestionText = "Videos will show the character's face and the red object in the mini window indicates the visual target: <br>動画にはキャラクターの顔が表示され、赤い物体が視線のターゲットを示します。<br>视频会显示角色的面部，小窗口中红色物体用来指示视觉目标："
     // add elements for evaluation section
-    document.body.insertBefore(CreateQuestionBlock("Videos will show the character's face and the mini window will indicate the visual target (flashing): <br>動画にはキャラクターの顔が表示され、ミニウィンドウが視覚ターゲットを示し、そのターゲットが点滅します。<br>视频会显示角色的面部，小窗口用来指示视觉目标（闪烁）：", OrderVideoURLArray, OrderNaturalAllSliderIdArray, OrderNaturalEyeSliderIdArray, OrderNaturalHeadSliderIdArray, OrderHeadEyeCodSliderIdArray, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
+    document.body.insertBefore(CreateQuestionBlock(QuestionText, OrderVideoURLArray, OrderHumanLikeAllSliderIdArray, OrderRoboticAllSliderIdArray, OrderHeadEyeCodSliderIdArray, OrderGeneralCommentId, AnonmyMethodNameStringArray), CommentBlock);
     // 监听页面切换
     document.addEventListener("visibilitychange", function () {
         if (document.hidden) {
