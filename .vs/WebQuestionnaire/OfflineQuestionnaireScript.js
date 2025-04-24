@@ -6,9 +6,9 @@
 //const AnonmyMethodNameStringArray = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9");
 //const MethodTypes = new Array("AA", "AB", "AC", "BA", "BB", "BC", "CA", "CB", "CC"); // proposed, previous, direclty
 
-const AnonmyMethodNameStringArray = new Array("A", "B","C");
+const AnonmyMethodNameStringArray = new Array("A", "B");
 const AnonmyTellDifferenceStringArray = new Array("1", "2","3");
-const MethodTypes = new Array("PA", "RP","PR"); // proposed, realistic eye package
+const MethodTypes = new Array("PA", "RP"); // proposed, realistic eye package
 
 //const RealisticAllSliderIdArray = MethodTypes.map(item => `Realistic_All_${item}`);
 //const RealisticEyeSliderIdArray = MethodTypes.map(item => `Realistic_Eye_${item}`);
@@ -46,16 +46,8 @@ const SceneIntroduction = document.getElementById("scene");
 const VideoURLArray = new Array(
     "EvaluationVideo/PA.mp4",
     "EvaluationVideo/RP.mp4",
-    "EvaluationVideo/PR.mp4"
-    //"EvaluationVideo/AA.mp4",
-    //"EvaluationVideo/AB.mp4",
-    //"EvaluationVideo/AC.mp4",
-    //"EvaluationVideo/BA.mp4",
-    //"EvaluationVideo/BB.mp4",
-    //"EvaluationVideo/BC.mp4",
-    //"EvaluationVideo/CA.mp4",
-    //"EvaluationVideo/CB.mp4",
-    //"EvaluationVideo/CC.mp4"
+    //"EvaluationVideo/PR.mp4"
+
 );
 
 const PAclipUrlArray = new Array(
