@@ -241,7 +241,7 @@ function CreateTellDifferenceQuestion() {
         const intro = document.createElement("h2"); // use "li" to add a black dot before the text
         intro.innerHTML = "<b>" + AnonmyTellDifferenceStringArray[i] + ":</b>";
         container.appendChild(intro);
-        container.appendChild(CreateTellDifferentVideoBlock(URL));
+        container.appendChild(CreateTellDifferentVideoBlock(URL, i));
 
     }
 
@@ -752,7 +752,7 @@ function CreateScenceVideoBlock(videoURL) {
 
 }
 
-function CreateTellDifferentVideoBlock(videoURL) {
+function CreateTellDifferentVideoBlock(videoURL, index) {
     // setting is from the share link of Youtube
     const node = document.createElement("iframe");
     const widthAtt = document.createAttribute("width");
@@ -784,10 +784,6 @@ function CreateTellDifferentVideoBlock(videoURL) {
 
         // 获取视频元素
         const video = iframeDocument.querySelector('video');
-        let index = PAclipUrlArray.indexOf(videoURL);
-        if (index == -1) {
-            index = RPclipUrlArray.indexOf(videoURL);
-        }
         TellDifferenceVideoArray[index] = video;
 
 
@@ -806,10 +802,6 @@ function CreateTellDifferentVideoBlock(videoURL) {
 
         // 监听播放进度，防止快进
         video.addEventListener("timeupdate", function () {
-            let index = PAclipUrlArray.indexOf(videoURL);
-            if (index == -1) {
-                index = RPclipUrlArray.indexOf(videoURL);
-            }
             if (!watchedCompleteTellDifferenceArray[index]) {
                 if (!document.fullscreenElement) {
                     video.pause();
