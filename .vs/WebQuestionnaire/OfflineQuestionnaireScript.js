@@ -136,6 +136,10 @@ function CreateQuestionBlock(legendText, videoURLArray, HumanLikeAllSliderIdArra
     introAll.innerHTML = "Please watch the video at <b>fullscreen</b.Please watch each video <b>at least twice</b> to compare the difference. Then evaluate it with the red bar.<br>動画は<b>全画面</b>でご覧ください。動画を<b>少なくとも2回</b>視聴し、違いを比較してください。その後、どれくらいリアルに感じたかを赤い線を動かしてお教えください。<br>请在<b>全屏</b>状态下至少观看<b>两遍</b>以比较区别。并移动红色的刻度线作出相应评估。";
     container.appendChild(introAll);
 
+    introAll = document.createElement("li"); // use "li" to add a black dot before the text
+    introAll.innerHTML = "<b>The answer to this question will be considered in determining whether the result is approved. Please pay attention to the eye movements when the character changes visual target.  <br>この質問への回答は、結果が承認されるかどうかを判断する際に考慮されます。キャラクターが視線の対象を変えるときの目の動きに注意してください。<br>这个问题的回答将会影响到这次提交是否被认可。请注意观察角色在转换视觉目标时的眼睛运动。</b>"
+    container.appendChild(introAll);
+
     for (var i = 0; i < videoURLArray.length; i++) {
         const URL = videoURLArray[i];
         const intro = document.createElement("h2"); // use "li" to add a black dot before the text
@@ -220,14 +224,10 @@ function CreateTellDifferenceQuestion() {
     introAll.innerHTML = "The character does not blink to ensure that the eyes remain visible at all times.<br>キャラクターの目が常に見えるようにするため、まばたきをしません。<br>为了让眼睛始终可见，角色不会眨眼。";
     container.appendChild(introAll);
 
-    // add explaination before the video
-    introAll = document.createElement("li"); // use "li" to add a black dot before the text
-    introAll.innerHTML = "Please watch the video at <b>fullscreen</b.Please watch each video <b>at least twice</b> to compare the difference. Then evaluate it with the red bar.<br>動画は<b>全画面</b>でご覧ください。動画を<b>少なくとも2回</b>視聴し、違いを比較してください。その後、どれくらいリアルに感じたかを赤い線を動かしてお教えください。<br>请在<b>全屏</b>状态下至少观看<b>两遍</b>以比较区别。并移动红色的刻度线作出相应评估。";
-    container.appendChild(introAll);
 
     // add explaination before the video
     introAll = document.createElement("li"); // use "li" to add a black dot before the text
-    introAll.innerHTML = "<b>The answer to this question will be considered in determining whether the result is approved. <br>この質問への回答は、結果が承認されるかどうかを判断する際に考慮されます。<br>这个问题的回答将会影响到这次提交是否被认可。</b>"
+    introAll.innerHTML = "<b>The answer to this question will be considered in determining whether the result is approved. Please pay attention to the eye movements when the character changes visual target.  <br>この質問への回答は、結果が承認されるかどうかを判断する際に考慮されます。キャラクターが視線の対象を変えるときの目の動きに注意してください。<br>这个问题的回答将会影响到这次提交是否被认可。请注意观察角色在转换视觉目标时的眼睛运动。</b>"
     container.appendChild(introAll);
 
     for (var i = 0; i < Num_Comb.length; i++) {
