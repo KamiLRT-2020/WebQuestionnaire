@@ -12,7 +12,7 @@ CORS(app)
 # ================================
 # ====== 配置区 ======
 # ================================
-METHODS = ["PA", "RP","PR"]
+METHODS = ["PA", "RP"]
 CSV_FILE = "method_permutations.csv"
 PREFIX = "Result_"
 EXTENSION = ".csv"
