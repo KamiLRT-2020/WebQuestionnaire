@@ -233,10 +233,10 @@ function CreateTellDifferenceQuestion() {
     for (var i = 0; i < Num_Comb.length; i++) {
         let URL;
         if (i == PA_index) {
-            URL = PAclipUrlArray[Num_Comb[i]];
+            URL = PAclipUrlArray[Num_Comb[0]];
         }
         else {
-            URL = RPclipUrlArray[Num_Comb[i]];
+            URL = RPclipUrlArray[Num_Comb[0]];
         }
         const intro = document.createElement("h2"); // use "li" to add a black dot before the text
         intro.innerHTML = "<b>" + AnonmyTellDifferenceStringArray[i] + ":</b>";
