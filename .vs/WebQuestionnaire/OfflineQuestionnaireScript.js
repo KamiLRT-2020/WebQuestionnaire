@@ -469,8 +469,6 @@ function ServerGetResult() {
             }
         })
         .catch(error => console.error('Error:', error));
-
-
 }
 
 let AlreadySubmitted = false;
